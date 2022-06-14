@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ChucNangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -134,6 +135,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\css\dangkydangnhap.css" />
     <Content Include="Asset\css\style.css" />
     <Content Include="Asset\css\style.min.css" />
     <Content Include="Asset\img\aokhoac1.jpg" />
@@ -335,6 +337,10 @@
     <Content Include="Views\ChucNang\XemChiTietSanPham.cshtml" />
     <Content Include="Views\ChucNang\HienThiSPTheoPhanLoai.cshtml" />
     <Content Include="Views\ChucNang\HienThiDSSanPham.cshtml" />
+    <Content Include="Views\Layout\_LayoutDangNhap.cshtml" />
+    <Content Include="Views\NguoiDung\DangNhap.cshtml" />
+    <Content Include="Views\Layout\_LayoutDangKy.cshtml" />
+    <Content Include="Views\NguoiDung\DangKy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
