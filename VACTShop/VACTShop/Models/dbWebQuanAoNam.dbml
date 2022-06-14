@@ -5,7 +5,6 @@
       <Column Name="TaiKhoanAdmin" Type="System.String" DbType="NChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MatKhauAdmin" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
       <Column Name="HoTenAdmin" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="ADMIN_DONDATHANG" Member="DONDATHANGs" ThisKey="TaiKhoanAdmin" OtherKey="TaiKhoanAdmin" Type="DONDATHANG" />
     </Type>
   </Table>
   <Table Name="dbo.CHITIETDONDATHANG" Member="CHITIETDONDATHANGs">
@@ -27,9 +26,7 @@
       <Column Name="NgayDat" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="NgayGiao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TaiKhoanAdmin" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
       <Association Name="DONDATHANG_CHITIETDONDATHANG" Member="CHITIETDONDATHANGs" ThisKey="MaDDH" OtherKey="MaDDH" Type="CHITIETDONDATHANG" />
-      <Association Name="ADMIN_DONDATHANG" Member="ADMIN" ThisKey="TaiKhoanAdmin" OtherKey="TaiKhoanAdmin" Type="ADMIN" IsForeignKey="true" />
       <Association Name="KHACHHANG_DONDATHANG" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
     </Type>
   </Table>
@@ -71,6 +68,13 @@
       <Association Name="NHACUNGCAP_SANPHAM" Member="SANPHAMs" ThisKey="MaNCC" OtherKey="MaNCC" Type="SANPHAM" />
     </Type>
   </Table>
+  <Table Name="dbo.SIZE" Member="SIZEs">
+    <Type Name="SIZE">
+      <Column Name="MaSize" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SoSize" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="SIZE_SANPHAM" Member="SANPHAMs" ThisKey="MaSize" OtherKey="MaSize" Type="SANPHAM" />
+    </Type>
+  </Table>
   <Table Name="dbo.SANPHAM" Member="SANPHAMs">
     <Type Name="SANPHAM">
       <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -87,13 +91,6 @@
       <Association Name="LOAISANPHAM_SANPHAM" Member="LOAISANPHAM" ThisKey="MaLSP" OtherKey="MaLSP" Type="LOAISANPHAM" IsForeignKey="true" />
       <Association Name="NHACUNGCAP_SANPHAM" Member="NHACUNGCAP" ThisKey="MaNCC" OtherKey="MaNCC" Type="NHACUNGCAP" IsForeignKey="true" />
       <Association Name="SIZE_SANPHAM" Member="SIZE" ThisKey="MaSize" OtherKey="MaSize" Type="SIZE" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SIZE" Member="SIZEs">
-    <Type Name="SIZE">
-      <Column Name="MaSize" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SoSize" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="SIZE_SANPHAM" Member="SANPHAMs" ThisKey="MaSize" OtherKey="MaSize" Type="SANPHAM" />
     </Type>
   </Table>
 </Database>

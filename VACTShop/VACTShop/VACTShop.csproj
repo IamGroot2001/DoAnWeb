@@ -331,10 +331,10 @@
     <Content Include="Views\Home\GioHang.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\ChucNang\HienThiLoaiSanPham.cshtml" />
-    <Content Include="Views\ChucNang\HienThiDSSanPham.cshtml" />
     <Content Include="Views\ChucNang\HienThiHangMoiVe.cshtml" />
     <Content Include="Views\ChucNang\XemChiTietSanPham.cshtml" />
     <Content Include="Views\ChucNang\HienThiSPTheoPhanLoai.cshtml" />
+    <Content Include="Views\ChucNang\HienThiDSSanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
