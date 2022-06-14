@@ -29,7 +29,7 @@ namespace VACTShop.Controllers
         public ActionResult HienThiDSSanPham()
         {
             var hienthiDSSanPham = LaySanPham(int.MaxValue);
-            return View(hienthiDSSanPham);
+            return PartialView(hienthiDSSanPham);
         }   
 
         public ActionResult XemChiTietSanPham(int id)
