@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChucNangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
@@ -178,7 +179,14 @@
     <Content Include="Asset\img\vendor-6.jpg" />
     <Content Include="Asset\img\vendor-7.jpg" />
     <Content Include="Asset\img\vendor-8.jpg" />
+    <Content Include="Asset\js\bootstrap.bundle.min.js" />
+    <Content Include="Asset\js\chart-area-demo.js" />
+    <Content Include="Asset\js\chart-pie-demo.js" />
+    <Content Include="Asset\js\Chart.js" />
+    <Content Include="Asset\js\jquery.easing.min.js" />
+    <Content Include="Asset\js\jquery.min.js" />
     <Content Include="Asset\js\main.js" />
+    <Content Include="Asset\js\sb-admin-2.min.js" />
     <Content Include="Asset\lib\easing\easing.js" />
     <Content Include="Asset\lib\easing\easing.min.js" />
     <Content Include="Asset\lib\owlcarousel\assets\ajax-loader.gif" />
@@ -194,10 +202,12 @@
     <Content Include="Asset\mail\contact.js" />
     <Content Include="Asset\mail\contact.php" />
     <Content Include="Asset\mail\jqBootstrapValidation.min.js" />
+    <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\sb-admin-2.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -323,7 +333,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -341,6 +350,9 @@
     <Content Include="Views\NguoiDung\DangNhap.cshtml" />
     <Content Include="Views\Layout\_LayoutDangKy.cshtml" />
     <Content Include="Views\NguoiDung\DangKy.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Layout\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
