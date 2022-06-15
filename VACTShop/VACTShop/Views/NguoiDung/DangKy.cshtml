@@ -18,50 +18,56 @@
 <body>
 </body>
 </html>
-<section>
-    <!--Bắt Đầu Phần Hình Ảnh-->
-    <div class="img-bg">
-        <img src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/tao_trang_dang_nhap/hinh_anh_minh_hoa.jpg" alt="Hình Ảnh Minh Họa">
-    </div>
-    <!--Kết Thúc Phần Hình Ảnh-->
-    <!--Bắt Đầu Phần Nội Dung-->
-    <div class="noi-dung">
-        <div class="form">
-            <h2>Trang Đăng Ký</h2>
-            <form action="">
-                <div class="input-form">
-                    <input placeholder="Họ và tên" type="text" name="HOTEN" required="">
+@using (Html.BeginForm())
+{
+    <form action="#" method="post">
+        @Html.ValidationSummary(true)
+        <section>
+            <!--Bắt Đầu Phần Hình Ảnh-->
+            <div class="img-bg">
+                <img src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/tao_trang_dang_nhap/hinh_anh_minh_hoa.jpg" alt="Hình Ảnh Minh Họa">
+            </div>
+            <!--Kết Thúc Phần Hình Ảnh-->
+            <!--Bắt Đầu Phần Nội Dung-->
+            <div class="noi-dung">
+                <div class="form">
+                    <h2>Trang Đăng Ký</h2>
+                    <form action="">
+                        <div class="input-form">
+                            <input placeholder="Họ và tên" type="text" name="HOTEN" required="">
+                        </div>
+                        <div class="input-form">
+                            <input placeholder="Email" type="text" name="EMAIL" required="">
+                        </div>
+                        <div class="input-form">
+                            <input placeholder="Địa chỉ" type="text" name="DIACHI" required="">
+                        </div>
+                        <div class="input-form">
+                            <input placeholder="Điện thoại" type="text" pattern="[0-9]{10}" name="DIENTHOAI" required="">
+                        </div>
+                        <div class="input-form">
+                            <input placeholder="Ngày sinh" type="date" name="NGAYSINH" required="">
+                        </div>
+                        <div class="input-form">
+                            <input placeholder="Tài khoản" type="text" name="TAIKHOAN" required="">
+                        </div>
+                        <div class="input-form">
+                            <input placeholder="Mật khẩu" type="password" name="MATKHAU" required="">
+                        </div>
+                        <div class="input-form">
+                            <input placeholder="Nhập lại mật khẩu" type="password" name="NHAPLAIMATKHAU" required="">
+                            <h4 style="background-color: red; border-radius: 20%; font: font: inherit;"> @ViewData["error"]</h4>
+                        </div>
+                        <div class="input-form">
+                            <input type="submit" value="Đăng Ký">
+                        </div>
+                        <div class="input-form">
+                            <p>Về <a href="@Url.Action("Index", "Home")">Trang Chủ</a> </p>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-form">
-                    <input placeholder="Email" type="text" name="EMAIL" required="">
-                </div>
-                <div class="input-form">
-                    <input placeholder="Địa chỉ" type="text" name="DIACHI" required="">
-                </div>
-                <div class="input-form">
-                    <input placeholder="Điện thoại" type="text" pattern="[0-9]{10}" name="DIENTHOAI" required="">
-                </div>
-                <div class="input-form">
-                    <input placeholder="Ngày sinh" type="date" name="NGAYSINH" required="">
-                </div>
-                <div class="input-form">
-                    <input placeholder="Tài khoản" type="text" name="TAIKHOAN" required="">
-                </div>
-                <div class="input-form">
-                    <input placeholder="Mật khẩu" type="password" name="MATKHAU" required="">
-                </div>
-                <div class="input-form">
-                    <input placeholder="Nhập lại mật khẩu" type="password" name="NHAPLAIMATKHAU" required="">
-                    <h4 style="background-color: red; border-radius: 20%; font: font: inherit;"> @ViewData["error"]</h4>
-                </div>
-                <div class="input-form">
-                    <input type="submit" value="Đăng Ký" >
-                </div>
-                <div class="input-form">
-                    <p>Về <a href="@Url.Action("Index","Home")">Trang Chủ</a> </p>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!--Kết Thúc Phần Nội Dung-->
-</section>
+            </div>
+            <!--Kết Thúc Phần Nội Dung-->
+        </section>
+        </form>
+ }

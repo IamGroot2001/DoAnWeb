@@ -18,37 +18,44 @@
 <body>
 </body>
 </html>
-<section>
-    <!--Bắt Đầu Phần Hình Ảnh-->
-    <div class="img-bg">
-        <img src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/tao_trang_dang_nhap/hinh_anh_minh_hoa.jpg" alt="Hình Ảnh Minh Họa">
-    </div>
-    <!--Kết Thúc Phần Hình Ảnh-->
-    <!--Bắt Đầu Phần Nội Dung-->
-    <div class="noi-dung">
-        <div class="form">
-            <h2>Trang Đăng Nhập</h2>
-            <form action="">
-                <div class="input-form">
-                    <span>Tên Người Dùng</span>
-                    <input type="text" name="TaiKhoan">
+@using (Html.BeginForm())
+{
+    <form action="#" method="post">
+        @Html.ValidationSummary(true)
+        <section>
+            <!--Bắt Đầu Phần Hình Ảnh-->
+            <div class="img-bg">
+                <img src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/tao_trang_dang_nhap/hinh_anh_minh_hoa.jpg" alt="Hình Ảnh Minh Họa">
+            </div>
+            <!--Kết Thúc Phần Hình Ảnh-->
+            <!--Bắt Đầu Phần Nội Dung-->
+            <div class="noi-dung">
+                <div class="form">
+                    <h2>Trang Đăng Nhập</h2>
+                    <form action="">
+                        <h4 style="color:red; background-color:snow;text-align:center;border-radius:20%;">@ViewBag.ThongBao</h4>
+                        <div class="input-form">
+                            <span>Tên Người Dùng</span>
+                            <input type="text" name="TaiKhoan">
+                        </div>
+                        <div class="input-form">
+                            <span>Mật Khẩu</span>
+                            <input type="password" name="Password">
+                        </div>
+                        <div class="input-form">
+                            <input type="submit" value="Đăng Nhập">
+                        </div>
+                        <div class="input-form">
+                            <p>Bạn Chưa Có Tài Khoản? <a href="@Url.Action("DangKy", "NguoiDung")">Đăng Ký</a></p>
+                            <p>Về <a href="@Url.Action("Index", "Home")">Trang Chủ</a> </p>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-form">
-                    <span>Mật Khẩu</span>
-                    <input type="password" name="Password">
-                </div>
-                <div class="input-form">
-                    <input type="submit" value="Đăng Nhập">
-                </div>
-                <div class="input-form">
-                    <p>Bạn Chưa Có Tài Khoản? <a href="@Url.Action("DangKy","NguoiDung")">Đăng Ký</a></p>
-                    <p>Về <a href="@Url.Action("Index","Home")">Trang Chủ</a> </p>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!--Kết Thúc Phần Nội Dung-->
-</section>
+            </div>
+            <!--Kết Thúc Phần Nội Dung-->
+        </section>
+        </form>
+}
 
 
 
