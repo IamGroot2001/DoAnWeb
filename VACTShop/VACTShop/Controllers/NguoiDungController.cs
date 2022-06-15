@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using VACTShop.Models;
+
 namespace VACTShop.Controllers
 {
     public class NguoiDungController : Controller
     {
         dbWebQuanAoNamDataContext data = new dbWebQuanAoNamDataContext();
         // GET: NguoiDung
-        public ActionResult DangNhap()
-        {
-            return View();
-        }
+       
+
         [HttpGet]
         public ActionResult DangKy()
         {
@@ -47,7 +51,7 @@ namespace VACTShop.Controllers
                     kh.MatKhauKH = matkhau;
                     data.KHACHHANGs.InsertOnSubmit(kh);
                     data.SubmitChanges();
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("DangNhap","NguoiDung");
                 }
             } 
             else
@@ -56,6 +60,36 @@ namespace VACTShop.Controllers
                 @ViewData["error"] = "Mật Khẩu Không Trùng Khớp";
                 return this.DangKy();
             }    
+        }
+        [HttpGet]
+        public ActionResult DangNhap()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DangNhap(FormCollection collection)
+        {
+            string TK = collection["TaiKhoan"];
+            string MK = collection["Password"];
+            KHACHHANG kh = data.KHACHHANGs.SingleOrDefault(a => a.TaiKhoanKH == TK && a.MatKhauKH == MK);
+            if (kh != null)
+            {
+                Session["User"] = kh.HoTenKH;
+                Session["Taikhoan"] = kh;
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Thongbao = "Tên Tài Khoản Hoặc Mật Khẩu Không Đúng";
+            }
+
+            return View();
+        }
+        public ActionResult DangXuat()
+        {
+            Session["User"] = null;
+            Session["Taikhoan"] = null;
+            return RedirectToAction("Index", "Home");
         }
     }
 }
