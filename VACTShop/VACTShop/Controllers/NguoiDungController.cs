@@ -51,6 +51,11 @@ namespace VACTShop.Controllers
                     kh.MatKhauKH = matkhau;
                     data.KHACHHANGs.InsertOnSubmit(kh);
                     data.SubmitChanges();
+
+                    //sentmail
+                    string subject = "VACT Shop";
+                    string mess = "Chào mừng " + kh.HoTenKH + " đến với The VACT Shop";
+                    SendEmail(kh.EmailKH, subject, mess);
                     return RedirectToAction("DangNhap","NguoiDung");
                 }
             } 
@@ -89,6 +94,36 @@ namespace VACTShop.Controllers
             Session["User"] = null;
             Session["Taikhoan"] = null;
             return RedirectToAction("Index", "Home");
+        }
+        //Gửi Mail
+        public static void SendEmail(string address, string subject, string message)
+        {
+            if (new EmailAddressAttribute().IsValid(address)) // check có đúng mail khách hàng
+            {
+                string email = "buivanty15@gmail.com";
+                var senderEmail = new MailAddress(email, "VACT Shop (tin nhắn tự động)");
+                var receiverEmail = new MailAddress(address, "Receiver");
+                var password = "dpukaghhwhgrokpo";
+                var sub = subject;
+                var body = message;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                using (var mess = new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = sub,
+                    Body = body
+                })
+                {
+                    smtp.Send(mess);
+                }
+            }
         }
     }
 }

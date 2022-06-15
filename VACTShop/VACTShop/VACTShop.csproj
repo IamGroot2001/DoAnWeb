@@ -125,6 +125,7 @@
     <Compile Include="Controllers\ChucNangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\VACTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -352,7 +353,8 @@
     <Content Include="Views\NguoiDung\DangKy.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Layout\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Layout\Admin\_LayoutAdmin.cshtml" />
+    <Content Include="Views\VACT\DSsanpham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
