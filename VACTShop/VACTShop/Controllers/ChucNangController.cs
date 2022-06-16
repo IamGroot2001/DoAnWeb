@@ -4,46 +4,34 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VACTShop.Models;
+using PagedList;
 
 namespace VACTShop.Controllers
 {
     public class ChucNangController : Controller
     {
-        dbWebQuanAoNamDataContext data = new dbWebQuanAoNamDataContext();
-        private List<SANPHAM> LaySanPham(int count)
+        dbWebQuanAoNamDataContext context = new dbWebQuanAoNamDataContext();
+        //------------------------------ Sản Phẩm ---------------------------------------vinh
+        public ActionResult DSsanpham(int? page)
         {
-            return data.SANPHAMs.OrderByDescending(a => a.NgayCapNhat).Take(count).ToList();
+            if(Session["TKAdmin"]==null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            int pagesize = 10;
+            int pageNum = (page ?? 1);
+            var list = context.SANPHAMs.OrderByDescending(s => s.MaSP).ToList();
+            return View(list.ToPagedList(pageNum, pagesize));
         }
-        // GET: ChucNang
-        public ActionResult HienThiHangMoiVe()
+        public ActionResult loai(int id)
         {
-            var hangmoive = LaySanPham(8);
-            return PartialView(hangmoive);
+            var list = context.LOAISANPHAMs.Where(n => n.MaLSP == id);
+            return View(list.Single());
         }
-        public ActionResult HienThiLoaiSanPham()
+        public ActionResult NCC(int id)
         {
-            var loaiSanPham = from cd in data.LOAISANPHAMs select cd;
-            return PartialView(loaiSanPham);
-        }
-
-        public ActionResult HienThiDSSanPham()
-        {
-            var hienthiDSSanPham = LaySanPham(int.MaxValue);
-            return PartialView(hienthiDSSanPham);
-        }   
-
-        public ActionResult XemChiTietSanPham(int id)
-        {
-            var sanpham = from s in data.SANPHAMs
-                          where s.MaSP == id
-                          select s;
-            return View(sanpham.Single());
-        }
-
-        public ActionResult HienThiSPTheoPhanLoai(int id)
-        {
-            var sp = from s in data.LOAISANPHAMs where s.MaLSP == id select s;
-            return PartialView(sp);
+            var list = context.NHACUNGCAPs.Where(n => n.MaNCC == id);
+            return View(list.Single());
         }
     }
 }

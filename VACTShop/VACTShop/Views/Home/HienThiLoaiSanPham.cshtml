@@ -1,0 +1,5 @@
+﻿@model IEnumerable<VACTShop.Models.LOAISANPHAM>
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("HienThiSPTheoPhanLoai", "Home", new { id = item.MaLSP})" class="nav-item nav-link">@item.TenLSP</a>
+}
