@@ -19,7 +19,12 @@
 </head>
 
 <body id="page-top">
-    @RenderBody();
+    <div>
+        <main>
+            @RenderBody()
+        </main>
+        @RenderSection("MenuTrangAdmin", false)
+    </div>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -62,7 +67,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Quản Lý Sản Phẩm</a>
+                        <a class="collapse-item" href="@Url.Action("DSsanpham","ChucNang")">Quản Lý Sản Phẩm</a>
                         <a class="collapse-item" href="cards.html">Quản lý loại sản phẩm</a>
                         <a class="collapse-item" href="#">Quản lý Nhà cung cấp</a>
                         <a class="collapse-item" href="#">Quản lý đơn hàng</a>
@@ -72,13 +77,9 @@
                 </div>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+
+
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -90,6 +91,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="login.html">Register</a>
+                        <a class="collapse-item" href="login.html">Forgot Password</a>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
                         <a class="collapse-item" href="blank.html">Blank Page</a>
@@ -105,10 +108,6 @@
                     <span>Chi Tiết Đơn Hàng</span>
                 </a>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
