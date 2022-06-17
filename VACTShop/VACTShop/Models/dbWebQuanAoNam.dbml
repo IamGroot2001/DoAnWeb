@@ -68,13 +68,6 @@
       <Association Name="NHACUNGCAP_SANPHAM" Member="SANPHAMs" ThisKey="MaNCC" OtherKey="MaNCC" Type="SANPHAM" />
     </Type>
   </Table>
-  <Table Name="dbo.SIZE" Member="SIZEs">
-    <Type Name="SIZE">
-      <Column Name="MaSize" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SoSize" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="SIZE_SANPHAM" Member="SANPHAMs" ThisKey="MaSize" OtherKey="MaSize" Type="SANPHAM" />
-    </Type>
-  </Table>
   <Table Name="dbo.SANPHAM" Member="SANPHAMs">
     <Type Name="SANPHAM">
       <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -84,13 +77,20 @@
       <Column Name="AnhBia" Type="System.String" DbType="NChar(200)" CanBeNull="true" />
       <Column Name="NgayCapNhat" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="SoLuongTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GiaBan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GiaBan" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="MaLSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaNCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="SANPHAM_CHITIETDONDATHANG" Member="CHITIETDONDATHANGs" ThisKey="MaSP" OtherKey="MaSP" Type="CHITIETDONDATHANG" />
       <Association Name="LOAISANPHAM_SANPHAM" Member="LOAISANPHAM" ThisKey="MaLSP" OtherKey="MaLSP" Type="LOAISANPHAM" IsForeignKey="true" />
       <Association Name="NHACUNGCAP_SANPHAM" Member="NHACUNGCAP" ThisKey="MaNCC" OtherKey="MaNCC" Type="NHACUNGCAP" IsForeignKey="true" />
       <Association Name="SIZE_SANPHAM" Member="SIZE" ThisKey="MaSize" OtherKey="MaSize" Type="SIZE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SIZE" Member="SIZEs">
+    <Type Name="SIZE">
+      <Column Name="MaSize" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SoSize" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="SIZE_SANPHAM" Member="SANPHAMs" ThisKey="MaSize" OtherKey="MaSize" Type="SANPHAM" />
     </Type>
   </Table>
 </Database>
