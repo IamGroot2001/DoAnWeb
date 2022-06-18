@@ -17,12 +17,17 @@ namespace VACTShop.Controllers
         {
             return data.SANPHAMs.OrderByDescending(a => a.NgayCapNhat).Take(count).ToList();
         }
-        public ActionResult Index(int ? page)
+        public ActionResult Index(string search, int ? page)
         {
+            /*// tạo biển quy định số sản phẩm trên mỗi trang
             int pagesize = 5;
+            // tạo biển số trang
             int pageNum = (page ?? 1);
-            var Sachmoi = LaySanPham(20);
-            return View(Sachmoi.ToPagedList(pageNum, pagesize));
+            var Sachmoi = LaySanPham(5);
+            return View(Sachmoi.ToPagedList(pageNum, pagesize));*/
+            List<SANPHAM> listsp = data.SANPHAMs.ToList();
+            return View(data.SANPHAMs.Where(x => x.TenSP.StartsWith(search) || search == null).ToPagedList(page ?? 1, 12));
+
         }
         // GET: ChucNang
         public ActionResult HienThiHangMoiVe()
@@ -70,9 +75,16 @@ namespace VACTShop.Controllers
             return View();
         }
 
-        public ActionResult Shop()
+        public ActionResult Shop(string search, int? page)
         {
-            return View();
+            // tạo biển quy định số sản phẩm trên mỗi trang
+            int pagesize = 5;
+            // tạo biển số trang
+            int pageNum = (page ?? 1);
+            var Sanphammoi = LaySanPham(5);
+            return View(Sanphammoi.ToPagedList(pageNum, pagesize));
+            /*List<SANPHAM> listsp = data.SANPHAMs.ToList();
+            return View(data.SANPHAMs.Where(x => x.TenSP.StartsWith(search) || search == null).ToPagedList(page ?? 1, 12));*/
         }
 
         public ActionResult GioHang()

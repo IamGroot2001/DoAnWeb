@@ -147,8 +147,11 @@
     <Content Include="Asset\css\style.min.css" />
     <Content Include="Asset\img\aokhoac1.jpg" />
     <Content Include="Asset\img\aokhoac2.jpg" />
+    <Content Include="Asset\img\aokhoac3.jfif" />
+    <Content Include="Asset\img\aokhoac4.jpg" />
     <Content Include="Asset\img\aosomi1.jfif" />
     <Content Include="Asset\img\aothun1.jfif" />
+    <Content Include="Asset\img\aothun2.jfif" />
     <Content Include="Asset\img\bg3.jpg" />
     <Content Include="Asset\img\carousel-1.jpg" />
     <Content Include="Asset\img\carousel-2.jpg" />
@@ -160,6 +163,7 @@
     <Content Include="Asset\img\cat-6.jpg" />
     <Content Include="Asset\img\dep1.jfif" />
     <Content Include="Asset\img\giay1.jpg" />
+    <Content Include="Asset\img\giay2.jpg" />
     <Content Include="Asset\img\korea_bg1.jpg" />
     <Content Include="Asset\img\korea_bg2.jpg" />
     <Content Include="Asset\img\offer-1.png" />
