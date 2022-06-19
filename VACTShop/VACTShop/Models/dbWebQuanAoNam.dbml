@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebQuanAoNam" Class="dbWebQuanAoNamDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=VJNKDUCKBUILD\SQLEXPRESS;Initial Catalog=WebQuanAoNam;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebQuanAoNamConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-0EV3HR0\SQLEXPRESS;Initial Catalog=WebQuanAoNam;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebQuanAoNamConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ADMIN" Member="ADMINs">
     <Type Name="ADMIN">
       <Column Name="TaiKhoanAdmin" Type="System.String" DbType="NChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -89,13 +89,6 @@
     <Type Name="SIZE">
       <Column Name="MaSize" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="SoSize" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SIZE" Member="SIZEs">
-    <Type Name="SIZE">
-      <Column Name="MaSize" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SoSize" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="SIZE_SANPHAM" Member="SANPHAMs" ThisKey="MaSize" OtherKey="MaSize" Type="SANPHAM" />
     </Type>
   </Table>
 </Database>

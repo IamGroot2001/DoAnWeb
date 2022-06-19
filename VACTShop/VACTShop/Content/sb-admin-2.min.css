@@ -10155,6 +10155,7 @@ a:focus {
 }
 
     #wrapper #content-wrapper #content {
+        background-color: #fde;
         flex: 1 0 auto
     }
 
