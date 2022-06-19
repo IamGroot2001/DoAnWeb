@@ -41,10 +41,16 @@ namespace VACTShop.Controllers
             return PartialView(loaiSanPham);
         }
 
-        public ActionResult HienThiDSSanPham()
+        public ActionResult HienThiDSSanPham(int? page)
         {
-            var hienthiDSSanPham = LaySanPham(int.MaxValue);
-            return PartialView(hienthiDSSanPham);
+            // tạo biển quy định số sản phẩm trên mỗi trang
+            int pagesize = 12;
+            // tạo biển số trang
+            int pageNum = (page ?? 1);
+            var Sanphammoi = LaySanPham(12);
+            return View(Sanphammoi.ToPagedList(pageNum, pagesize));
+            /*var hienthiDSSanPham = LaySanPham(int.MaxValue);
+            return PartialView(hienthiDSSanPham);*/
         }
 
         public ActionResult XemChiTietSanPham(int id)
@@ -78,10 +84,10 @@ namespace VACTShop.Controllers
         public ActionResult Shop(string search, int? page)
         {
             // tạo biển quy định số sản phẩm trên mỗi trang
-            int pagesize = 5;
+            int pagesize = 12;
             // tạo biển số trang
             int pageNum = (page ?? 1);
-            var Sanphammoi = LaySanPham(5);
+            var Sanphammoi = LaySanPham(12);
             return View(Sanphammoi.ToPagedList(pageNum, pagesize));
             /*List<SANPHAM> listsp = data.SANPHAMs.ToList();
             return View(data.SANPHAMs.Where(x => x.TenSP.StartsWith(search) || search == null).ToPagedList(page ?? 1, 12));*/
