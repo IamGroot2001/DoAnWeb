@@ -51,12 +51,12 @@ namespace VACTShop.Models
     partial void InsertNHACUNGCAP(NHACUNGCAP instance);
     partial void UpdateNHACUNGCAP(NHACUNGCAP instance);
     partial void DeleteNHACUNGCAP(NHACUNGCAP instance);
-    partial void InsertSIZE(SIZE instance);
-    partial void UpdateSIZE(SIZE instance);
-    partial void DeleteSIZE(SIZE instance);
     partial void InsertSANPHAM(SANPHAM instance);
     partial void UpdateSANPHAM(SANPHAM instance);
     partial void DeleteSANPHAM(SANPHAM instance);
+    partial void InsertSIZE(SIZE instance);
+    partial void UpdateSIZE(SIZE instance);
+    partial void DeleteSIZE(SIZE instance);
     #endregion
 		
 		public dbWebQuanAoNamDataContext() : 
@@ -145,19 +145,19 @@ namespace VACTShop.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<SIZE> SIZEs
-		{
-			get
-			{
-				return this.GetTable<SIZE>();
-			}
-		}
-		
 		public System.Data.Linq.Table<SANPHAM> SANPHAMs
 		{
 			get
 			{
 				return this.GetTable<SANPHAM>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SIZE> SIZEs
+		{
+			get
+			{
+				return this.GetTable<SIZE>();
 			}
 		}
 	}
@@ -282,11 +282,9 @@ namespace VACTShop.Models
 		
 		private int _MaSP;
 		
-		private System.Nullable<int> _DonGia;
+		private System.Nullable<decimal> _DonGia;
 		
 		private System.Nullable<int> _SoLuong;
-		
-		private System.Nullable<int> _ThanhTien;
 		
 		private EntityRef<DONDATHANG> _DONDATHANG;
 		
@@ -300,12 +298,10 @@ namespace VACTShop.Models
     partial void OnMaDDHChanged();
     partial void OnMaSPChanging(int value);
     partial void OnMaSPChanged();
-    partial void OnDonGiaChanging(System.Nullable<int> value);
+    partial void OnDonGiaChanging(System.Nullable<decimal> value);
     partial void OnDonGiaChanged();
     partial void OnSoLuongChanging(System.Nullable<int> value);
     partial void OnSoLuongChanged();
-    partial void OnThanhTienChanging(System.Nullable<int> value);
-    partial void OnThanhTienChanged();
     #endregion
 		
 		public CHITIETDONDATHANG()
@@ -363,8 +359,8 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGia", DbType="Int")]
-		public System.Nullable<int> DonGia
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGia", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> DonGia
 		{
 			get
 			{
@@ -399,26 +395,6 @@ namespace VACTShop.Models
 					this._SoLuong = value;
 					this.SendPropertyChanged("SoLuong");
 					this.OnSoLuongChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Int")]
-		public System.Nullable<int> ThanhTien
-		{
-			get
-			{
-				return this._ThanhTien;
-			}
-			set
-			{
-				if ((this._ThanhTien != value))
-				{
-					this.OnThanhTienChanging(value);
-					this.SendPropertyChanging();
-					this._ThanhTien = value;
-					this.SendPropertyChanged("ThanhTien");
-					this.OnThanhTienChanged();
 				}
 			}
 		}
@@ -530,6 +506,10 @@ namespace VACTShop.Models
 		
 		private System.Nullable<int> _MaKH;
 		
+		private System.Nullable<decimal> _ThanhTien;
+		
+		private string _DiaChi;
+		
 		private EntitySet<CHITIETDONDATHANG> _CHITIETDONDATHANGs;
 		
 		private EntityRef<KHACHHANG> _KHACHHANG;
@@ -550,6 +530,10 @@ namespace VACTShop.Models
     partial void OnNgayGiaoChanged();
     partial void OnMaKHChanging(System.Nullable<int> value);
     partial void OnMaKHChanged();
+    partial void OnThanhTienChanging(System.Nullable<decimal> value);
+    partial void OnThanhTienChanged();
+    partial void OnDiaChiChanging(string value);
+    partial void OnDiaChiChanged();
     #endregion
 		
 		public DONDATHANG()
@@ -679,6 +663,46 @@ namespace VACTShop.Models
 					this._MaKH = value;
 					this.SendPropertyChanged("MaKH");
 					this.OnMaKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ThanhTien
+		{
+			get
+			{
+				return this._ThanhTien;
+			}
+			set
+			{
+				if ((this._ThanhTien != value))
+				{
+					this.OnThanhTienChanging(value);
+					this.SendPropertyChanging();
+					this._ThanhTien = value;
+					this.SendPropertyChanged("ThanhTien");
+					this.OnThanhTienChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChi", DbType="NVarChar(200)")]
+		public string DiaChi
+		{
+			get
+			{
+				return this._DiaChi;
+			}
+			set
+			{
+				if ((this._DiaChi != value))
+				{
+					this.OnDiaChiChanging(value);
+					this.SendPropertyChanging();
+					this._DiaChi = value;
+					this.SendPropertyChanged("DiaChi");
+					this.OnDiaChiChanged();
 				}
 			}
 		}
@@ -1049,7 +1073,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DienThoaiKH", DbType="NChar(15)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DienThoaiKH", DbType="VarChar(50)")]
 		public string DienThoaiKH
 		{
 			get
@@ -1089,7 +1113,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaiKhoanKH", DbType="NChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaiKhoanKH", DbType="VarChar(50)")]
 		public string TaiKhoanKH
 		{
 			get
@@ -1109,7 +1133,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatKhauKH", DbType="NChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatKhauKH", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string MatKhauKH
 		{
 			get
@@ -1248,7 +1272,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLSP", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLSP", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string TenLSP
 		{
 			get
@@ -1370,7 +1394,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenNCC", DbType="NVarChar(150)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenNCC", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string TenNCC
 		{
 			get
@@ -1410,7 +1434,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDTNCC", DbType="NChar(15)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDTNCC", DbType="VarChar(15)")]
 		public string SDTNCC
 		{
 			get
@@ -1476,120 +1500,6 @@ namespace VACTShop.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SIZE")]
-	public partial class SIZE : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MaSize;
-		
-		private string _SoSize;
-		
-		private EntitySet<SANPHAM> _SANPHAMs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMaSizeChanging(int value);
-    partial void OnMaSizeChanged();
-    partial void OnSoSizeChanging(string value);
-    partial void OnSoSizeChanged();
-    #endregion
-		
-		public SIZE()
-		{
-			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSize", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MaSize
-		{
-			get
-			{
-				return this._MaSize;
-			}
-			set
-			{
-				if ((this._MaSize != value))
-				{
-					this.OnMaSizeChanging(value);
-					this.SendPropertyChanging();
-					this._MaSize = value;
-					this.SendPropertyChanged("MaSize");
-					this.OnMaSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoSize", DbType="NChar(10)")]
-		public string SoSize
-		{
-			get
-			{
-				return this._SoSize;
-			}
-			set
-			{
-				if ((this._SoSize != value))
-				{
-					this.OnSoSizeChanging(value);
-					this.SendPropertyChanging();
-					this._SoSize = value;
-					this.SendPropertyChanged("SoSize");
-					this.OnSoSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIZE_SANPHAM", Storage="_SANPHAMs", ThisKey="MaSize", OtherKey="MaSize")]
-		public EntitySet<SANPHAM> SANPHAMs
-		{
-			get
-			{
-				return this._SANPHAMs;
-			}
-			set
-			{
-				this._SANPHAMs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SANPHAMs(SANPHAM entity)
-		{
-			this.SendPropertyChanging();
-			entity.SIZE = this;
-		}
-		
-		private void detach_SANPHAMs(SANPHAM entity)
-		{
-			this.SendPropertyChanging();
-			entity.SIZE = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SANPHAM")]
 	public partial class SANPHAM : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1600,8 +1510,6 @@ namespace VACTShop.Models
 		
 		private string _TenSP;
 		
-		private System.Nullable<int> _MaSize;
-		
 		private string _MoTa;
 		
 		private string _AnhBia;
@@ -1610,7 +1518,7 @@ namespace VACTShop.Models
 		
 		private System.Nullable<int> _SoLuongTon;
 		
-		private System.Nullable<int> _GiaBan;
+		private System.Nullable<decimal> _GiaBan;
 		
 		private System.Nullable<int> _MaLSP;
 		
@@ -1622,8 +1530,6 @@ namespace VACTShop.Models
 		
 		private EntityRef<NHACUNGCAP> _NHACUNGCAP;
 		
-		private EntityRef<SIZE> _SIZE;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1632,8 +1538,6 @@ namespace VACTShop.Models
     partial void OnMaSPChanged();
     partial void OnTenSPChanging(string value);
     partial void OnTenSPChanged();
-    partial void OnMaSizeChanging(System.Nullable<int> value);
-    partial void OnMaSizeChanged();
     partial void OnMoTaChanging(string value);
     partial void OnMoTaChanged();
     partial void OnAnhBiaChanging(string value);
@@ -1642,7 +1546,7 @@ namespace VACTShop.Models
     partial void OnNgayCapNhatChanged();
     partial void OnSoLuongTonChanging(System.Nullable<int> value);
     partial void OnSoLuongTonChanged();
-    partial void OnGiaBanChanging(System.Nullable<int> value);
+    partial void OnGiaBanChanging(System.Nullable<decimal> value);
     partial void OnGiaBanChanged();
     partial void OnMaLSPChanging(System.Nullable<int> value);
     partial void OnMaLSPChanged();
@@ -1655,7 +1559,6 @@ namespace VACTShop.Models
 			this._CHITIETDONDATHANGs = new EntitySet<CHITIETDONDATHANG>(new Action<CHITIETDONDATHANG>(this.attach_CHITIETDONDATHANGs), new Action<CHITIETDONDATHANG>(this.detach_CHITIETDONDATHANGs));
 			this._LOAISANPHAM = default(EntityRef<LOAISANPHAM>);
 			this._NHACUNGCAP = default(EntityRef<NHACUNGCAP>);
-			this._SIZE = default(EntityRef<SIZE>);
 			OnCreated();
 		}
 		
@@ -1679,7 +1582,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenSP", DbType="NVarChar(150)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenSP", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string TenSP
 		{
 			get
@@ -1695,30 +1598,6 @@ namespace VACTShop.Models
 					this._TenSP = value;
 					this.SendPropertyChanged("TenSP");
 					this.OnTenSPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSize", DbType="Int")]
-		public System.Nullable<int> MaSize
-		{
-			get
-			{
-				return this._MaSize;
-			}
-			set
-			{
-				if ((this._MaSize != value))
-				{
-					if (this._SIZE.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaSizeChanging(value);
-					this.SendPropertyChanging();
-					this._MaSize = value;
-					this.SendPropertyChanged("MaSize");
-					this.OnMaSizeChanged();
 				}
 			}
 		}
@@ -1803,8 +1682,8 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaBan", DbType="Int")]
-		public System.Nullable<int> GiaBan
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaBan", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> GiaBan
 		{
 			get
 			{
@@ -1952,40 +1831,6 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SIZE_SANPHAM", Storage="_SIZE", ThisKey="MaSize", OtherKey="MaSize", IsForeignKey=true)]
-		public SIZE SIZE
-		{
-			get
-			{
-				return this._SIZE.Entity;
-			}
-			set
-			{
-				SIZE previousValue = this._SIZE.Entity;
-				if (((previousValue != value) 
-							|| (this._SIZE.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SIZE.Entity = null;
-						previousValue.SANPHAMs.Remove(this);
-					}
-					this._SIZE.Entity = value;
-					if ((value != null))
-					{
-						value.SANPHAMs.Add(this);
-						this._MaSize = value.MaSize;
-					}
-					else
-					{
-						this._MaSize = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SIZE");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2016,6 +1861,92 @@ namespace VACTShop.Models
 		{
 			this.SendPropertyChanging();
 			entity.SANPHAM = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SIZE")]
+	public partial class SIZE : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaSize;
+		
+		private string _SoSize;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaSizeChanging(int value);
+    partial void OnMaSizeChanged();
+    partial void OnSoSizeChanging(string value);
+    partial void OnSoSizeChanged();
+    #endregion
+		
+		public SIZE()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSize", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaSize
+		{
+			get
+			{
+				return this._MaSize;
+			}
+			set
+			{
+				if ((this._MaSize != value))
+				{
+					this.OnMaSizeChanging(value);
+					this.SendPropertyChanging();
+					this._MaSize = value;
+					this.SendPropertyChanged("MaSize");
+					this.OnMaSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoSize", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SoSize
+		{
+			get
+			{
+				return this._SoSize;
+			}
+			set
+			{
+				if ((this._SoSize != value))
+				{
+					this.OnSoSizeChanging(value);
+					this.SendPropertyChanging();
+					this._SoSize = value;
+					this.SendPropertyChanged("SoSize");
+					this.OnSoSizeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

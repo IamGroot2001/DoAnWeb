@@ -19,11 +19,7 @@
 </head>
 
 <body id="page-top">
-    <div>
-        <main>
-        </main>
-        @RenderSection("MenuTrangAdmin", false)
-    </div>
+    
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -31,7 +27,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Admin")">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -43,7 +39,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="@Url.Action("Index","Admin")">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -67,11 +63,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" href="@Url.Action("DSsanpham","ChucNang")">Quản Lý Sản Phẩm</a>
-                        <a class="collapse-item" href="cards.html">Quản lý loại sản phẩm</a>
-                        <a class="collapse-item" href="#">Quản lý Nhà cung cấp</a>
-                        <a class="collapse-item" href="#">Quản lý đơn hàng</a>
-
-
+                        <a class="collapse-item" href="@Url.Action("DSLSP","ChucNang")">Quản lý Loại sản phẩm</a>
+                        <a class="collapse-item" href="@Url.Action("DSNCC","ChucNang")">Quản lý Nhà cung cấp</a>
                     </div>
                 </div>
             </li>
@@ -89,9 +82,9 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="login.html">Register</a>
-                        <a class="collapse-item" href="login.html">Forgot Password</a>
+                        <a class="collapse-item" href="@Url.Action("DSKH","ChucNang")">Khách Hàng</a>
+                        <a class="collapse-item" href="@Url.Action("DangKy","NguoiDung")">Register</a>
+                        <a class="collapse-item" href="login.html"> User Forgot Password</a>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
                         <a class="collapse-item" href="blank.html">Blank Page</a>
@@ -102,9 +95,15 @@
             <!-- Nav Item - Charts -->
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="@Url.Action("DonDatHang","ChucNang")">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Chi Tiết Đơn Hàng</span>
+                    <span>Chi Tiết Đơn Đặt  Hàng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("DSGOPY","ChucNang")">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Quản Lý Các Góp Ý Của Khách Hàng</span>
                 </a>
             </li>
         </ul>
@@ -115,7 +114,9 @@
             <!-- Main Content -->
             <div id="content">
                 @RenderBody()
-                
+                <div>
+                    @RenderSection("MenuTrangAdmin", false)
+                </div>
             </div>
 
         </div>

@@ -34,7 +34,7 @@
     <tr>
         <th>
             @Html.DisplayName("Sản Phẩm")
-        </th>
+        </th>     
         <th>
             @Html.DisplayName("Giá bán")
         </th>
@@ -64,7 +64,7 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TenSP)
-            </td>
+            </td>          
             <td>
                 @Html.DisplayFor(modelItem => item.GiaBan)
             </td>
@@ -89,7 +89,7 @@
             <td class="tool">
                 @Html.ActionLink("Edit", "Suasanpham", new { id = item.MaSP })
                 @Html.ActionLink("Details", "Details", new { id = item.MaSP })
-                @Html.ActionLink("Delete", "Xoasanpham", new { id = item.MaSP })
+                @Html.ActionLink("Delete", "XoaSanPham", new { id = item.MaSP })
             </td>
         </tr>
     }
