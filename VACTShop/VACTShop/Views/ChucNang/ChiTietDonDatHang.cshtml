@@ -1,0 +1,285 @@
+﻿@model IEnumerable<VACTShop.Models.CHITIETDONDATHANG>
+@using VACTShop.Models
+
+@{
+    ViewBag.Title = "ChiTietDonDatHang";
+    Layout = "~/Views/Layout/Admin/_LayoutAdmin.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Tên Người Mua")
+        </th>
+        <th>
+            @Html.DisplayName("Sản Phẩm")
+        </th>
+        <th>
+            @Html.DisplayName("Ảnh")
+        </th>
+        <th>
+            @Html.DisplayName("Số Lượng")
+        </th>
+        <th>
+            @Html.DisplayName("Đơn Giá")
+        </th>
+        <th>
+            @Html.DisplayName("Thành Tiền")
+        </th>
+        <th>
+            @Html.DisplayName("Địa Chỉ")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DONDATHANG.KHACHHANG.HoTenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SANPHAM.TenSP)
+            </td>
+            <td>
+                <img src="~/Asset/img/@Html.DisplayFor(modelItem => item.SANPHAM.AnhBia)" alt="Alternate Text" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DONDATHANG.ThanhTien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DONDATHANG.DiaChi)
+            </td>
+            <td>
+                <a class="btn btn-warning" href="#" onclick="ConfirmDelete(@item.MaDDH)">Xoá</a>
+                @*@Url.Action("ChiTietDonDatHang", "ChucNang", new { id = item.MaDDH })*@
+            </td>
+        </tr>
+    }
+
+</table>
+@*//////////////////////////////////////////////Pop-Up Xoá Chi Tiêt Đơn Đặt Hàng/////////////////////////////////////*@
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Xoá Chi Tiêt Đơn Đặt Hàng Này</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Bạn có chắn chắn muốn xoá đơn đặt này ??? </h4>
+
+                <div style="text-align:center;display:none" id="loaderDiv">
+
+                    <img src="~/Content/img/womens-day-loading.gif" style="height:200px;width:200px" />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Huỷ Bỏ</a>
+                <a href="#" class="btn btn-success" onclick="DeleteChiTiet()">Xác Nhận</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<input type="hidden" id="hiddenEmployeeId" />
+@*///////////////////////////////////////////////Script/////////////////////////////////////////////////////////////////*@
+<script>
+
+    var ConfirmDelete = function (id) {
+
+        $("#hiddenEmployeeId").val(id);
+        $("#myModal").modal('show');
+
+    }
+
+    var DeleteChiTiet = function () {
+        $("#loaderDiv").show();
+        var empId = $("#hiddenEmployeeId").val();
+        $.ajax({
+            type: "POST",
+            url: "/ChucNang/DeleteChiTiet",
+            data: { id: empId },
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#myModal").modal("hide");
+                $("#row_" + empId).remove();
+            }
+        })
+    }
+</script>
+@*///////////////////////////////////////////////Script/////////////////////////////////////////////////////////////////*@
+
+
+
+
+
+<div class="space" style="display:flex;justify-content:space-around">
+    <a class="return" href="@Url.Action("DonDatHang","ChucNang")">TRỞ VỀ</a>
+</div>
+
+<style>
+    table {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    th {
+        height: 50px;
+        background: #fbffdf;
+        color: black;
+        text-transform: uppercase;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    th, td {
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-top: 15px;
+        padding-bottom: 20px;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        margin-right: -100px;
+    }
+
+    tr {
+        color: #777;
+        font-weight: bold;
+    }
+
+        tr:hover {
+            background-color: #777;
+            transition: 0.5s ease all;
+            color: white;
+        }
+
+    .return {
+        color: black;
+        background: #fffbb6;
+        border: none;
+        outline: none;
+        padding: 1% 5% 1% 5%;
+        font-size: 1em;
+        cursor: pointer;
+        letter-spacing: 1px;
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+        transition: 0.5s all;
+        -webkit-transition: 0.5s all;
+        -o-transition: 0.5s all;
+        -moz-transition: 0.5s all;
+        -ms-transition: 0.5s all;
+        border-radius: 30px;
+    }
+
+        .return:hover {
+            color: #ffffd6;
+            background: #5b5c2f;
+        }
+
+    @@media(max-width: 1024px) {
+        img {
+            width: 250px;
+            height: 150px;
+        }
+
+        .return {
+            margin-left: 32%;
+        }
+    }
+
+    @@media(max-width: 780px) {
+        th, td {
+            padding-left: 20px;
+            padding-right: 0px;
+        }
+
+        img {
+            width: 250px;
+            height: 150px;
+        }
+
+        .return {
+            margin-left: 30%;
+        }
+    }
+
+    @@media(max-width: 430px) {
+        table {
+            font-size: 12px;
+        }
+
+        th, td {
+            padding-left: 20px;
+            padding-right: 10px;
+        }
+
+        img {
+            width: 150px;
+            height: 100px;
+        }
+
+        .return {
+            margin-left: 20%;
+        }
+    }
+
+    @@media(max-width: 380px) {
+        table {
+            font-size: 10px;
+        }
+
+        th, td {
+            padding-left: 10px;
+            padding-right: 20px;
+        }
+
+        img {
+            width: 100px;
+            height: 80px;
+        }
+
+        .return {
+            margin-left: 15%;
+        }
+    }
+
+    @@media(max-width: 320px) {
+        table {
+            font-size: 8px;
+        }
+
+        th, td {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .return {
+            font-size: 14px;
+            margin-left: 8%;
+        }
+    }
+</style>

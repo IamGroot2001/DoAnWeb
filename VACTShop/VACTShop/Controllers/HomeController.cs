@@ -58,7 +58,7 @@ namespace VACTShop.Controllers
             var sanpham = from s in data.SANPHAMs
                           where s.MaSP == id
                           select s;
-            return View(sanpham.Single());
+              return View(sanpham.Single());
         }
 
         public ActionResult HienThiSPTheoPhanLoai(int id)

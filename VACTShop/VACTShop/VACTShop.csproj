@@ -162,6 +162,7 @@
     <Content Include="Asset\img\cat-5.jpg" />
     <Content Include="Asset\img\cat-6.jpg" />
     <Content Include="Asset\img\dep1.jfif" />
+    <Content Include="Asset\img\dep1.png" />
     <Content Include="Asset\img\giay1.jpg" />
     <Content Include="Asset\img\giay2.jpg" />
     <Content Include="Asset\img\korea_bg1.jpg" />
@@ -180,6 +181,8 @@
     <Content Include="Asset\img\quankaki1.jpg" />
     <Content Include="Asset\img\quanshort1.jpg" />
     <Content Include="Asset\img\quantayden1.jpg" />
+    <Content Include="Asset\img\tainghe1.png" />
+    <Content Include="Asset\img\tuixach1.png" />
     <Content Include="Asset\img\user.jpg" />
     <Content Include="Asset\img\vendor-1.jpg" />
     <Content Include="Asset\img\vendor-2.jpg" />
@@ -189,6 +192,8 @@
     <Content Include="Asset\img\vendor-6.jpg" />
     <Content Include="Asset\img\vendor-7.jpg" />
     <Content Include="Asset\img\vendor-8.jpg" />
+    <Content Include="Asset\img\vong1.png" />
+    <Content Include="Asset\img\womens-day-loading.gif" />
     <Content Include="Asset\js\bootstrap.bundle.min.js" />
     <Content Include="Asset\js\chart-area-demo.js" />
     <Content Include="Asset\js\chart-pie-demo.js" />
@@ -325,6 +330,7 @@
     <None Include="Models\dbWebQuanAoNam.dbml.layout">
       <DependentUpon>dbWebQuanAoNam.dbml</DependentUpon>
     </None>
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -367,6 +373,25 @@
     <Content Include="Views\ChucNang\DSsanpham.cshtml" />
     <Content Include="Views\ChucNang\loai.cshtml" />
     <Content Include="Views\ChucNang\NCC.cshtml" />
+    <Content Include="Views\ChucNang\masize.cshtml" />
+    <Content Include="Views\ChucNang\Themsanpham.cshtml" />
+    <Content Include="Views\ChucNang\XoaSanPham.cshtml" />
+    <Content Include="Views\ChucNang\Details.cshtml" />
+    <Content Include="Views\ChucNang\Suasanpham.cshtml" />
+    <Content Include="Views\ChucNang\DSLSP.cshtml" />
+    <Content Include="Views\ChucNang\ThemLSP.cshtml" />
+    <Content Include="Views\ChucNang\SuaLSP.cshtml" />
+    <Content Include="Views\ChucNang\XoaLSP.cshtml" />
+    <Content Include="Views\ChucNang\DSNCC.cshtml" />
+    <Content Include="Views\ChucNang\ThemNCC.cshtml" />
+    <Content Include="Views\ChucNang\SuaNCC.cshtml" />
+    <Content Include="Views\ChucNang\XoaNCC.cshtml" />
+    <Content Include="Views\ChucNang\DSGOPY.cshtml" />
+    <Content Include="Views\ChucNang\GOPY_CHITIET.cshtml" />
+    <Content Include="Views\ChucNang\DSKH.cshtml" />
+    <Content Include="Views\ChucNang\SuaKH.cshtml" />
+    <Content Include="Views\ChucNang\DonDatHang.cshtml" />
+    <Content Include="Views\ChucNang\ChiTietDonDatHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
