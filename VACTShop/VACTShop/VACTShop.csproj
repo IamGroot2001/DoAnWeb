@@ -165,6 +165,7 @@
     <Content Include="Asset\img\korea_bg2.jpg" />
     <Content Include="Asset\img\offer-1.png" />
     <Content Include="Asset\img\offer-2.png" />
+    <Content Include="Asset\img\Password Reset.jpg" />
     <Content Include="Asset\img\payments.png" />
     <Content Include="Asset\img\product-1.jpg" />
     <Content Include="Asset\img\product-2.jpg" />
@@ -388,6 +389,9 @@
     <Content Include="Views\ChucNang\SuaKH.cshtml" />
     <Content Include="Views\ChucNang\DonDatHang.cshtml" />
     <Content Include="Views\ChucNang\ChiTietDonDatHang.cshtml" />
+    <Content Include="Views\ChucNang\XoaDonDatHang.cshtml" />
+    <Content Include="Views\ChucNang\SuaDonDatHang.cshtml" />
+    <Content Include="Views\NguoiDung\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

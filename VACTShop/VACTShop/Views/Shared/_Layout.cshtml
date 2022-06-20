@@ -147,17 +147,18 @@
                         <div class="navbar-nav ml-auto py-0">
                             @if (Session["User"] == null)
                             {
-                                <a href="@Url.Action("DangNhap","NguoiDung")" class="nav-item nav-link">Đăng Nhập</a>
-                                <a href="@Url.Action("Dangky","NguoiDung")" class="nav-item nav-link">Đăng Ký</a>
+                                <a href="@Url.Action("DangNhap", "NguoiDung")" class="nav-item nav-link">Đăng Nhập</a>
+                                <a href="@Url.Action("Dangky", "NguoiDung")" class="nav-item nav-link">Đăng Ký</a>
                             }
                             else
                             {
-                                <a href="#"class="nav-item nav-link">Xin Chào @Session["User"]</a>
-                                <a href="@Url.Action("DangXuat","NguoiDung")" class="nav-item nav-link">Đăng Xuất</a>
+                                <a href="#" class="nav-item nav-link">Xin Chào @Session["User"]</a>
+                                <a href="@Url.Action("DangXuat", "NguoiDung")" class="nav-item nav-link">Đăng Xuất</a>
+                               
+                                    <a href="@Url.Action("ChangePassword", "NguoiDung")" class="nav-item nav-link">Đổi Pass</a>
+                                }                            
 
-                            }
-
-                        </div>
+                            </div>
                     </div>
                 </nav>
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">

@@ -612,9 +612,10 @@ namespace VACTShop.Controllers
             }
             else
             {
+                string date = "01/01/2001";
                 int pagesize = 5; 
                 int pageNum = (page ?? 1);
-                var GioHienTai = DateTime.Now;
+                var GioHienTai = DateTime.Parse(date);
                 var list = context.DONDATHANGs.Where(s => s.NgayDat >= GioHienTai).OrderByDescending(i => i.NgayDat).ToList();
                 return View(list.ToPagedList(pageNum, pagesize));
             }
@@ -656,20 +657,89 @@ namespace VACTShop.Controllers
             var list = context.CHITIETDONDATHANGs.Where(s => s.MaDDH == id).OrderByDescending(s => s.MaSP).ToList();
             return View(list);
         }
-        public JsonResult DeleteChiTiet (int id)
+        //========================================Xoá Tất Cả Chi Tiết Của Đơn Đặt Hàng đó===========================//
+
+        public ActionResult XoaTatChiTietDonDatHang(int? id)
         {
-            bool result = false;
-            CHITIETDONDATHANG lst = context.CHITIETDONDATHANGs.Where(s => s.MaDDH == id).SingleOrDefault();
-            if(lst!=null)
+            if (Session["TKAdmin"] == null)
             {
-                context.CHITIETDONDATHANGs.DeleteOnSubmit(lst);
-                context.SubmitChanges();
-                result = true;
+                return RedirectToAction("Index", "Home");
             }
-            return Json(result,JsonRequestBehavior.AllowGet);
+            else
+            {
+                CHITIETDONDATHANG ncc = context.CHITIETDONDATHANGs.Where(n => n.MaDDH == id).FirstOrDefault();
+                ViewBag.MaDonHang = ncc.MaDDH;
+                if (ncc == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+                context.CHITIETDONDATHANGs.DeleteOnSubmit(ncc);
+                context.SubmitChanges();
+                return RedirectToAction("DonDatHang", "ChucNang");
+            }
+        }
+        //============================================Xoá Đơn Đặt Hàng==============================// 
+        public ActionResult XoaDonDatHang(int? id)
+        {
+            if (Session["TKAdmin"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                DONDATHANG ncc = context.DONDATHANGs.Where(n => n.MaDDH == id).FirstOrDefault();
+
+                ViewBag.MaDonHang = ncc.MaDDH;
+                if (ncc == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+                context.DONDATHANGs.DeleteOnSubmit(ncc);
+                context.SubmitChanges();
+                return RedirectToAction("DonDatHang");
+            }
+        }
+        //=============================================Sửa Đơn Đặt Hàng====================================//
+
+        [HttpGet]
+        public ActionResult SuaDonDatHang(int id)
+        {
+            if (Session["TKAdmin"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            DONDATHANG ncc = context.DONDATHANGs.SingleOrDefault(n => n.MaDDH == id);
+            if (ncc == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(ncc);
         }
 
-
+        [HttpPost, ActionName("SuaDonDatHang")]
+        public ActionResult XacNhanSuaDonDatHang(int id)
+        {
+            if (Session["TKAdmin"] == null)
+            {
+                return RedirectToAction("Index", "Fashion");
+            }
+            else
+            {
+                DONDATHANG ncc = context.DONDATHANGs.SingleOrDefault(n => n.MaDDH == id);
+                if (ncc == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+                UpdateModel(ncc);
+                context.SubmitChanges();
+                return RedirectToAction("DonDatHang");
+            }
+        }
 
     }
 }
