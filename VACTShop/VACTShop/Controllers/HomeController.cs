@@ -53,13 +53,29 @@ namespace VACTShop.Controllers
               return View(sanpham.Single());
         }
 
-        public ActionResult HienThiSPTheoPhanLoai(int id)
+        public ActionResult HienThiSPTheoPhanLoai(int? id, int ? page)
         {
-            var sp = from s in data.LOAISANPHAMs where s.MaLSP == id select s;
-            return PartialView(sp);
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            int pagesize = 9;
+            int pageNum = (page ?? 1);
+            var sp = from s in data.SANPHAMs where s.MaLSP == id select s;
+            return View(sp.ToPagedList(pageNum, pagesize));
         }
 
-      
+        public ActionResult SPTheoThuongHieu(int? id, int? page)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            int pagesize = 9;
+            int pageNum = (page ?? 1);
+            var sp = from s in data.SANPHAMs where s.MaNCC == id select s;
+            return View(sp.ToPagedList(pageNum, pagesize));
+        }
 
         public ActionResult About()
         {

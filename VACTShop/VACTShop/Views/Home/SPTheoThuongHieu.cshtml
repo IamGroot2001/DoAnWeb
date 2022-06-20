@@ -3,7 +3,7 @@
 @model PagedList.PagedList<SANPHAM>
 
 @{
-    ViewBag.Title = "HienThiSPTheoPhanLoai";
+    ViewBag.Title = "SPTheoThuongHieu";
     Layout = "~/Views/Shared/_CuaHangLayout.cshtml";
 }
 
@@ -30,7 +30,7 @@
 <div class="col-12 pb-1">
 </div>
 <div class="page">
-    @Html.PagedListPager(Model, page => Url.Action("HienThiSPTheoPhanLoai", new { page = page }))
+    @Html.PagedListPager(Model, page => Url.Action("SPTheoThuongHieu", new { page = page }))
 </div>
 <style>
         .pagination {
@@ -297,3 +297,4 @@
             }
         }
     </style>
+
