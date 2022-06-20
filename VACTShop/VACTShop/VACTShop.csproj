@@ -355,7 +355,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Shop.cshtml" />
     <Content Include="Views\Home\GioHang.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\HienThiLoaiSanPham.cshtml" />
@@ -392,6 +391,9 @@
     <Content Include="Views\ChucNang\SuaKH.cshtml" />
     <Content Include="Views\ChucNang\DonDatHang.cshtml" />
     <Content Include="Views\ChucNang\ChiTietDonDatHang.cshtml" />
+    <Content Include="Views\Home\Shop.cshtml" />
+    <Content Include="Views\Shared\_CuaHangLayout.cshtml" />
+    <Content Include="Views\Home\HienThiThuongHieu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
