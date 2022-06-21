@@ -147,11 +147,8 @@
     <Content Include="Asset\css\style.min.css" />
     <Content Include="Asset\img\aokhoac1.jpg" />
     <Content Include="Asset\img\aokhoac2.jpg" />
-    <Content Include="Asset\img\aokhoac3.jfif" />
-    <Content Include="Asset\img\aokhoac4.jpg" />
     <Content Include="Asset\img\aosomi1.jfif" />
     <Content Include="Asset\img\aothun1.jfif" />
-    <Content Include="Asset\img\aothun2.jfif" />
     <Content Include="Asset\img\bg3.jpg" />
     <Content Include="Asset\img\carousel-1.jpg" />
     <Content Include="Asset\img\carousel-2.jpg" />
@@ -164,11 +161,11 @@
     <Content Include="Asset\img\dep1.jfif" />
     <Content Include="Asset\img\dep1.png" />
     <Content Include="Asset\img\giay1.jpg" />
-    <Content Include="Asset\img\giay2.jpg" />
     <Content Include="Asset\img\korea_bg1.jpg" />
     <Content Include="Asset\img\korea_bg2.jpg" />
     <Content Include="Asset\img\offer-1.png" />
     <Content Include="Asset\img\offer-2.png" />
+    <Content Include="Asset\img\Password Reset.jpg" />
     <Content Include="Asset\img\payments.png" />
     <Content Include="Asset\img\product-1.jpg" />
     <Content Include="Asset\img\product-2.jpg" />
@@ -355,6 +352,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Shop.cshtml" />
     <Content Include="Views\Home\GioHang.cshtml" />
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\HienThiLoaiSanPham.cshtml" />
@@ -391,10 +389,9 @@
     <Content Include="Views\ChucNang\SuaKH.cshtml" />
     <Content Include="Views\ChucNang\DonDatHang.cshtml" />
     <Content Include="Views\ChucNang\ChiTietDonDatHang.cshtml" />
-    <Content Include="Views\Home\Shop.cshtml" />
-    <Content Include="Views\Shared\_CuaHangLayout.cshtml" />
-    <Content Include="Views\Home\HienThiThuongHieu.cshtml" />
-    <Content Include="Views\Home\SPTheoThuongHieu.cshtml" />
+    <Content Include="Views\ChucNang\XoaDonDatHang.cshtml" />
+    <Content Include="Views\ChucNang\SuaDonDatHang.cshtml" />
+    <Content Include="Views\NguoiDung\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -62,77 +62,17 @@
                 @Html.DisplayFor(modelItem => item.DONDATHANG.DiaChi)
             </td>
             <td>
-                <a class="btn btn-warning" href="#" onclick="ConfirmDelete(@item.MaDDH)">Xoá</a>
-                @*@Url.Action("ChiTietDonDatHang", "ChucNang", new { id = item.MaDDH })*@
+                <a class="btn btn-warning" href="@Url.Action("XoaTatChiTietDonDatHang", "ChucNang", new { id = item.MaDDH })">Xoá</a>
             </td>
         </tr>
     }
 
+
 </table>
-@*//////////////////////////////////////////////Pop-Up Xoá Chi Tiêt Đơn Đặt Hàng/////////////////////////////////////*@
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-
-            <div class="modal-header">
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
-                <h3 class="modal-title">Xoá Chi Tiêt Đơn Đặt Hàng Này</h3>
-            </div>
-            <div class="modal-body">
-                <h4>Bạn có chắn chắn muốn xoá đơn đặt này ??? </h4>
-
-                <div style="text-align:center;display:none" id="loaderDiv">
-
-                    <img src="~/Content/img/womens-day-loading.gif" style="height:200px;width:200px" />
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-default" data-dismiss="modal">Huỷ Bỏ</a>
-                <a href="#" class="btn btn-success" onclick="DeleteChiTiet()">Xác Nhận</a>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<input type="hidden" id="hiddenEmployeeId" />
-@*///////////////////////////////////////////////Script/////////////////////////////////////////////////////////////////*@
-<script>
-
-    var ConfirmDelete = function (id) {
-
-        $("#hiddenEmployeeId").val(id);
-        $("#myModal").modal('show');
-
-    }
-
-    var DeleteChiTiet = function () {
-        $("#loaderDiv").show();
-        var empId = $("#hiddenEmployeeId").val();
-        $.ajax({
-            type: "POST",
-            url: "/ChucNang/DeleteChiTiet",
-            data: { id: empId },
-            success: function (result) {
-                $("#loaderDiv").hide();
-                $("#myModal").modal("hide");
-                $("#row_" + empId).remove();
-            }
-        })
-    }
-</script>
-@*///////////////////////////////////////////////Script/////////////////////////////////////////////////////////////////*@
-
-
-
-
 
 <div class="space" style="display:flex;justify-content:space-around">
     <a class="return" href="@Url.Action("DonDatHang","ChucNang")">TRỞ VỀ</a>
+
 </div>
 
 <style>

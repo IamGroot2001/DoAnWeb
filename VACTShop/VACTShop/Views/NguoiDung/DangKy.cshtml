@@ -20,6 +20,7 @@
 </html>
 @using (Html.BeginForm())
 {
+   
     <form action="#" method="post">
         @Html.ValidationSummary(true)
         <section>
@@ -33,11 +34,13 @@
                 <div class="form">
                     <h2>Trang Đăng Ký</h2>
                     <form action="">
+                        <h4 style="color:red; background-color:snow;text-align:center;border-radius:20%;">@ViewData["Error"]</h4>
                         <div class="input-form">
                             <input placeholder="Họ và tên" type="text" name="HOTEN" required="">
                         </div>
                         <div class="input-form">
                             <input placeholder="Email" type="text" name="EMAIL" required="">
+                            @*<h4 style="background-color: red; border-radius: 20%; font: font: inherit;"> @ViewData["Errormail"]</h4>*@
                         </div>
                         <div class="input-form">
                             <input placeholder="Địa chỉ" type="text" name="DIACHI" required="">
@@ -50,13 +53,15 @@
                         </div>
                         <div class="input-form">
                             <input placeholder="Tài khoản" type="text" name="TAIKHOAN" required="">
+                            @*<h4 style="background-color: red; border-radius: 20%; font: font: inherit;"> @ViewData["Errortaikhoan"]</h4>*@
                         </div>
                         <div class="input-form">
                             <input placeholder="Mật khẩu" type="password" name="MATKHAU" required="">
                         </div>
                         <div class="input-form">
                             <input placeholder="Nhập lại mật khẩu" type="password" name="NHAPLAIMATKHAU" required="">
-                            <h4 style="background-color: red; border-radius: 20%; font: font: inherit;"> @ViewData["error"]</h4>
+                            @*<h4 style="background-color: red; border-radius: 20%; font: font: inherit;"> @ViewData["error"]</h4>*@
+
                         </div>
                         <div class="input-form">
                             <input type="submit" value="Đăng Ký">
@@ -69,5 +74,5 @@
             </div>
             <!--Kết Thúc Phần Nội Dung-->
         </section>
-        </form>
- }
+    </form>
+}
