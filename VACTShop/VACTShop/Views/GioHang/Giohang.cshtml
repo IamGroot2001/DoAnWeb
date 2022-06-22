@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GioHang</h2>
+
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
@@ -27,23 +27,43 @@
                 <thead class="bg-secondary text-dark">
                     <tr>
                         <th>Sản Phẩm</th>
+                        <th>Hình Ảnh</th>
                         <th>Số Lượng</th>
                         <th>Giá Bán</th>
                         <th>Thành Tiền</th>
                         <th>Xóa</th>
-                        <th>Cập Nhật</th>
+                        @*<th>Cập Nhật</th>*@
                     </tr>
                 </thead>
                 <tbody class="align-middle">
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td class="align-middle"><img src="~/Asset/img/@item.anhbia" alt="Ảnh Sản Phẩm" style="width: 50px;">@item.tensp</td>
-                            <td class="align-middle">@item.soluong</td>
+                            <td class="align-middle"><img src="~/Asset/img/@item.anhbia" alt="Ảnh Sản Phẩm" style="width: 50px;"></td>
+                            <td class="align-middle">@item.tensp</td>
+                            @using (Html.BeginForm("CapNhatGioHang", "GioHang", new {@id = item.masp}))
+                            { 
+                                <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus" >
+                                        <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" min="1" name="Soluong"class="form-control form-control-sm bg-secondary text-center" value="@item.soluong">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-plus">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
                             <td class="align-middle">@String.Format("{0:0,0}",item.giaban)</td>
                             <td class="align-middle">@String.Format("{0:0,0}",item.thanhtien)</td>
                             <td class="align-middle"><a class="btn btn-sm btn-primary" href="@Url.Action("XoaGioHang","GioHang", new {id = @item.masp})">Xóa</a></td>
-                            <td class="align-middle"><input type="submit" class="btn btn-warning" value="Cập nhật" /></td>
+                            @*<td class="align-middle"><input type="submit" class="btn btn-warning" value="Cập nhật" /></td>*@
+                            }
+                            
                             
                             @*<td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -72,6 +92,11 @@
                         <td>Số Lượng: @ViewBag.TongSoLuong</td>
                         <td colspan="1"><strong>Tổng Tiền: <p style="color:red; display:inline-block">@String.Format("{0:0,0 }", ViewBag.TongTien) vnđ</p></strong> </td>
                         
+                    </tr>
+                    <tr>
+                        <td colspan="7">
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("RemoveAll","GioHang")">Xóa Tất Cả</a>
+                        </td>
                     </tr>
                     
                     @*<tr>

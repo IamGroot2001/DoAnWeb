@@ -88,5 +88,37 @@ namespace VACTShop.Controllers
             ViewBag.TongTien = TongTien();
             return PartialView();
         }
+        public ActionResult XoaGioHang(int id)
+        {
+            List<GioHang> gioHangs = LayGioHang();
+            GioHang sessiongiohang = gioHangs.SingleOrDefault(n => n.masp == id);
+            if (sessiongiohang != null)
+            {
+                gioHangs.RemoveAll(n => n.masp == id);
+                return RedirectToAction("GioHang");
+            }
+            if (gioHangs.Count == 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("GioHang");
+        }
+        public ActionResult CapNhatGioHang(int id, FormCollection f)
+        {
+            List<GioHang> gioHangs = LayGioHang();
+            GioHang sessiongiohang = gioHangs.SingleOrDefault(n => n.masp == id);
+            if (sessiongiohang != null)
+            {
+                sessiongiohang.soluong = int.Parse(f["Soluong"].ToString());
+
+            }
+            return RedirectToAction("Giohang");
+        }
+        public ActionResult RemoveAll()
+        {
+            List<GioHang> gioHangs = LayGioHang();
+            gioHangs.Clear();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
