@@ -114,23 +114,32 @@ namespace VACTShop.Controllers
         [HttpPost,ActionName("XoaSanPham")]
         public ActionResult XNXoaSanPham(int id)
         {
-            if (Session["TKAdmin"] == null)
+            try
             {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                SANPHAM sp = context.SANPHAMs.SingleOrDefault(n => n.MaSP == id);
-                ViewBag.MaSP = sp.MaSP;
-                if (sp == null)
+                if (Session["TKAdmin"] == null)
                 {
-                    Response.StatusCode = 404;
-                    return null;
+                    return RedirectToAction("Index", "Home");
                 }
-                context.SANPHAMs.DeleteOnSubmit(sp);
-                context.SubmitChanges();
-                return RedirectToAction("DSsanpham");
+                else
+                {
+                    SANPHAM sp = context.SANPHAMs.SingleOrDefault(n => n.MaSP == id);
+                    ViewBag.MaSP = sp.MaSP;
+                    if (sp == null)
+                    {
+                        Response.StatusCode = 404;
+                        return null;
+                    }
+                    context.SANPHAMs.DeleteOnSubmit(sp);
+                    context.SubmitChanges();
+                    return RedirectToAction("DSsanpham");
+                }
             }
+            catch
+            {
+                ViewBag.error = "Đã có sản phẩm liên kết với đơn hàng khác";
+                return RedirectToAction("XoaSanPham");
+            }
+
         }
         //================================================Sua san pham=======================================================//
         [HttpGet]
