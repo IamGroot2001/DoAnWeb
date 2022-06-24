@@ -36,18 +36,18 @@ namespace VACTShop.Models
     partial void InsertCHITIETDONDATHANG(CHITIETDONDATHANG instance);
     partial void UpdateCHITIETDONDATHANG(CHITIETDONDATHANG instance);
     partial void DeleteCHITIETDONDATHANG(CHITIETDONDATHANG instance);
-    partial void InsertDONDATHANG(DONDATHANG instance);
-    partial void UpdateDONDATHANG(DONDATHANG instance);
-    partial void DeleteDONDATHANG(DONDATHANG instance);
     partial void InsertHOTRO(HOTRO instance);
     partial void UpdateHOTRO(HOTRO instance);
     partial void DeleteHOTRO(HOTRO instance);
-    partial void InsertKHACHHANG(KHACHHANG instance);
-    partial void UpdateKHACHHANG(KHACHHANG instance);
-    partial void DeleteKHACHHANG(KHACHHANG instance);
+    partial void InsertDONDATHANG(DONDATHANG instance);
+    partial void UpdateDONDATHANG(DONDATHANG instance);
+    partial void DeleteDONDATHANG(DONDATHANG instance);
     partial void InsertLOAISANPHAM(LOAISANPHAM instance);
     partial void UpdateLOAISANPHAM(LOAISANPHAM instance);
     partial void DeleteLOAISANPHAM(LOAISANPHAM instance);
+    partial void InsertKHACHHANG(KHACHHANG instance);
+    partial void UpdateKHACHHANG(KHACHHANG instance);
+    partial void DeleteKHACHHANG(KHACHHANG instance);
     partial void InsertNHACUNGCAP(NHACUNGCAP instance);
     partial void UpdateNHACUNGCAP(NHACUNGCAP instance);
     partial void DeleteNHACUNGCAP(NHACUNGCAP instance);
@@ -105,14 +105,6 @@ namespace VACTShop.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<DONDATHANG> DONDATHANGs
-		{
-			get
-			{
-				return this.GetTable<DONDATHANG>();
-			}
-		}
-		
 		public System.Data.Linq.Table<HOTRO> HOTROs
 		{
 			get
@@ -121,11 +113,11 @@ namespace VACTShop.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<KHACHHANG> KHACHHANGs
+		public System.Data.Linq.Table<DONDATHANG> DONDATHANGs
 		{
 			get
 			{
-				return this.GetTable<KHACHHANG>();
+				return this.GetTable<DONDATHANG>();
 			}
 		}
 		
@@ -134,6 +126,14 @@ namespace VACTShop.Models
 			get
 			{
 				return this.GetTable<LOAISANPHAM>();
+			}
+		}
+		
+		public System.Data.Linq.Table<KHACHHANG> KHACHHANGs
+		{
+			get
+			{
+				return this.GetTable<KHACHHANG>();
 			}
 		}
 		
@@ -488,6 +488,205 @@ namespace VACTShop.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HOTRO")]
+	public partial class HOTRO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaHT;
+		
+		private string _LyDo;
+		
+		private System.Nullable<int> _MaKH;
+		
+		private string _MaHoTen;
+		
+		private string _Email;
+		
+		private EntityRef<KHACHHANG> _KHACHHANG;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaHTChanging(int value);
+    partial void OnMaHTChanged();
+    partial void OnLyDoChanging(string value);
+    partial void OnLyDoChanged();
+    partial void OnMaKHChanging(System.Nullable<int> value);
+    partial void OnMaKHChanged();
+    partial void OnMaHoTenChanging(string value);
+    partial void OnMaHoTenChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    #endregion
+		
+		public HOTRO()
+		{
+			this._KHACHHANG = default(EntityRef<KHACHHANG>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHT", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaHT
+		{
+			get
+			{
+				return this._MaHT;
+			}
+			set
+			{
+				if ((this._MaHT != value))
+				{
+					this.OnMaHTChanging(value);
+					this.SendPropertyChanging();
+					this._MaHT = value;
+					this.SendPropertyChanged("MaHT");
+					this.OnMaHTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LyDo", DbType="NVarChar(500)")]
+		public string LyDo
+		{
+			get
+			{
+				return this._LyDo;
+			}
+			set
+			{
+				if ((this._LyDo != value))
+				{
+					this.OnLyDoChanging(value);
+					this.SendPropertyChanging();
+					this._LyDo = value;
+					this.SendPropertyChanged("LyDo");
+					this.OnLyDoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int")]
+		public System.Nullable<int> MaKH
+		{
+			get
+			{
+				return this._MaKH;
+			}
+			set
+			{
+				if ((this._MaKH != value))
+				{
+					if (this._KHACHHANG.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaKHChanging(value);
+					this.SendPropertyChanging();
+					this._MaKH = value;
+					this.SendPropertyChanged("MaKH");
+					this.OnMaKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHoTen", DbType="NVarChar(50)")]
+		public string MaHoTen
+		{
+			get
+			{
+				return this._MaHoTen;
+			}
+			set
+			{
+				if ((this._MaHoTen != value))
+				{
+					this.OnMaHoTenChanging(value);
+					this.SendPropertyChanging();
+					this._MaHoTen = value;
+					this.SendPropertyChanged("MaHoTen");
+					this.OnMaHoTenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_HOTRO", Storage="_KHACHHANG", ThisKey="MaKH", OtherKey="MaKH", IsForeignKey=true)]
+		public KHACHHANG KHACHHANG
+		{
+			get
+			{
+				return this._KHACHHANG.Entity;
+			}
+			set
+			{
+				KHACHHANG previousValue = this._KHACHHANG.Entity;
+				if (((previousValue != value) 
+							|| (this._KHACHHANG.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._KHACHHANG.Entity = null;
+						previousValue.HOTROs.Remove(this);
+					}
+					this._KHACHHANG.Entity = value;
+					if ((value != null))
+					{
+						value.HOTROs.Add(this);
+						this._MaKH = value.MaKH;
+					}
+					else
+					{
+						this._MaKH = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("KHACHHANG");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DONDATHANG")]
 	public partial class DONDATHANG : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -787,133 +986,84 @@ namespace VACTShop.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HOTRO")]
-	public partial class HOTRO : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAISANPHAM")]
+	public partial class LOAISANPHAM : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _MaHT;
+		private int _MaLSP;
 		
-		private string _LyDo;
+		private string _TenLSP;
 		
-		private System.Nullable<int> _MaKH;
-		
-		private EntityRef<KHACHHANG> _KHACHHANG;
+		private EntitySet<SANPHAM> _SANPHAMs;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMaHTChanging(int value);
-    partial void OnMaHTChanged();
-    partial void OnLyDoChanging(string value);
-    partial void OnLyDoChanged();
-    partial void OnMaKHChanging(System.Nullable<int> value);
-    partial void OnMaKHChanged();
+    partial void OnMaLSPChanging(int value);
+    partial void OnMaLSPChanged();
+    partial void OnTenLSPChanging(string value);
+    partial void OnTenLSPChanged();
     #endregion
 		
-		public HOTRO()
+		public LOAISANPHAM()
 		{
-			this._KHACHHANG = default(EntityRef<KHACHHANG>);
+			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHT", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MaHT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLSP", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaLSP
 		{
 			get
 			{
-				return this._MaHT;
+				return this._MaLSP;
 			}
 			set
 			{
-				if ((this._MaHT != value))
+				if ((this._MaLSP != value))
 				{
-					this.OnMaHTChanging(value);
+					this.OnMaLSPChanging(value);
 					this.SendPropertyChanging();
-					this._MaHT = value;
-					this.SendPropertyChanged("MaHT");
-					this.OnMaHTChanged();
+					this._MaLSP = value;
+					this.SendPropertyChanged("MaLSP");
+					this.OnMaLSPChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LyDo", DbType="NVarChar(500)")]
-		public string LyDo
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLSP", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string TenLSP
 		{
 			get
 			{
-				return this._LyDo;
+				return this._TenLSP;
 			}
 			set
 			{
-				if ((this._LyDo != value))
+				if ((this._TenLSP != value))
 				{
-					this.OnLyDoChanging(value);
+					this.OnTenLSPChanging(value);
 					this.SendPropertyChanging();
-					this._LyDo = value;
-					this.SendPropertyChanged("LyDo");
-					this.OnLyDoChanged();
+					this._TenLSP = value;
+					this.SendPropertyChanged("TenLSP");
+					this.OnTenLSPChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int")]
-		public System.Nullable<int> MaKH
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISANPHAM_SANPHAM", Storage="_SANPHAMs", ThisKey="MaLSP", OtherKey="MaLSP")]
+		public EntitySet<SANPHAM> SANPHAMs
 		{
 			get
 			{
-				return this._MaKH;
+				return this._SANPHAMs;
 			}
 			set
 			{
-				if ((this._MaKH != value))
-				{
-					if (this._KHACHHANG.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaKHChanging(value);
-					this.SendPropertyChanging();
-					this._MaKH = value;
-					this.SendPropertyChanged("MaKH");
-					this.OnMaKHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_HOTRO", Storage="_KHACHHANG", ThisKey="MaKH", OtherKey="MaKH", IsForeignKey=true)]
-		public KHACHHANG KHACHHANG
-		{
-			get
-			{
-				return this._KHACHHANG.Entity;
-			}
-			set
-			{
-				KHACHHANG previousValue = this._KHACHHANG.Entity;
-				if (((previousValue != value) 
-							|| (this._KHACHHANG.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._KHACHHANG.Entity = null;
-						previousValue.HOTROs.Remove(this);
-					}
-					this._KHACHHANG.Entity = value;
-					if ((value != null))
-					{
-						value.HOTROs.Add(this);
-						this._MaKH = value.MaKH;
-					}
-					else
-					{
-						this._MaKH = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("KHACHHANG");
-				}
+				this._SANPHAMs.Assign(value);
 			}
 		}
 		
@@ -935,6 +1085,18 @@ namespace VACTShop.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_SANPHAMs(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAISANPHAM = this;
+		}
+		
+		private void detach_SANPHAMs(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAISANPHAM = null;
 		}
 	}
 	
@@ -960,9 +1122,9 @@ namespace VACTShop.Models
 		
 		private string _MatKhauKH;
 		
-		private EntitySet<DONDATHANG> _DONDATHANGs;
-		
 		private EntitySet<HOTRO> _HOTROs;
+		
+		private EntitySet<DONDATHANG> _DONDATHANGs;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -988,8 +1150,8 @@ namespace VACTShop.Models
 		
 		public KHACHHANG()
 		{
-			this._DONDATHANGs = new EntitySet<DONDATHANG>(new Action<DONDATHANG>(this.attach_DONDATHANGs), new Action<DONDATHANG>(this.detach_DONDATHANGs));
 			this._HOTROs = new EntitySet<HOTRO>(new Action<HOTRO>(this.attach_HOTROs), new Action<HOTRO>(this.detach_HOTROs));
+			this._DONDATHANGs = new EntitySet<DONDATHANG>(new Action<DONDATHANG>(this.attach_DONDATHANGs), new Action<DONDATHANG>(this.detach_DONDATHANGs));
 			OnCreated();
 		}
 		
@@ -1133,7 +1295,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatKhauKH", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatKhauKH", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string MatKhauKH
 		{
 			get
@@ -1153,19 +1315,6 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_DONDATHANG", Storage="_DONDATHANGs", ThisKey="MaKH", OtherKey="MaKH")]
-		public EntitySet<DONDATHANG> DONDATHANGs
-		{
-			get
-			{
-				return this._DONDATHANGs;
-			}
-			set
-			{
-				this._DONDATHANGs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_HOTRO", Storage="_HOTROs", ThisKey="MaKH", OtherKey="MaKH")]
 		public EntitySet<HOTRO> HOTROs
 		{
@@ -1179,6 +1328,19 @@ namespace VACTShop.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_DONDATHANG", Storage="_DONDATHANGs", ThisKey="MaKH", OtherKey="MaKH")]
+		public EntitySet<DONDATHANG> DONDATHANGs
+		{
+			get
+			{
+				return this._DONDATHANGs;
+			}
+			set
+			{
+				this._DONDATHANGs.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1197,18 +1359,6 @@ namespace VACTShop.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_DONDATHANGs(DONDATHANG entity)
-		{
-			this.SendPropertyChanging();
-			entity.KHACHHANG = this;
-		}
-		
-		private void detach_DONDATHANGs(DONDATHANG entity)
-		{
-			this.SendPropertyChanging();
-			entity.KHACHHANG = null;
 		}
 		
 		private void attach_HOTROs(HOTRO entity)
@@ -1222,119 +1372,17 @@ namespace VACTShop.Models
 			this.SendPropertyChanging();
 			entity.KHACHHANG = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAISANPHAM")]
-	public partial class LOAISANPHAM : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MaLSP;
-		
-		private string _TenLSP;
-		
-		private EntitySet<SANPHAM> _SANPHAMs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMaLSPChanging(int value);
-    partial void OnMaLSPChanged();
-    partial void OnTenLSPChanging(string value);
-    partial void OnTenLSPChanged();
-    #endregion
-		
-		public LOAISANPHAM()
-		{
-			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLSP", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MaLSP
-		{
-			get
-			{
-				return this._MaLSP;
-			}
-			set
-			{
-				if ((this._MaLSP != value))
-				{
-					this.OnMaLSPChanging(value);
-					this.SendPropertyChanging();
-					this._MaLSP = value;
-					this.SendPropertyChanged("MaLSP");
-					this.OnMaLSPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLSP", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string TenLSP
-		{
-			get
-			{
-				return this._TenLSP;
-			}
-			set
-			{
-				if ((this._TenLSP != value))
-				{
-					this.OnTenLSPChanging(value);
-					this.SendPropertyChanging();
-					this._TenLSP = value;
-					this.SendPropertyChanged("TenLSP");
-					this.OnTenLSPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISANPHAM_SANPHAM", Storage="_SANPHAMs", ThisKey="MaLSP", OtherKey="MaLSP")]
-		public EntitySet<SANPHAM> SANPHAMs
-		{
-			get
-			{
-				return this._SANPHAMs;
-			}
-			set
-			{
-				this._SANPHAMs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SANPHAMs(SANPHAM entity)
+		private void attach_DONDATHANGs(DONDATHANG entity)
 		{
 			this.SendPropertyChanging();
-			entity.LOAISANPHAM = this;
+			entity.KHACHHANG = this;
 		}
 		
-		private void detach_SANPHAMs(SANPHAM entity)
+		private void detach_DONDATHANGs(DONDATHANG entity)
 		{
 			this.SendPropertyChanging();
-			entity.LOAISANPHAM = null;
+			entity.KHACHHANG = null;
 		}
 	}
 	

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebQuanAoNam" Class="dbWebQuanAoNamDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=VJNKDUCKBUILD\SQLEXPRESS;Initial Catalog=WebQuanAoNam;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebQuanAoNamConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-S3NJ70J\SQLEXPRESS;Initial Catalog=WebQuanAoNam;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="WebQuanAoNamConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ADMIN" Member="ADMINs">
     <Type Name="ADMIN">
       <Column Name="TaiKhoanAdmin" Type="System.String" DbType="NChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -17,6 +17,16 @@
       <Association Name="SANPHAM_CHITIETDONDATHANG" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.HOTRO" Member="HOTROs">
+    <Type Name="HOTRO">
+      <Column Name="MaHT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LyDo" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaHoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="KHACHHANG_HOTRO" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.DONDATHANG" Member="DONDATHANGs">
     <Type Name="DONDATHANG">
       <Column Name="MaDDH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -31,12 +41,11 @@
       <Association Name="KHACHHANG_DONDATHANG" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.HOTRO" Member="HOTROs">
-    <Type Name="HOTRO">
-      <Column Name="MaHT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LyDo" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="KHACHHANG_HOTRO" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
+  <Table Name="dbo.LOAISANPHAM" Member="LOAISANPHAMs">
+    <Type Name="LOAISANPHAM">
+      <Column Name="MaLSP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenLSP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="LOAISANPHAM_SANPHAM" Member="SANPHAMs" ThisKey="MaLSP" OtherKey="MaLSP" Type="SANPHAM" />
     </Type>
   </Table>
   <Table Name="dbo.KHACHHANG" Member="KHACHHANGs">
@@ -48,16 +57,9 @@
       <Column Name="DienThoaiKH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="NgaySinhKH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TaiKhoanKH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="MatKhauKH" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="KHACHHANG_DONDATHANG" Member="DONDATHANGs" ThisKey="MaKH" OtherKey="MaKH" Type="DONDATHANG" />
+      <Column Name="MatKhauKH" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="KHACHHANG_HOTRO" Member="HOTROs" ThisKey="MaKH" OtherKey="MaKH" Type="HOTRO" />
-    </Type>
-  </Table>
-  <Table Name="dbo.LOAISANPHAM" Member="LOAISANPHAMs">
-    <Type Name="LOAISANPHAM">
-      <Column Name="MaLSP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenLSP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="LOAISANPHAM_SANPHAM" Member="SANPHAMs" ThisKey="MaLSP" OtherKey="MaLSP" Type="SANPHAM" />
+      <Association Name="KHACHHANG_DONDATHANG" Member="DONDATHANGs" ThisKey="MaKH" OtherKey="MaKH" Type="DONDATHANG" />
     </Type>
   </Table>
   <Table Name="dbo.NHACUNGCAP" Member="NHACUNGCAPs">
