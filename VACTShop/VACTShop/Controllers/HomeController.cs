@@ -17,12 +17,9 @@ namespace VACTShop.Controllers
         {
             return data.SANPHAMs.OrderByDescending(a => a.NgayCapNhat).Take(count).ToList();
         }
-        public ActionResult Index(int ? page)
+        public ActionResult Index()
         {
-            int pagesize = 5;
-            int pageNum = (page ?? 1);
-            var Sachmoi = LaySanPham(20);
-            return View(Sachmoi.ToPagedList(pageNum, pagesize));
+            return View();
         }
         // GET: ChucNang
         public ActionResult HienThiHangMoiVe()
@@ -36,10 +33,16 @@ namespace VACTShop.Controllers
             return PartialView(loaiSanPham);
         }
 
-        public ActionResult HienThiDSSanPham()
+        public ActionResult HienThiDSSanPham(int? page)
         {
-            var hienthiDSSanPham = LaySanPham(int.MaxValue);
-            return PartialView(hienthiDSSanPham);
+            // tạo biển quy định số sản phẩm trên mỗi trang
+            int pagesize = 8;
+            // tạo biển số trang
+            int pageNum = (page ?? 1);
+            var Sanphammoi = LaySanPham(12);
+            return View(Sanphammoi.ToPagedList(pageNum, pagesize));
+            /*var hienthiDSSanPham = LaySanPham(int.MaxValue);
+            return PartialView(hienthiDSSanPham);*/
         }
 
         public ActionResult XemChiTietSanPham(int id)
@@ -50,13 +53,29 @@ namespace VACTShop.Controllers
               return View(sanpham.Single());
         }
 
-        public ActionResult HienThiSPTheoPhanLoai(int id)
+        public ActionResult HienThiSPTheoPhanLoai(int? id, int ? page)
         {
-            var sp = from s in data.LOAISANPHAMs where s.MaLSP == id select s;
-            return PartialView(sp);
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            int pagesize = 9;
+            int pageNum = (page ?? 1);
+            var sp = from s in data.SANPHAMs where s.MaLSP == id select s;
+            return View(sp.ToPagedList(pageNum, pagesize));
         }
 
-      
+        public ActionResult SPTheoThuongHieu(int? id, int? page)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            int pagesize = 9;
+            int pageNum = (page ?? 1);
+            var sp = from s in data.SANPHAMs where s.MaNCC == id select s;
+            return View(sp.ToPagedList(pageNum, pagesize));
+        }
 
         public ActionResult About()
         {
@@ -64,15 +83,55 @@ namespace VACTShop.Controllers
 
             return View();
         }
-
+        [HttpGet]
         public ActionResult Contact()
         {
             return View();
         }
-
-        public ActionResult Shop()
+        [HttpPost]
+        public ActionResult Contact(FormCollection collection)
         {
-            return View();
+
+
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("Login", "NguoiDung");
+            }
+            else
+            {
+                HOTRO ht = new HOTRO();
+                KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+                var user = data.KHACHHANGs.SingleOrDefault(p => p.MaKH == kh.MaKH);
+                ht.MaKH = kh.MaKH;
+                ht.MaHoTen = kh.HoTenKH;
+                ht.Email = kh.EmailKH;
+                string lydo = collection["LyDo"];
+                ht.LyDo = lydo;
+                if (lydo == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    data.HOTROs.InsertOnSubmit(ht);
+                    data.SubmitChanges();
+                    return RedirectToAction("Contact", "Home");
+                }
+            }
+        }
+
+        public ActionResult Shop(int? page)
+        {
+            int pagesize = 9;
+            int pageNum = (page ?? 1);
+            var list = data.SANPHAMs.OrderByDescending(s => s.MaSP).ToList();
+            return View(list.ToPagedList(pageNum, pagesize));
+        }
+
+        public ActionResult HienThiThuongHieu()
+        {
+            var thuonghieu = from cd in data.NHACUNGCAPs select cd;
+            return PartialView(thuonghieu);
         }
 
         public ActionResult GioHang()
@@ -84,5 +143,6 @@ namespace VACTShop.Controllers
         {
             return View();
         }
+
     }
 }

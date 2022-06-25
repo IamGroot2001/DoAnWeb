@@ -82,10 +82,11 @@
                         <i class="fas fa-heart text-primary"></i>
                         <span class="badge">0</span>
                     </a>*@
-                <a href="@Url.Action("GioHang","Home")" class="btn border">
+                @Html.Action("SoLuongGioHang","GioHang")
+                @*<a href="@Url.Action("GioHang","GioHang")" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
+                    <span class="badge"></span>
+                </a>*@
             </div>
         </div>
     </div>
@@ -110,14 +111,14 @@
                             </div>*@
                         @Html.Action("HienThiLoaiSanPham", "Home")
                         @*<a href="" class="nav-item nav-link">Shirts</a>
-                        <a href="" class="nav-item nav-link">Jeans</a>
-                        <a href="" class="nav-item nav-link">Swimwear</a>
-                        <a href="" class="nav-item nav-link">Sleepwear</a>
-                        <a href="" class="nav-item nav-link">Sportswear</a>
-                        <a href="" class="nav-item nav-link">Jumpsuits</a>
-                        <a href="" class="nav-item nav-link">Blazers</a>
-                        <a href="" class="nav-item nav-link">Jackets</a>
-                        <a href="" class="nav-item nav-link">Shoes</a>*@
+                            <a href="" class="nav-item nav-link">Jeans</a>
+                            <a href="" class="nav-item nav-link">Swimwear</a>
+                            <a href="" class="nav-item nav-link">Sleepwear</a>
+                            <a href="" class="nav-item nav-link">Sportswear</a>
+                            <a href="" class="nav-item nav-link">Jumpsuits</a>
+                            <a href="" class="nav-item nav-link">Blazers</a>
+                            <a href="" class="nav-item nav-link">Jackets</a>
+                            <a href="" class="nav-item nav-link">Shoes</a>*@
 
                     </div>
                 </nav>
@@ -132,9 +133,18 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="@Url.Action("Index","Home")" class="nav-item nav-link">Trang Chủ</a>
-                            <a href="@Url.Action("Shop","Home")" class="nav-item nav-link">Cửa Hàng</a>
-                            <a href="@Url.Action("Contact","Home")" class="nav-item nav-link">Hỗ Trợ</a>
+
+                            @if (Session["TaiKhoan"] == null)
+                            {
+                                <a href="@Url.Action("Index","Home")" class="nav-item nav-link">Trang Chủ</a>
+                                <a href="@Url.Action("Shop","Home")" class="nav-item nav-link">Cửa Hàng</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Index","Home")" class="nav-item nav-link">Trang Chủ</a>
+                                <a href="@Url.Action("Shop","Home")" class="nav-item nav-link">Cửa Hàng</a>
+                                <a href="@Url.Action("Contact","Home")" class="nav-item nav-link">Hỗ Trợ</a>
+                            }
                             @*<div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu rounded-0 m-0">
@@ -154,11 +164,11 @@
                             {
                                 <a href="#" class="nav-item nav-link">Xin Chào @Session["User"]</a>
                                 <a href="@Url.Action("DangXuat", "NguoiDung")" class="nav-item nav-link">Đăng Xuất</a>
-                               
-                                    <a href="@Url.Action("ChangePassword", "NguoiDung")" class="nav-item nav-link">Đổi Pass</a>
-                                }                            
 
-                            </div>
+                                <a href="@Url.Action("ChangePassword", "NguoiDung")" class="nav-item nav-link">Đổi Pass</a>
+                            }
+
+                        </div>
                     </div>
                 </nav>
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -223,64 +233,64 @@
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>
             @*<div class="col-lg-8 col-md-12">
-                <div class="row">
-                    <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                    <div class="row">
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                                <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                                <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                                <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                                <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                                <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                                <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                                <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                                <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                                <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                                <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
+                            <form action="">
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+                                           required="required" />
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                        <form action="">
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                       required="required" />
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>*@
+                </div>*@
         </div>
         @*<div class="row border-top border-light mx-xl-5 py-4">
-            <div class="col-md-6 px-xl-0">
-                <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
-                    by
-                    <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
-                </p>
-            </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="~/Asset/img/payments.png" alt="">
-            </div>
-        </div>*@
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-dark">
+                        &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
+                        by
+                        <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
+                    </p>
+                </div>
+                <div class="col-md-6 px-xl-0 text-center text-md-right">
+                    <img class="img-fluid" src="~/Asset/img/payments.png" alt="">
+                </div>
+            </div>*@
     </div>
     <!-- Footer End -->
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    <a href="#" class="btn btn-primary back-to-top" style=" margin-right: 5% !important;"><i class="fa fa-angle-double-up"></i></a>
+ 
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -294,6 +304,39 @@
 
     <!-- Template Javascript -->
     <script src="~/Asset/js/main.js"></script>
+
+    <!------------------------------------------------- Messenger Plugin chat Code ----------------------------------------------------------->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat" style="margin-right=7%">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "101320505933525");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v14.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!------------------------------------------------- Kết Thúc Messenger Plugin chat Code --------------------------------------------------->
+
 </body>
 
 </html>

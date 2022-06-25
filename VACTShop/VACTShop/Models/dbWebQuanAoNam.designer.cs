@@ -793,11 +793,13 @@ namespace VACTShop.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _MaHT;
+		private int _MaKH;
 		
 		private string _LyDo;
 		
-		private System.Nullable<int> _MaKH;
+		private string _MaHoTen;
+		
+		private string _Email;
 		
 		private EntityRef<KHACHHANG> _KHACHHANG;
 		
@@ -805,12 +807,14 @@ namespace VACTShop.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMaHTChanging(int value);
-    partial void OnMaHTChanged();
+    partial void OnMaKHChanging(int value);
+    partial void OnMaKHChanged();
     partial void OnLyDoChanging(string value);
     partial void OnLyDoChanged();
-    partial void OnMaKHChanging(System.Nullable<int> value);
-    partial void OnMaKHChanged();
+    partial void OnMaHoTenChanging(string value);
+    partial void OnMaHoTenChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
     #endregion
 		
 		public HOTRO()
@@ -819,22 +823,26 @@ namespace VACTShop.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHT", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MaHT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaKH
 		{
 			get
 			{
-				return this._MaHT;
+				return this._MaKH;
 			}
 			set
 			{
-				if ((this._MaHT != value))
+				if ((this._MaKH != value))
 				{
-					this.OnMaHTChanging(value);
+					if (this._KHACHHANG.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaKHChanging(value);
 					this.SendPropertyChanging();
-					this._MaHT = value;
-					this.SendPropertyChanged("MaHT");
-					this.OnMaHTChanged();
+					this._MaKH = value;
+					this.SendPropertyChanged("MaKH");
+					this.OnMaKHChanged();
 				}
 			}
 		}
@@ -859,26 +867,42 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int")]
-		public System.Nullable<int> MaKH
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaHoTen", DbType="NVarChar(50)")]
+		public string MaHoTen
 		{
 			get
 			{
-				return this._MaKH;
+				return this._MaHoTen;
 			}
 			set
 			{
-				if ((this._MaKH != value))
+				if ((this._MaHoTen != value))
 				{
-					if (this._KHACHHANG.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaKHChanging(value);
+					this.OnMaHoTenChanging(value);
 					this.SendPropertyChanging();
-					this._MaKH = value;
-					this.SendPropertyChanged("MaKH");
-					this.OnMaKHChanged();
+					this._MaHoTen = value;
+					this.SendPropertyChanged("MaHoTen");
+					this.OnMaHoTenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
 				}
 			}
 		}
@@ -900,17 +924,17 @@ namespace VACTShop.Models
 					if ((previousValue != null))
 					{
 						this._KHACHHANG.Entity = null;
-						previousValue.HOTROs.Remove(this);
+						previousValue.HOTRO = null;
 					}
 					this._KHACHHANG.Entity = value;
 					if ((value != null))
 					{
-						value.HOTROs.Add(this);
+						value.HOTRO = this;
 						this._MaKH = value.MaKH;
 					}
 					else
 					{
-						this._MaKH = default(Nullable<int>);
+						this._MaKH = default(int);
 					}
 					this.SendPropertyChanged("KHACHHANG");
 				}
@@ -962,7 +986,7 @@ namespace VACTShop.Models
 		
 		private EntitySet<DONDATHANG> _DONDATHANGs;
 		
-		private EntitySet<HOTRO> _HOTROs;
+		private EntityRef<HOTRO> _HOTRO;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -989,7 +1013,7 @@ namespace VACTShop.Models
 		public KHACHHANG()
 		{
 			this._DONDATHANGs = new EntitySet<DONDATHANG>(new Action<DONDATHANG>(this.attach_DONDATHANGs), new Action<DONDATHANG>(this.detach_DONDATHANGs));
-			this._HOTROs = new EntitySet<HOTRO>(new Action<HOTRO>(this.attach_HOTROs), new Action<HOTRO>(this.detach_HOTROs));
+			this._HOTRO = default(EntityRef<HOTRO>);
 			OnCreated();
 		}
 		
@@ -1133,7 +1157,7 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatKhauKH", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MatKhauKH", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string MatKhauKH
 		{
 			get
@@ -1166,16 +1190,32 @@ namespace VACTShop.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_HOTRO", Storage="_HOTROs", ThisKey="MaKH", OtherKey="MaKH")]
-		public EntitySet<HOTRO> HOTROs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_HOTRO", Storage="_HOTRO", ThisKey="MaKH", OtherKey="MaKH", IsUnique=true, IsForeignKey=false)]
+		public HOTRO HOTRO
 		{
 			get
 			{
-				return this._HOTROs;
+				return this._HOTRO.Entity;
 			}
 			set
 			{
-				this._HOTROs.Assign(value);
+				HOTRO previousValue = this._HOTRO.Entity;
+				if (((previousValue != value) 
+							|| (this._HOTRO.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._HOTRO.Entity = null;
+						previousValue.KHACHHANG = null;
+					}
+					this._HOTRO.Entity = value;
+					if ((value != null))
+					{
+						value.KHACHHANG = this;
+					}
+					this.SendPropertyChanged("HOTRO");
+				}
 			}
 		}
 		
@@ -1206,18 +1246,6 @@ namespace VACTShop.Models
 		}
 		
 		private void detach_DONDATHANGs(DONDATHANG entity)
-		{
-			this.SendPropertyChanging();
-			entity.KHACHHANG = null;
-		}
-		
-		private void attach_HOTROs(HOTRO entity)
-		{
-			this.SendPropertyChanging();
-			entity.KHACHHANG = this;
-		}
-		
-		private void detach_HOTROs(HOTRO entity)
 		{
 			this.SendPropertyChanging();
 			entity.KHACHHANG = null;

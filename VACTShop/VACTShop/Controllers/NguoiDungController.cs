@@ -18,18 +18,18 @@ namespace VACTShop.Controllers
         private static readonly int CHECK_EMAIL = 1;
         private static readonly int CHECK_TAIKHOAN = 1;
 
-        //public static string MD5Hash(string input)
-        //{
-        //    StringBuilder hash = new StringBuilder();
-        //    MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
-        //    byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
+        public static string MD5Hash(string input)
+        {
+            StringBuilder hash = new StringBuilder();
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
 
-        //    for (int i = 0; i < bytes.Length; i++)
-        //    {
-        //        hash.Append(bytes[i].ToString("x2"));
-        //    }
-        //    return hash.ToString();
-        //}
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hash.Append(bytes[i].ToString("x2"));
+            }
+            return hash.ToString();
+        }
 
         // GET: NguoiDung    
         [HttpGet]
@@ -216,68 +216,42 @@ namespace VACTShop.Controllers
         [HttpPost]
         public ActionResult ChangePassword(FormCollection collection)
         {
-            KHACHHANG user = (KHACHHANG)Session["TaiKhoan"];
-            //var user = data.KHACHHANGs.SingleOrDefault(p => p.MaKH == p.MaKH);
-
-            //string TK = collection["TaiKhoan"];
-            string po = collection["passold"];
-            string pn = collection["passnew"];
-            string pa = collection["passagain"];
-
-            //=====================Mã Hoá Mật Khẩu Cũ========================//
-            MD5 md5 = new MD5CryptoServiceProvider();
-
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(po));
-
-            byte[] bytedata = md5.Hash;
-
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < bytedata.Length; i++)
+            KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+            var user = data.KHACHHANGs.SingleOrDefault(p => p.MaKH == kh.MaKH);
+            var po = collection["passold"];
+            var pn = collection["passnew"];
+            var pa = collection["passagain"];
+            if (String.IsNullOrEmpty(po) || String.IsNullOrEmpty(pn) || String.IsNullOrEmpty(pa))
             {
-
-                builder.Append(bytedata[i].ToString("x2"));
+                ViewData["1"] = "Thông tin không được để trống";
             }
-
-            string MaHoa = builder.ToString();
-            //=======================Kết Thúc Mã Hoá==========================//
-
-            //=====================Mã Hoá Mật Khẩu Mới========================//
-            MD5 md5pn = new MD5CryptoServiceProvider();
-
-            md5pn.ComputeHash(ASCIIEncoding.ASCII.GetBytes(pn));
-
-            byte[] bytedatapn = md5pn.Hash;
-
-            StringBuilder builderpn = new StringBuilder();
-            for (int i = 0; i < bytedatapn.Length; i++)
+            else if (String.IsNullOrEmpty(po) && String.IsNullOrEmpty(pn) && !String.IsNullOrEmpty(pa))
             {
-
-                builder.Append(bytedatapn[i].ToString("x2"));
+                ViewData["3"] = "Vui lòng nhập mật khẩu mới!";
+                return this.ChangePassword();
             }
-
-            string MaHoapn = builder.ToString();
-            //=======================Kết Thúc Mã Hoá=========================//
-
-            //KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
-            //KHACHHANG user = data.KHACHHANGs.SingleOrDefault(a => a.MaKH == a.MaKH); //MaHoa
-            if (user!=null)
+            else if (!String.IsNullOrEmpty(po) && !String.IsNullOrEmpty(pn) && !String.IsNullOrEmpty(pa))
             {
-                if(pn.Equals(pa))
-                {                  
-                    user.MatKhauKH = MaHoa;
-                    UpdateModel(user);                   
-                    data.SubmitChanges();
-                    Session["User"] = user.HoTenKH;
-                    ViewData["3"] = "Cập nhật mật khẩu thành công";
-                    return RedirectToAction("Shop", "Home");
+                if (!String.Equals(MD5Hash(po), kh.MatKhauKH))
+                {
+                    ViewData["1"] = "Mật khẩu không đúng!";
+                    return this.ChangePassword();
+                }
+                else if (!String.Equals(pn, pa))
+                {
+                    ViewData["3"] = "Mật khẩu mới và mật khẩu cũ không trùng khớp!";
+                    return this.ChangePassword();
                 }
                 else
                 {
-                    @ViewData["error"] = "Mật Khẩu Không Trùng Khớp";
-                    return this.ChangePassword();
-                }             
+                    user.MatKhauKH = MD5Hash(pn);
+                    Session["User"] = kh.HoTenKH;
+                    data.SubmitChanges();
+                    ViewData["3"] = "Cập nhật thành công!";
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            return View();
+            return this.ChangePassword();
         }
       
     }
