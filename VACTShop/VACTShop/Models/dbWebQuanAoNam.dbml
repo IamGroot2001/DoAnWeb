@@ -33,9 +33,10 @@
   </Table>
   <Table Name="dbo.HOTRO" Member="HOTROs">
     <Type Name="HOTRO">
-      <Column Name="MaHT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="LyDo" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaHoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="KHACHHANG_HOTRO" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
     </Type>
   </Table>
@@ -48,9 +49,9 @@
       <Column Name="DienThoaiKH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="NgaySinhKH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TaiKhoanKH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="MatKhauKH" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MatKhauKH" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="KHACHHANG_DONDATHANG" Member="DONDATHANGs" ThisKey="MaKH" OtherKey="MaKH" Type="DONDATHANG" />
-      <Association Name="KHACHHANG_HOTRO" Member="HOTROs" ThisKey="MaKH" OtherKey="MaKH" Type="HOTRO" />
+      <Association Name="KHACHHANG_HOTRO" Member="HOTRO" ThisKey="MaKH" OtherKey="MaKH" Type="HOTRO" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.LOAISANPHAM" Member="LOAISANPHAMs">
