@@ -13,26 +13,28 @@
         margin-left: 22%;
         padding: 5% 5%;
         font-size: 20px;
-        border: solid 2px;
-        box-shadow: 0px 15px 15px 10px #808080;
+        border: none;
+        box-shadow: 0px 5px 5px 2px #b0b0b0;
     }
 
     dt {
         color: black;
         margin: 20px 10px;
+        font-size: 14px;
     }
 
     .form-actions {
         margin-top: 80px;
         margin-left: 18%;
         width: 100%;
+        background-color: #d2527f
     }
 
     .btn {
         margin-left: 22%;
         margin-bottom: 30px;
-        color: black;
-        background: #bbb37e;
+        color: white;
+        background: #d2527f;
         border: none;
         padding: .7em 20px;
         outline: none;
@@ -40,7 +42,7 @@
         font-size: 1em;
         cursor: pointer;
         letter-spacing: 1px;
-        font-weight: 400;
+        font-weight: 100;
         font-family: 'Open Sans', sans-serif;
         transition: 0.5s all;
         -webkit-transition: 0.5s all;
@@ -53,8 +55,8 @@
     }
 
         .btn:hover {
-            color: #333333;
-            background: #96924f;
+            color: #d2527f;
+            background: white;
         }
 
     @@media(max-width: 1040px) {
@@ -139,7 +141,7 @@
 
 <hr />
 <div>
-    <h2 style="text-align: center; font-size: 26px;">Thông Tin Sản Phẩm</h2>
+    <h2 style="text-align: center; font-size: 26px; font-weight: bold">Thông Tin Sản Phẩm</h2>
     <dl class="dl-horizontal">
         <dt>
             Tên sản phẩm:
@@ -182,7 +184,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <div style="text-align:center"><a class="btn" href="@Url.Action("DSsanpham","ChucNang")"> Trở về</a></div>
+            <div style="text-align: center"><a class="btn" href="@Url.Action("DSsanpham","ChucNang")"> Trở về</a></div>
         </div>
     }
 </div>

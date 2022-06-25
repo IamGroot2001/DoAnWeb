@@ -35,12 +35,14 @@
     }
 
     .btn {
-        color: blue;
-        background: #ea2858;
+        margin-left: 20%;
+        margin-top: 2%;
+        color: white;
+        background: #d2527f;
         border: none;
         padding: .7em 20px;
         outline: none;
-        width: 44%;
+        width: 20%;
         font-size: 1em;
         cursor: pointer;
         letter-spacing: 1px;
@@ -52,38 +54,11 @@
         -moz-transition: 0.5s all;
         -ms-transition: 0.5s all;
         border-radius: 30px;
+        float: left;
     }
 
         .btn:hover {
-            color: #ea2858;
-            background: white;
-        }
-
-    .return {
-        margin-left: 39%;
-        margin-top: 25px;
-        margin-bottom: 25px;
-        color: white;
-        background: #ea2858;
-        border: none;
-        padding: 0.7em 95px;
-        outline: none;
-        width: 22%;
-        font-size: 1em;
-        cursor: pointer;
-        letter-spacing: 1px;
-        font-weight: 400;
-        font-family: 'Open Sans', sans-serif;
-        transition: 0.5s all;
-        -webkit-transition: 0.5s all;
-        -o-transition: 0.5s all;
-        -moz-transition: 0.5s all;
-        -ms-transition: 0.5s all;
-        border-radius: 30px;
-    }
-
-        .return:hover {
-            color: #ea2858;
+            color: #d2527f;
             background: white;
         }
 
@@ -146,7 +121,8 @@
 @using (Html.BeginForm("Themsanpham", "ChucNang", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    <h2 style="text-align: center; font-weight:bold; padding-top: 9px">THÊM SẢN PHẨM</h2>
+    <hr />
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -154,7 +130,7 @@
             <div class="col-md-10">
                 <input required type="text" name="Ten" placeholder="Tên Sản Phẩm....." />
             </div>
-        </div>     
+        </div>
         <div class="form-group">
             <label>Giá</label>
             <div class="col-md-10">
@@ -191,12 +167,12 @@
             </div>
         </div>
 
-         @*<div class="form-group">
-            <label>Size sản phẩm</label>
-            <div class="col-md-10">
-                @Html.DropDownList("Size")
-            </div>
-        </div>*@
+        @*<div class="form-group">
+                <label>Size sản phẩm</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("Size")
+                </div>
+            </div>*@
 
         <div class="form-group">
             <label>Loại sản phẩm</label>
@@ -214,12 +190,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="THÊM" class="btn btn-default" />
+                <input type="submit" value="Thêm" class="btn btn-default" />
+                <div style="text-align:center"><a class="btn" href="@Url.Action("DSsanpham","ChucNang")"> Trở về</a></div>
             </div>
         </div>
     </div>
 }
 
-<div class="return">
-    @Html.ActionLink("Quay Lại", "DSsanpham")
-</div>
+@*<div class="return">
+        @Html.ActionLink("Quay Lại", "DSsanpham")
+    </div>*@ 

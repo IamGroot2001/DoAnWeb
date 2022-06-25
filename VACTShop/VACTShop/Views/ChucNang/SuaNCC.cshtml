@@ -37,21 +37,23 @@
     }
 
     .form-horizontal {
-        margin-left: 30%;
-        margin-top: 30px;
+        text-align: center;
+        justify-content: center;
     }
 
     .btn {
-        margin-left: 8%;
-        color: black;
-        background: #bbb37e;
+        margin-left: 20%;
+        margin-top: 1%;
+        color: white;
+        background: #d2527f;
         border: none;
         padding: .7em 20px;
         outline: none;
-        width: 44%;
+        width: 20%;
         font-size: 1em;
         cursor: pointer;
         letter-spacing: 1px;
+        font-weight: 400;
         font-family: 'Open Sans', sans-serif;
         transition: 0.5s all;
         -webkit-transition: 0.5s all;
@@ -59,40 +61,15 @@
         -moz-transition: 0.5s all;
         -ms-transition: 0.5s all;
         border-radius: 30px;
-        font-weight: bold;
+        float: left;
     }
 
         .btn:hover {
-            color: #333333;
-            background: #96924f;
+            color: #d2527f;
+            background: white;
         }
 
-    .return {
-        margin-left: 19%;
-        margin-top: 25px;
-        color: black;
-        background: #bbb37e;
-        width: 24%;
-        font-weight: bold;
-        border: none;
-        padding: .7em 55px;
-        outline: none;
-        font-size: 1em;
-        cursor: pointer;
-        letter-spacing: 1px;
-        font-family: 'Open Sans', sans-serif;
-        transition: 0.5s all;
-        -webkit-transition: 0.5s all;
-        -o-transition: 0.5s all;
-        -moz-transition: 0.5s all;
-        -ms-transition: 0.5s all;
-        border-radius: 30px;
-    }
-
-        .return:hover {
-            color: #333333;
-            background: #96924f;
-        }
+    
 
     @@media(max-width: 1040px) {
         .return {
@@ -159,7 +136,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <h2 style="text-align: center;">Thông Tin Nhà Cung Cấp</h2>
+    <h2 style="font-size: 26px; text-align: center; font-weight:bold">Sửa Thông Tin Nhà Cung Cấp</h2>
     <hr />
     <div class="form-horizontal">
 
@@ -167,7 +144,7 @@
         @Html.HiddenFor(model => model.MaNCC)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenNCC, htmlAttributes: new { @class = "control-label col-md-2" })
+            Tên NCC
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenNCC, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenNCC, "", new { @class = "text-danger" })
@@ -175,7 +152,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DiaChiNCC, htmlAttributes: new { @class = "control-label col-md-2" })
+            Địa Chỉ NCC
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DiaChiNCC, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DiaChiNCC, "", new { @class = "text-danger" })
@@ -183,7 +160,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SDTNCC, htmlAttributes: new { @class = "control-label col-md-2" })
+            Số Điện Thoại
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SDTNCC, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SDTNCC, "", new { @class = "text-danger" })
@@ -191,9 +168,9 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10 d-flex">
-                <input type="submit" value="LƯU" class="btn btn-default" />
-                <a class="btn btn-default" href="@Url.Action("DSNCC","ChucNang")" style="padding: 12px;height: 46px;margin: 12px;"> Quay Lai</a>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+                <div style="text-align:center"><a class="btn" href="@Url.Action("DSNCC","ChucNang")"> Trở về</a></div>
             </div>
         </div>
     </div>

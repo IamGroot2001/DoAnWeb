@@ -17,11 +17,10 @@
         @input.Substring(0, lenght)<text>.....</text>
     }
 }
-<h2 style="text-align:center; font-size: 26px;">Danh Sách Nhà Cung Cấp</h2>
+<h2 style="text-align:center;font-size: 24px;padding-top:5px; font-weight:bold">Danh Sách Nhà Cung Cấp</h2>
 
 <a href="@Url.Action("ThemNCC","ChucNang")" class="ADD-Btn">
     <p class="text">THÊM NHÀ CUNG CẤP</p>
-    <p class="icon">&#43;</p>
 </a>
 <table class="table" border="1">
     <tr>
@@ -50,8 +49,8 @@
                 @Html.DisplayFor(modelItem => item.SDTNCC)
             </td>
             <td class="tool">
-                @Html.ActionLink("Sửa", "SuaNCC", new { id = item.MaNCC }) |
-                @Html.ActionLink("Xóa", "XoaNCC", new { id = item.MaNCC })
+                @Html.ActionLink("Edit", "SuaNCC", new { id = item.MaNCC }) |
+                @Html.ActionLink("Delete", "XoaNCC", new { id = item.MaNCC })
             </td>
         </tr>
     }
@@ -64,20 +63,24 @@
 }
 <style>
     .ADD-Btn {
-        margin-left: 40%;
-        width: 21%;
-        background: #4e4e22;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        float: left;
-        border-radius: 10px;
-    }
-
-        .ADD-Btn:hover {
-            background: #d5cf8b;
-            color: black;
+            margin-left: 40%;
+            width: 18%;
+            background: #f1828d;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            float: left;
+            border-radius: 10px;
             transition: 0.5s ease all;
+            border-radius: 10px;
+            width: 190px;
+            height: 80px;
+            color: black;
         }
+
+            .ADD-Btn:hover {
+                background: #c44d56;
+                color: white;
+            }
 
             .ADD-Btn:hover .icon {
                 background-color: #a1a45b;
@@ -137,8 +140,9 @@
                 color: #fff;
             }
 
-    .tool:hover {
-        text-decoration: underline;
+    .tool > a:hover {
+        text-decoration: none;
+        color:white;
     }
 
     .page {
@@ -153,7 +157,7 @@
 
     th {
         height: 50px;
-        background: #fbffdf;
+        background: #f1828d;
         color: black;
         text-transform: uppercase;
     }
@@ -175,9 +179,9 @@
     }
 
         tr:hover {
-            background-color: #777;
+            color: black;
+            background-color: #ffe4e4;
             transition: 0.5s ease all;
-            color: white;
         }
 
     @@media(max-width: 1024px) {

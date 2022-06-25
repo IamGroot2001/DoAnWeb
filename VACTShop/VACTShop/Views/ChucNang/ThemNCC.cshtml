@@ -37,18 +37,19 @@
     }
 
     .form-horizontal {
-        margin-left: 30%;
+        margin-left: 8%;
         margin-top: 30px;
     }
 
     .btn {
-        margin-left: 8%;
+        margin-left: 20%;
+        margin-top: 2%;
         color: white;
-        background: #ea2858;
+        background: #d2527f;
         border: none;
         padding: .7em 20px;
         outline: none;
-        width: 44%;
+        width: 20%;
         font-size: 1em;
         cursor: pointer;
         letter-spacing: 1px;
@@ -60,37 +61,11 @@
         -moz-transition: 0.5s all;
         -ms-transition: 0.5s all;
         border-radius: 30px;
+        float: left;
     }
 
         .btn:hover {
-            color: #ea2858;
-            background: white;
-        }
-
-    .return {
-        margin-left: 19%;
-        margin-top: 25px;
-        color: white;
-        background: #ea2858;
-        border: none;
-        padding: .7em 55px;
-        outline: none;
-        width: 22%;
-        font-size: 1em;
-        cursor: pointer;
-        letter-spacing: 1px;
-        font-weight: 400;
-        font-family: 'Open Sans', sans-serif;
-        transition: 0.5s all;
-        -webkit-transition: 0.5s all;
-        -o-transition: 0.5s all;
-        -moz-transition: 0.5s all;
-        -ms-transition: 0.5s all;
-        border-radius: 30px;
-    }
-
-        .return:hover {
-            color: #ea2858;
+            color: #d2527f;
             background: white;
         }
 
@@ -160,12 +135,12 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <h2 style="text-align: center; ">Thêm Mới</h2>
+    <h2 style="text-align: center; font-weight: bold; padding-top: 9px ">THÊM NHÀ CUNG CẤP</h2>
     <hr />
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <label>Tên Nhà Cung Cấp</label>
+            <label style="margin-left: 40%">Tên Nhà Cung Cấp</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenNCC, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenNCC, "", new { @class = "text-danger" })
@@ -173,7 +148,7 @@
         </div>
 
         <div class="form-group">
-            <label>Địa Chỉ</label>
+            <label style="margin-left: 44%">Địa Chỉ</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DiaChiNCC, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DiaChiNCC, "", new { @class = "text-danger" })
@@ -181,7 +156,7 @@
         </div>
 
         <div class="form-group">
-            <label>Số Điện Thoại</label>
+            <label style="margin-left: 42%">Số Điện Thoại</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SDTNCC, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SDTNCC, "", new { @class = "text-danger" })
@@ -190,11 +165,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2">
-                <input type="submit" value="Lưu" class="btn btn-default">
-            </div>
-            <div style="text-align:center" class="return">
-                @Html.ActionLink("Trở Về", "DSNCC")
-            </div>
+                <input type="submit" value="Thêm" class="btn btn-default">
+                <div style="text-align:center"><a class="btn" href="@Url.Action("DSNCC","ChucNang")"> Trở về</a></div>
+            </div>           
+            
         </div>
     </div>
 }

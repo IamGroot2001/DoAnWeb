@@ -28,7 +28,7 @@
 
     th {
         height: 50px;
-        background: #fbffdf;
+        background: #f1828d;
         color: black;
         text-transform: uppercase;
     }
@@ -50,9 +50,9 @@
     }
 
         tr:hover {
-            background-color: #777;
+            color: black;
+            background-color: #ffe4e4;
             transition: 0.5s ease all;
-            color: white;
         }
 
 
@@ -129,12 +129,13 @@
             .pagination > li:hover a,
             .pagination > li.active a {
                 background: #333;
-                color: #fff
+                color: white;
             }
 
 
     .tool > a:hover {
-        text-decoration: underline;
+        text-decoration: none;
+        color:white;
     }
 
     .page {
@@ -145,20 +146,24 @@
 
 
     .ADD-Btn {
-        margin: 10px 39%;
-        background: #4e4e22;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        float: left;
-        border-radius: 10px;
-        transition: 0.5s ease all;
-        border-radius: 10px;
-    }
-
-        .ADD-Btn:hover {
-            background: #d5cf8b;
+            margin-left: 40%;
+            width: 18%;
+            background: #f1828d;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            float: left;
+            border-radius: 10px;
+            transition: 0.5s ease all;
+            border-radius: 10px;
+            width: 190px;
+            height: 80px;
             color: black;
         }
+
+            .ADD-Btn:hover {
+                background: #c44d56;
+                color: white;
+            }
 
             .ADD-Btn:hover .icon {
                 background-color: #a1a45b;
@@ -169,17 +174,23 @@
         }
 
     .ADD-Btn2 {
-        margin-left: 3%;
-        width: 20%;
-        background: linear-gradient(to right, #1623ae, #090c5e);
-        margin-top: 10px;
-        margin-bottom: 10px;
-        float: left;
-    }
-
-        .ADD-Btn2:hover {
-            background: linear-gradient(to left, #1623ae, #1892a5);
+            margin-left: 3%;
+            width: 20%;
+            background: #f1828d;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            float: left;
+            border-radius: 10px;
+            transition: 0.5s ease all;
+            width: 190px;
+            height: 80px;
+            color: black;
         }
+
+            .ADD-Btn2:hover {
+                background: #c44d56;
+                color: white;
+            }
 
             .ADD-Btn2:hover .icon {
                 background-color: #090c5e;
@@ -280,11 +291,10 @@
     }
 </style>
 
-<h2 style="text-align:center; font-size: 26px;">Danh Sách Loại Sản Phẩm</h2>
+<h2 style="text-align:center;font-size: 24px;padding-top:5px; font-weight:bold">Danh Sách Loại Sản Phẩm</h2>
 
 <a href="@Url.Action("ThemLSP","ChucNang")" class="ADD-Btn">
     <p class="text">THÊM LOẠI SẢN PHẨM</p>
-    <p class="icon">&#43;</p>
 </a>
 <table class="table" border="1">
     <tr>
@@ -307,8 +317,8 @@
                 @Html.DisplayFor(modelItem => item.TenLSP)
             </td>
             <td class="tool">
-                @Html.ActionLink("SỬA", "SuaLSP", new { id = item.MaLSP }) |
-                @Html.ActionLink("XÓA", "XoaLSP", new { id = item.MaLSP })
+                @Html.ActionLink("Edit", "SuaLSP", new { id = item.MaLSP }) |
+                @Html.ActionLink("Delete", "XoaLSP", new { id = item.MaLSP })
             </td>
         </tr>
     }

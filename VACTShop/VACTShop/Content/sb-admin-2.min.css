@@ -1163,7 +1163,9 @@ pre code {
     }
     .col-md-10 {
         flex: 0 0 83.33333%;
-        max-width: 83.33333%
+        max-width: 83.33333%;
+        padding-left: 25%;
+        padding-right:8%
     }
     .col-md-11 {
         flex: 0 0 91.66667%;
@@ -2089,7 +2091,9 @@ textarea.form-control {
 }
 
 .form-group {
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form-text {
@@ -10148,11 +10152,11 @@ a:focus {
     display: flex
 }
 
-#wrapper #content-wrapper {
-    background-color: #fde;
-    width: 100%;
-    overflow-x: hidden
-}
+    #wrapper #content-wrapper {
+        background-color: #f4efef;
+        width: 100%;
+        overflow-x: hidden
+    }
 
     #wrapper #content-wrapper #content {
         flex: 1 0 auto
@@ -11231,7 +11235,7 @@ a:focus {
 .bg-login-image {
     background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
     background-position: center;
-    background-size: cover
+    background-size: cover;
 }
 
 .bg-register-image {

@@ -12,12 +12,12 @@
         margin-left: 20%;
         padding-left: 10%;
         font-size: 20px;
-        border: solid 2px;
-        box-shadow: 0px 15px 15px 10px #808080;
+        border: none;
+        box-shadow: 0px 5px 5px 2px #b0b0b0;
     }
 
     dt, dd {
-        color: white;
+        color: black;
         margin: 20px 10px;
     }
 
@@ -54,12 +54,13 @@
             background: white;
         }
 
-    .return {
+    .btn {
         margin-left: 8%;
+        margin-top: 1%;
         color: white;
-        background: #ea2858;
+        background: #d2527f;
         border: none;
-        padding: .7em 100px;
+        padding: .7em 20px;
         outline: none;
         width: 20%;
         font-size: 1em;
@@ -76,8 +77,8 @@
         float: left;
     }
 
-        .return:hover {
-            color: #ea2858;
+        .btn:hover {
+            color: #d2527f;
             background: white;
         }
 
@@ -156,10 +157,10 @@
         }
 </style>
 
-<h1 style="text-align: center; font-size: 32px;">Bạn Có Chắc Muốn Xóa Hay Không?</h1>
+<h1 style="text-align: center; font-size: 28px; font-weight: bold; color: red">Bạn Thật Sự Chắc Chắn Muốn Xóa Sản Phẩm Này?</h1>
+<hr />
 <div>
-    <h2 style="text-align: center; font-size: 24px;">Xoá Loại Sản Phẩm</h2>
-    <hr />
+    <h2 style="text-align: center; font-size: 26px; font-weight: bold">Thông Tin Sản Phẩm</h2>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayName("Loại Sản Phẩm:  ")
@@ -173,10 +174,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <div class="return">
-                @Html.ActionLink("Quay Lại", "DSLSP")
-            </div>
-            <input type="submit" value="XÓA" class="btn btn-default" />
+            <input type="submit" value="Xóa" class="btn btn-default" />
+            <div style="text-align:center"><a class="btn" href="@Url.Action("DSLSP","ChucNang")"> Trở về</a></div>
         </div>
     }
 </div>

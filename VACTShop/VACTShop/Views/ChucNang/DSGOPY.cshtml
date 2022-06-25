@@ -18,7 +18,8 @@
     }
 }
 
-<h2 style="text-align:center;font-size: 24px;">GÓP Ý CỦA KHÁCH HÀNG </h2>
+<h2 style="text-align:center;font-size: 24px;padding-top:5px; font-weight:bold">GÓP Ý CỦA KHÁCH HÀNG </h2>
+<hr />
 
 <table class="table" border="1">
     <tr>
@@ -129,8 +130,9 @@
                     color: #fff;
                 }
 
-        .tool:hover {
-            text-decoration: underline;
+        .tool > a:hover {
+            text-decoration: none;
+            color: white;
         }
 
         .page {
@@ -145,7 +147,7 @@
 
         th {
             height: 50px;
-            background: #fbffdf;
+            background: #f1828d;
             color: black;
             text-transform: uppercase;
         }
@@ -161,8 +163,9 @@
             padding-bottom: 20px;
         }
 
-        .tool:hover {
-            text-decoration: underline;
+        .tool > a:hover {
+            text-decoration: none;
+            color: white;
         }
 
         tr {
@@ -171,9 +174,9 @@
         }
 
             tr:hover {
-                background-color: #777;
+                color: black;
+                background-color: #ffe4e4;
                 transition: 0.5s ease all;
-                color: white;
             }
 
         @@media(max-width: 1024px) {

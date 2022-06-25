@@ -17,7 +17,7 @@
 }
 
 
-<h2 style="text-align:center;font-size: 24px;">Thông Tin Khách Hàng </h2>
+<h2 style="text-align:center;font-size: 24px;padding-top:5px; font-weight:bold">Danh Sách Khách Hàng </h2>
 
 
 <table class="table" border="1">
@@ -61,8 +61,8 @@
                 @*@Html.DisplayFor(modelItem => item.NgaySinhKH)*@
             </td>
             <td class="tool">
-                @Html.ActionLink("SỬA", "SuaKH", new { id = item.MaKH }) |
-                @Html.ActionLink("XÓA", "XoaKH", new { id = item.MaKH })
+                @Html.ActionLink("Edit", "SuaKH", new { id = item.MaKH }) |
+                @Html.ActionLink("Delete", "XoaKH", new { id = item.MaKH })
             </td>
         </tr>
     }
@@ -144,8 +144,9 @@
                     color: #fff;
                 }
 
-        .tool:hover {
-            text-decoration: underline;
+        .tool > a:hover {
+            text-decoration: none;
+            color: white;
         }
 
         .page {
@@ -160,7 +161,7 @@
 
         th {
             height: 50px;
-            background: #fbffdf;
+            background: #f1828d;
             color: black;
             text-transform: uppercase;
         }
@@ -182,9 +183,9 @@
         }
 
             tr:hover {
-                background-color: #777;
+                color: black;
+                background-color: #ffe4e4;
                 transition: 0.5s ease all;
-                color: white;
             }
 
 
