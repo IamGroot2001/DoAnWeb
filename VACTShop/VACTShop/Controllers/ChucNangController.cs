@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VACTShop.Models;
 using PagedList;
 using System.IO;
+using System.Net;
 
 namespace VACTShop.Controllers
 {
@@ -471,8 +472,7 @@ namespace VACTShop.Controllers
             }
         }
         //===================================Chi Tiet Góp Ý Khách Hàng==========================//
-
-        [HttpGet]
+     
         public ActionResult GOPY_CHITIET(int id)
         {
             if (Session["TKAdmin"] == null)

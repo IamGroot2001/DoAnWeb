@@ -64,10 +64,41 @@ namespace VACTShop.Controllers
 
             return View();
         }
-
+        [HttpGet]
         public ActionResult Contact()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Contact(FormCollection collection)
+        {
+
+
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("Login", "NguoiDung");
+            }
+            else
+            {
+                HOTRO ht = new HOTRO();
+                KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+                var user = data.KHACHHANGs.SingleOrDefault(p => p.MaKH == kh.MaKH);
+                ht.MaKH = kh.MaKH;
+                ht.MaHoTen = kh.HoTenKH;
+                ht.Email = kh.EmailKH;
+                string lydo = collection["LyDo"];
+                ht.LyDo = lydo;
+                if (lydo == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    data.HOTROs.InsertOnSubmit(ht);
+                    data.SubmitChanges();
+                    return RedirectToAction("Contact", "Home");
+                }
+            }
         }
 
         public ActionResult Shop()
