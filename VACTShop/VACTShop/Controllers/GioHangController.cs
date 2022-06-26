@@ -120,5 +120,22 @@ namespace VACTShop.Controllers
             gioHangs.Clear();
             return RedirectToAction("Index", "Home");
         }
+        [HttpGet]
+        public ActionResult DatHang()
+        {
+
+            if (Session["Taikhoan"] == null || Session["Taikhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "NguoiDung");
+            }
+            if (Session["GioHang"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            List<GioHang> gioHangs = LayGioHang();
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongTien = TongTien();
+            return View(gioHangs);
+        }
     }
 }

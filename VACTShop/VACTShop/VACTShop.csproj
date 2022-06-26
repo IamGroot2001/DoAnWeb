@@ -395,6 +395,7 @@
     <Content Include="Views\NguoiDung\ChangePassword.cshtml" />
     <Content Include="Views\GioHang\Giohang.cshtml" />
     <Content Include="Views\GioHang\SoLuongGioHang.cshtml" />
+    <Content Include="Views\GioHang\DatHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
