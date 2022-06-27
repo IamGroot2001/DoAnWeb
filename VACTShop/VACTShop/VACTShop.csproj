@@ -169,6 +169,8 @@
     <Content Include="Asset\img\giay2.jpg" />
     <Content Include="Asset\img\korea_bg1.jpg" />
     <Content Include="Asset\img\korea_bg2.jpg" />
+    <Content Include="Asset\img\logomomo.png" />
+    <Content Include="Asset\img\logovnpay.png" />
     <Content Include="Asset\img\Password Reset.jpg" />
     <Content Include="Asset\img\quankaki1.jpg" />
     <Content Include="Asset\img\quanshort1.jpg" />

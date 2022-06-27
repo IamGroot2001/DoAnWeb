@@ -248,7 +248,7 @@ namespace VACTShop.Controllers
             string accessKey = "WnATmOxM3j81MiWC";
             string serectkey = "abJUbwX6vQRQx55Tj1HZccoJqMMIuyaz";
             string orderInfo = "test";
-            string returnUrl = "https://localhost:44388/GioHang/ConfirmPaymentClient";
+            string returnUrl = "http://vinhducbui16-001-site1.itempurl.com/GioHang/ConfirmPaymentClient";
             string notifyurl = "https://53d0-123-21-167-207.ap.ngrok.io/GioHang/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             string amount = gh.Sum(n => n.thanhtien).ToString();//sửa lại giá để lấi giá đơn hàng
