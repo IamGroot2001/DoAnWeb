@@ -162,10 +162,18 @@
                             }
                             else
                             {
-                                <a href="#" class="nav-item nav-link">Xin Chào @Session["User"]</a>
-                                <a href="@Url.Action("DangXuat", "NguoiDung")" class="nav-item nav-link">Đăng Xuất</a>
+                        <div class="dropdown Login nav-item nav-link">
+                            <a id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                Hi @Session["User"]
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("DangXuat", "NguoiDung")">Đăng Xuất</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("History","History")">Lich Sử</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("ChangePassword", "NguoiDung")">Đổi mật khẩu</a></li>
+                            </ul>
+                        </div>
 
-                                <a href="@Url.Action("ChangePassword", "NguoiDung")" class="nav-item nav-link">Đổi Pass</a>
                             }
 
                         </div>
@@ -317,7 +325,7 @@
     <script src="~/Asset/js/main.js"></script>
 
     <!------------------------------------------------- Messenger Plugin chat Code ----------------------------------------------------------->
-    <div id="fb-root"style="background-color=red"></div>
+    <div id="fb-root"style="background-color="></div>
 
     <!-- Your Plugin chat code -->
     <div id="fb-customer-chat" class="fb-customerchat" style="margin-right=7%">

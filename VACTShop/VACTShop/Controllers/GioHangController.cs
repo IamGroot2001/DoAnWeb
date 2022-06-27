@@ -301,7 +301,7 @@ namespace VACTShop.Controllers
             var ngaygiao = DateTime.Now;
             ddh.NgayGiao = ngaygiao;
             ddh.TinhTrangGiaoHang = false;
-            ddh.DaThanhToan = false;
+            ddh.DaThanhToan = true;
             ddh.ThanhTien = Decimal.Parse(TongTien().ToString());
             string DiaChi = collection["DiaChi"];
             string nvc = collection["TenVanChuyen"];

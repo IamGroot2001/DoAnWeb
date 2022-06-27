@@ -130,6 +130,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChucNangController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Global.asax.cs">
@@ -385,6 +386,8 @@
     <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
     <Content Include="Views\GioHang\ConfirmPaymentClient.cshtml" />
     <Content Include="Views\GioHang\PaymentConfirm.cshtml" />
+    <Content Include="Views\History\History.cshtml" />
+    <Content Include="Views\History\HistoryDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
