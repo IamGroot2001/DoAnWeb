@@ -145,6 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset\css\dangkydangnhap.css" />
+    <Content Include="Asset\css\GioHang.css" />
+    <Content Include="Asset\css\shop-homepage.css" />
     <Content Include="Asset\css\style.css" />
     <Content Include="Asset\css\style.min.css" />
     <Content Include="Asset\img\aokhoac1.jpg" />
@@ -157,6 +159,7 @@
     <Content Include="Asset\img\bg3.jpg" />
     <Content Include="Asset\img\carousel-1.jpg" />
     <Content Include="Asset\img\carousel-2.jpg" />
+    <Content Include="Asset\img\cart.jpg" />
     <Content Include="Asset\img\cat-1.jpg" />
     <Content Include="Asset\img\cat-2.jpg" />
     <Content Include="Asset\img\cat-3.jpg" />
@@ -399,6 +402,8 @@
     <Content Include="Views\NguoiDung\ChangePassword.cshtml" />
     <Content Include="Views\GioHang\Giohang.cshtml" />
     <Content Include="Views\GioHang\SoLuongGioHang.cshtml" />
+    <Content Include="Views\GioHang\DatHang.cshtml" />
+    <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

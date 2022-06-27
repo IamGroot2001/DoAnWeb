@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using VACTShop.Models;
@@ -119,6 +122,93 @@ namespace VACTShop.Controllers
             List<GioHang> gioHangs = LayGioHang();
             gioHangs.Clear();
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public ActionResult DatHang()
+        {
+
+            if (Session["Taikhoan"] == null || Session["Taikhoan"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "NguoiDung");
+            }
+            if (Session["GioHang"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            List<GioHang> gioHangs = LayGioHang();
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongTien = TongTien();
+            return View(gioHangs);
+        }
+        [HttpPost]
+        public ActionResult DatHang(FormCollection collection)
+        {
+            // Thêm đơn hàng
+            DONDATHANG ddh = new DONDATHANG();
+            KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+            List<GioHang> gh = LayGioHang();
+            ddh.MaKH = kh.MaKH;
+            ddh.NgayDat = DateTime.Now;
+            var ngaygiao = DateTime.Now;
+            ddh.NgayGiao = ngaygiao;
+            ddh.TinhTrangGiaoHang = false;
+            ddh.DaThanhToan = false;
+            ddh.ThanhTien = Decimal.Parse(TongTien().ToString());
+            String diaChi = collection["DiaChi"];
+            /*ddh.DiaChi = diaChi;*/
+            /*ddh.DiaChi = String.Format(collection["DiaChi"]);*/
+            data.DONDATHANGs.InsertOnSubmit(ddh);
+            data.SubmitChanges();
+
+            // Thêm chi tiết đơn hàng
+            foreach(var item in gh)
+            {
+                CHITIETDONDATHANG ctddh = new CHITIETDONDATHANG();
+                ctddh.MaDDH = ddh.MaDDH;
+                ctddh.MaSP = item.masp;
+                ctddh.SoLuong = item.soluong;
+                ctddh.DonGia = (decimal)item.giaban;
+                ddh.DiaChi = diaChi;
+                data.CHITIETDONDATHANGs.InsertOnSubmit(ctddh);
+            }
+            data.SubmitChanges();
+            Session["GioHang"] = null;
+            return RedirectToAction("XacNhanDonHang", "GioHang");
+        }
+
+        public static void SendEmail(string address, string subject, string message)
+        {
+            if (new EmailAddressAttribute().IsValid(address)) // check có đúng mail khách hàng
+            {
+                string email = "buivanty15@gmail.com";
+                var senderEmail = new MailAddress(email, "VACT Shop (tin nhắn tự động)");
+                var receiverEmail = new MailAddress(address, "Receiver");
+                var password = "dpukaghhwhgrokpo";
+                var sub = subject;
+                var body = message;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                using (var mess = new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = sub,
+                    Body = body
+                })
+                {
+                    smtp.Send(mess);
+                }
+            }
+        }
+
+        public ActionResult XacNhanDonHang()
+        {
+            return PartialView();
         }
     }
 }
