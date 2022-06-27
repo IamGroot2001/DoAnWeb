@@ -42,21 +42,21 @@ namespace VACTShop.Models
     partial void InsertHOTRO(HOTRO instance);
     partial void UpdateHOTRO(HOTRO instance);
     partial void DeleteHOTRO(HOTRO instance);
-    partial void InsertKHACHHANG(KHACHHANG instance);
-    partial void UpdateKHACHHANG(KHACHHANG instance);
-    partial void DeleteKHACHHANG(KHACHHANG instance);
     partial void InsertLOAISANPHAM(LOAISANPHAM instance);
     partial void UpdateLOAISANPHAM(LOAISANPHAM instance);
     partial void DeleteLOAISANPHAM(LOAISANPHAM instance);
+    partial void InsertKHACHHANG(KHACHHANG instance);
+    partial void UpdateKHACHHANG(KHACHHANG instance);
+    partial void DeleteKHACHHANG(KHACHHANG instance);
     partial void InsertNHACUNGCAP(NHACUNGCAP instance);
     partial void UpdateNHACUNGCAP(NHACUNGCAP instance);
     partial void DeleteNHACUNGCAP(NHACUNGCAP instance);
     partial void InsertSANPHAM(SANPHAM instance);
     partial void UpdateSANPHAM(SANPHAM instance);
     partial void DeleteSANPHAM(SANPHAM instance);
-    partial void InsertSIZE(SIZE instance);
-    partial void UpdateSIZE(SIZE instance);
-    partial void DeleteSIZE(SIZE instance);
+    partial void InsertVANCHUYEN(VANCHUYEN instance);
+    partial void UpdateVANCHUYEN(VANCHUYEN instance);
+    partial void DeleteVANCHUYEN(VANCHUYEN instance);
     #endregion
 		
 		public dbWebQuanAoNamDataContext() : 
@@ -121,19 +121,19 @@ namespace VACTShop.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<KHACHHANG> KHACHHANGs
-		{
-			get
-			{
-				return this.GetTable<KHACHHANG>();
-			}
-		}
-		
 		public System.Data.Linq.Table<LOAISANPHAM> LOAISANPHAMs
 		{
 			get
 			{
 				return this.GetTable<LOAISANPHAM>();
+			}
+		}
+		
+		public System.Data.Linq.Table<KHACHHANG> KHACHHANGs
+		{
+			get
+			{
+				return this.GetTable<KHACHHANG>();
 			}
 		}
 		
@@ -153,11 +153,11 @@ namespace VACTShop.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<SIZE> SIZEs
+		public System.Data.Linq.Table<VANCHUYEN> VANCHUYENs
 		{
 			get
 			{
-				return this.GetTable<SIZE>();
+				return this.GetTable<VANCHUYEN>();
 			}
 		}
 	}
@@ -510,9 +510,13 @@ namespace VACTShop.Models
 		
 		private string _DiaChi;
 		
+		private System.Nullable<int> _MaVC;
+		
 		private EntitySet<CHITIETDONDATHANG> _CHITIETDONDATHANGs;
 		
 		private EntityRef<KHACHHANG> _KHACHHANG;
+		
+		private EntityRef<VANCHUYEN> _VANCHUYEN;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -534,12 +538,15 @@ namespace VACTShop.Models
     partial void OnThanhTienChanged();
     partial void OnDiaChiChanging(string value);
     partial void OnDiaChiChanged();
+    partial void OnMaVCChanging(System.Nullable<int> value);
+    partial void OnMaVCChanged();
     #endregion
 		
 		public DONDATHANG()
 		{
 			this._CHITIETDONDATHANGs = new EntitySet<CHITIETDONDATHANG>(new Action<CHITIETDONDATHANG>(this.attach_CHITIETDONDATHANGs), new Action<CHITIETDONDATHANG>(this.detach_CHITIETDONDATHANGs));
 			this._KHACHHANG = default(EntityRef<KHACHHANG>);
+			this._VANCHUYEN = default(EntityRef<VANCHUYEN>);
 			OnCreated();
 		}
 		
@@ -707,6 +714,30 @@ namespace VACTShop.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaVC", DbType="Int")]
+		public System.Nullable<int> MaVC
+		{
+			get
+			{
+				return this._MaVC;
+			}
+			set
+			{
+				if ((this._MaVC != value))
+				{
+					if (this._VANCHUYEN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaVCChanging(value);
+					this.SendPropertyChanging();
+					this._MaVC = value;
+					this.SendPropertyChanged("MaVC");
+					this.OnMaVCChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DONDATHANG_CHITIETDONDATHANG", Storage="_CHITIETDONDATHANGs", ThisKey="MaDDH", OtherKey="MaDDH")]
 		public EntitySet<CHITIETDONDATHANG> CHITIETDONDATHANGs
 		{
@@ -750,6 +781,40 @@ namespace VACTShop.Models
 						this._MaKH = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("KHACHHANG");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VANCHUYEN_DONDATHANG", Storage="_VANCHUYEN", ThisKey="MaVC", OtherKey="MaVC", IsForeignKey=true)]
+		public VANCHUYEN VANCHUYEN
+		{
+			get
+			{
+				return this._VANCHUYEN.Entity;
+			}
+			set
+			{
+				VANCHUYEN previousValue = this._VANCHUYEN.Entity;
+				if (((previousValue != value) 
+							|| (this._VANCHUYEN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VANCHUYEN.Entity = null;
+						previousValue.DONDATHANGs.Remove(this);
+					}
+					this._VANCHUYEN.Entity = value;
+					if ((value != null))
+					{
+						value.DONDATHANGs.Add(this);
+						this._MaVC = value.MaVC;
+					}
+					else
+					{
+						this._MaVC = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("VANCHUYEN");
 				}
 			}
 		}
@@ -959,6 +1024,120 @@ namespace VACTShop.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAISANPHAM")]
+	public partial class LOAISANPHAM : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaLSP;
+		
+		private string _TenLSP;
+		
+		private EntitySet<SANPHAM> _SANPHAMs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaLSPChanging(int value);
+    partial void OnMaLSPChanged();
+    partial void OnTenLSPChanging(string value);
+    partial void OnTenLSPChanged();
+    #endregion
+		
+		public LOAISANPHAM()
+		{
+			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLSP", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaLSP
+		{
+			get
+			{
+				return this._MaLSP;
+			}
+			set
+			{
+				if ((this._MaLSP != value))
+				{
+					this.OnMaLSPChanging(value);
+					this.SendPropertyChanging();
+					this._MaLSP = value;
+					this.SendPropertyChanged("MaLSP");
+					this.OnMaLSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLSP", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string TenLSP
+		{
+			get
+			{
+				return this._TenLSP;
+			}
+			set
+			{
+				if ((this._TenLSP != value))
+				{
+					this.OnTenLSPChanging(value);
+					this.SendPropertyChanging();
+					this._TenLSP = value;
+					this.SendPropertyChanged("TenLSP");
+					this.OnTenLSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISANPHAM_SANPHAM", Storage="_SANPHAMs", ThisKey="MaLSP", OtherKey="MaLSP")]
+		public EntitySet<SANPHAM> SANPHAMs
+		{
+			get
+			{
+				return this._SANPHAMs;
+			}
+			set
+			{
+				this._SANPHAMs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SANPHAMs(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAISANPHAM = this;
+		}
+		
+		private void detach_SANPHAMs(SANPHAM entity)
+		{
+			this.SendPropertyChanging();
+			entity.LOAISANPHAM = null;
 		}
 	}
 	
@@ -1249,120 +1428,6 @@ namespace VACTShop.Models
 		{
 			this.SendPropertyChanging();
 			entity.KHACHHANG = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LOAISANPHAM")]
-	public partial class LOAISANPHAM : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MaLSP;
-		
-		private string _TenLSP;
-		
-		private EntitySet<SANPHAM> _SANPHAMs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMaLSPChanging(int value);
-    partial void OnMaLSPChanged();
-    partial void OnTenLSPChanging(string value);
-    partial void OnTenLSPChanged();
-    #endregion
-		
-		public LOAISANPHAM()
-		{
-			this._SANPHAMs = new EntitySet<SANPHAM>(new Action<SANPHAM>(this.attach_SANPHAMs), new Action<SANPHAM>(this.detach_SANPHAMs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLSP", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MaLSP
-		{
-			get
-			{
-				return this._MaLSP;
-			}
-			set
-			{
-				if ((this._MaLSP != value))
-				{
-					this.OnMaLSPChanging(value);
-					this.SendPropertyChanging();
-					this._MaLSP = value;
-					this.SendPropertyChanged("MaLSP");
-					this.OnMaLSPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenLSP", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string TenLSP
-		{
-			get
-			{
-				return this._TenLSP;
-			}
-			set
-			{
-				if ((this._TenLSP != value))
-				{
-					this.OnTenLSPChanging(value);
-					this.SendPropertyChanging();
-					this._TenLSP = value;
-					this.SendPropertyChanged("TenLSP");
-					this.OnTenLSPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISANPHAM_SANPHAM", Storage="_SANPHAMs", ThisKey="MaLSP", OtherKey="MaLSP")]
-		public EntitySet<SANPHAM> SANPHAMs
-		{
-			get
-			{
-				return this._SANPHAMs;
-			}
-			set
-			{
-				this._SANPHAMs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SANPHAMs(SANPHAM entity)
-		{
-			this.SendPropertyChanging();
-			entity.LOAISANPHAM = this;
-		}
-		
-		private void detach_SANPHAMs(SANPHAM entity)
-		{
-			this.SendPropertyChanging();
-			entity.LOAISANPHAM = null;
 		}
 	}
 	
@@ -1892,68 +1957,84 @@ namespace VACTShop.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SIZE")]
-	public partial class SIZE : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VANCHUYEN")]
+	public partial class VANCHUYEN : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _MaSize;
+		private int _MaVC;
 		
-		private string _SoSize;
+		private string _TenVanChuyen;
+		
+		private EntitySet<DONDATHANG> _DONDATHANGs;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMaSizeChanging(int value);
-    partial void OnMaSizeChanged();
-    partial void OnSoSizeChanging(string value);
-    partial void OnSoSizeChanged();
+    partial void OnMaVCChanging(int value);
+    partial void OnMaVCChanged();
+    partial void OnTenVanChuyenChanging(string value);
+    partial void OnTenVanChuyenChanged();
     #endregion
 		
-		public SIZE()
+		public VANCHUYEN()
 		{
+			this._DONDATHANGs = new EntitySet<DONDATHANG>(new Action<DONDATHANG>(this.attach_DONDATHANGs), new Action<DONDATHANG>(this.detach_DONDATHANGs));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSize", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MaSize
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaVC", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaVC
 		{
 			get
 			{
-				return this._MaSize;
+				return this._MaVC;
 			}
 			set
 			{
-				if ((this._MaSize != value))
+				if ((this._MaVC != value))
 				{
-					this.OnMaSizeChanging(value);
+					this.OnMaVCChanging(value);
 					this.SendPropertyChanging();
-					this._MaSize = value;
-					this.SendPropertyChanged("MaSize");
-					this.OnMaSizeChanged();
+					this._MaVC = value;
+					this.SendPropertyChanged("MaVC");
+					this.OnMaVCChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoSize", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string SoSize
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenVanChuyen", DbType="NVarChar(50)")]
+		public string TenVanChuyen
 		{
 			get
 			{
-				return this._SoSize;
+				return this._TenVanChuyen;
 			}
 			set
 			{
-				if ((this._SoSize != value))
+				if ((this._TenVanChuyen != value))
 				{
-					this.OnSoSizeChanging(value);
+					this.OnTenVanChuyenChanging(value);
 					this.SendPropertyChanging();
-					this._SoSize = value;
-					this.SendPropertyChanged("SoSize");
-					this.OnSoSizeChanged();
+					this._TenVanChuyen = value;
+					this.SendPropertyChanged("TenVanChuyen");
+					this.OnTenVanChuyenChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VANCHUYEN_DONDATHANG", Storage="_DONDATHANGs", ThisKey="MaVC", OtherKey="MaVC")]
+		public EntitySet<DONDATHANG> DONDATHANGs
+		{
+			get
+			{
+				return this._DONDATHANGs;
+			}
+			set
+			{
+				this._DONDATHANGs.Assign(value);
 			}
 		}
 		
@@ -1975,6 +2056,18 @@ namespace VACTShop.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_DONDATHANGs(DONDATHANG entity)
+		{
+			this.SendPropertyChanging();
+			entity.VANCHUYEN = this;
+		}
+		
+		private void detach_DONDATHANGs(DONDATHANG entity)
+		{
+			this.SendPropertyChanging();
+			entity.VANCHUYEN = null;
 		}
 	}
 }

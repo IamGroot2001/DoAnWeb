@@ -141,7 +141,12 @@
       <DependentUpon>dbWebQuanAoNam.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\GioHang.cs" />
+    <Compile Include="MOMO\MoMoSecurity.cs" />
+    <Compile Include="MOMO\PaymentRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VNPAY\ChuyenDoi.cs" />
+    <Compile Include="VNPAY\SoSanh.cs" />
+    <Compile Include="VNPAY\XuLy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset\css\dangkydangnhap.css" />
@@ -376,6 +381,8 @@
     <Content Include="Views\GioHang\SoLuongGioHang.cshtml" />
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
+    <Content Include="Views\GioHang\ConfirmPaymentClient.cshtml" />
+    <Content Include="Views\GioHang\PaymentConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
