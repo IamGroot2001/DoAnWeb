@@ -172,8 +172,20 @@ namespace VACTShop.Controllers
                 data.CHITIETDONDATHANGs.InsertOnSubmit(ctddh);
             }
             data.SubmitChanges();
+
+            //Mail xác nhận đặt hàng
+            string subject = "Biên nhận";
+            string mess = "Cảm ơn " + kh.HoTenKH + " đã đặt hàng!\n" +
+                            "Mã đơn hàng: " + ddh.MaDDH + "\n" +
+                            "Ngày đặt hàng: " + String.Format("{0:dd/MM/yyyy}", ddh.NgayDat) + "\n" +
+                            "Ngày giao: " + String.Format("{0:dd/MM/yyyy}", ddh.NgayGiao) + "\n" +
+                            "Tổng tiền: " + String.Format("{0:0,0}", ddh.ThanhTien) + " vnđ";
+            SendEmail(kh.EmailKH, subject, mess);
+
+
             Session["GioHang"] = null;
             return RedirectToAction("XacNhanDonHang", "GioHang");
+            
         }
 
         public static void SendEmail(string address, string subject, string message)
