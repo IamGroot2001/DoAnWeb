@@ -210,5 +210,45 @@ namespace VACTShop.Controllers
                 return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
             }
         }
+        public ActionResult SapXepSanPham(string kieuSapXep, int?page)
+        {
+            int pageNumber = (page ?? 1);
+            int pageSize = 8;
+            if(kieuSapXep==null)
+            {
+                kieuSapXep = Session["KieuSapXep"].ToString();
+                if(kieuSapXep=="giamdan")
+                {
+                    Session["KieuSapXep"] = "giamdan";
+                    ViewBag.SapXepSanPham = "Sản phẩm theo giá giảm dàn";
+                    var sanphamgiamdan = data.SANPHAMs.OrderByDescending(s => s.GiaBan);
+                    return View(sanphamgiamdan.ToPagedList(pageNumber, pageSize));
+                }
+                else
+                {
+                    Session["KieuSapXep"] = "tangdan";
+                    ViewBag.SapXepSanPham = "Sản phẩm theo giá tăng dần";
+                    var sanphamtangdan = data.SANPHAMs.OrderBy(s => s.GiaBan);
+                    return View(sanphamtangdan.ToPagedList(pageNumber, pageSize));
+                }
+            }
+            else
+            {
+                if (kieuSapXep == "giamdan")
+                {
+                    Session["KieuSapXep"] = "giamdan";
+                    ViewBag.SapXepSanPham = "Sản phẩm theo giá giảm dàn";
+                    var sanphamgiamdan = data.SANPHAMs.OrderByDescending(s => s.GiaBan);
+                    return View(sanphamgiamdan.ToPagedList(pageNumber, pageSize));
+                }
+                else
+                {
+                    Session["KieuSapXep"] = "tangdan";
+                    ViewBag.SapXepSanPham = "Sản phẩm theo giá tăng dần";
+                    var sanphamtangdan = data.SANPHAMs.OrderBy(s => s.GiaBan);
+                    return View(sanphamtangdan.ToPagedList(pageNumber, pageSize));
+                }
+            }
+        }
     }
 }

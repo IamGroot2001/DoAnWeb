@@ -1,19 +1,17 @@
 ﻿@using PagedList.Mvc;
-@using PagedList;
-@model IPagedList<VACTShop.Models.SANPHAM>
+@using VACTShop.Models;
+@model PagedList.PagedList<SANPHAM>
 
-@{ ViewBag.Title = "KetQuaTimKiem";
-                Layout = "~/Views/Shared/_Layout.cshtml"; 
-    }
-
+@{
+    ViewBag.Title = "SapXepSanPham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!--Style CSS-->
-<link href="~/Asset/css/StyleSheet.css" rel="stylesheet" />
 
-<div class="ListCard">
+<section class="ListCard">
     <div class="container ListCard__content">
-        <h3 class="text-center mb-4">@ViewBag.ThongBao</h3>
+        <h2 class="text-center mb-4">@ViewBag.SapXepSanPham</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  g-4">
             @foreach (var sanPham in Model)
             {
@@ -42,10 +40,17 @@
                     </div>
                 </div>
             }
+
         </div>
     </div>
+    
+</section>
+<div class="page">
+    @Html.PagedListPager(Model, page => Url.Action("SapXepSanPham", new { page = page, @KieuSapXep = Session["KieuSapXep"] }))
 </div>
-@Html.PagedListPager(Model, page => Url.Action("KetQuaTimKiem", new { page = page, @sTuKhoa = Session["TuKhoa"] }))
+
+
+
 <script src="~/Scripts/jquery-3.5.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
