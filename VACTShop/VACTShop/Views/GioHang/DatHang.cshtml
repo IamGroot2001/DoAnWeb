@@ -60,23 +60,30 @@
                         <input class="form-control" type="text" placeholder="@kh.EmailKH">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label>Địa Chỉ</label>
+                        <label>Địa Chỉ Khách Hàng</label>
                         <input class="form-control" type="text" placeholder="@kh.DiaChiKH">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Số Điện Thoại</label>
                         <input class="form-control" type="text" placeholder="@kh.DienThoaiKH">
                     </div>
+                   
                     <div class="col-md-6 form-group">
-                        <label>Địa Chỉ Nhận Hàng</label>
-                        <input class="form-control" type="text" name="DiaChi">
+                        
+                        <label>Đơn vị vận chuyển</label>
+                            <td>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("VC")
+                                </div>
+                            </td>
+                       
                     </div>
-                    <div class="col-md-6 form-group">
-                        <a class="btn btn-sm btn-primary" href="@Url.Action("GioHang","GioHang")">Quay Về Giỏ Hàng</a>
+                        <div class="col-md-6 form-group">
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("GioHang","GioHang")">Quay Về Giỏ Hàng</a>
+                        </div>
                     </div>
-                </div>
                     }
-                    
+
                 </div>
             </div>
             <div class="col-lg-4">
@@ -136,7 +143,8 @@
                         @using (Html.BeginForm())
                         { 
                             <input type="submit" class="btn btn-block btn-primary my-3 py-3" value="Thanh Toán Khi Nhận Hàng" />
-                            @*<a class="btn btn-block btn-primary my-3 py-3" href="@Url.Action("DatHang","GioHang")">Thanh Toán Trực Tiếp</a>*@
+                            <a class="btn btn-block btn-primary my-3 py-3" href="@Url.Action("Payment","GioHang")"><img src="~/Asset/img/logomomo.png" width="10%" />Thanh Toán Bằng Ví Momo</a>
+                            <a class="btn btn-block btn-primary my-3 py-3" href="@Url.Action("PaymentVNPAY","GioHang")"><img  src="~/Asset/img/logovnpay.png" width="15%"/>Thanh Toán Bằng VNpay</a>
                         }
                         
                     </div>
