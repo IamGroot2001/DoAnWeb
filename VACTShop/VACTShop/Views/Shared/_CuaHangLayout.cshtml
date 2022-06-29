@@ -20,32 +20,18 @@
                 <h5 class="font-weight-semi-bold mb-4">Thương Hiệu</h5>
                 <form>
                     @Html.Action("HienThiThuongHieu", "Home")
-                    @*<div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-            <input type="checkbox" class="custom-control-input" id="price-1">
-            <label class="custom-control-label" for="price-1">$0 - $100</label>
-            <span class="badge border font-weight-normal">150</span>
-        </div>
-        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-            <input type="checkbox" class="custom-control-input" id="price-2">
-            <label class="custom-control-label" for="price-2">$100 - $200</label>
-            <span class="badge border font-weight-normal">295</span>
-        </div>
-        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-            <input type="checkbox" class="custom-control-input" id="price-3">
-            <label class="custom-control-label" for="price-3">$200 - $300</label>
-            <span class="badge border font-weight-normal">246</span>
-        </div>
-        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-            <input type="checkbox" class="custom-control-input" id="price-4">
-            <label class="custom-control-label" for="price-4">$300 - $400</label>
-            <span class="badge border font-weight-normal">145</span>
-        </div>
-        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-            <input type="checkbox" class="custom-control-input" id="price-5">
-            <label class="custom-control-label" for="price-5">$400 - $500</label>
-            <span class="badge border font-weight-normal">168</span>
-        </div>*@
+
                 </form>
+                <div class="dropdown Login nav-item nav-link">
+                    <button class="font-weight-semi-bold mb-4" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        Sắp xếp theo giá tiền
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("SapXepSanPham","Home",new { kieuSapXep = "tangdan"})">Giá tăng Dần</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("SapXepSanPham","Home",new { kieuSapXep = "giamdan"})">Giá Giảm Dàn</a></li>
+                    </ul>
+                </div>
             </div>
             <!-- Kết thúc thương hiệu -->
         </div>

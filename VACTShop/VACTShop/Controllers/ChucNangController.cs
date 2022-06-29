@@ -89,6 +89,7 @@ namespace VACTShop.Controllers
             sp.AnhBia = filename;
             context.SANPHAMs.InsertOnSubmit(sp);
             context.SubmitChanges();
+
             return RedirectToAction("DSsanpham", "ChucNang");
         }
     //================================================Xoa san pham=======================================================//
@@ -207,7 +208,7 @@ namespace VACTShop.Controllers
                 return null;
             }
             return View(ncc);
-        }
+        } 
         //======================================================Loai San Pham=================================//
         public ActionResult DSLSP(int? page)
         {

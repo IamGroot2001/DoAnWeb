@@ -143,6 +143,112 @@ namespace VACTShop.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public ActionResult KetQuaTimKiem(FormCollection collection, int? page)
+        {
+            string sTuKhoa = collection["txtTimKiem"].ToString();
+            if(sTuKhoa==null)
+            {
+                List<SANPHAM> lstKQTK = data.SANPHAMs.Where(n => n.TenSP.Contains((string)Session["TuKhoa"])).ToList();
+                //phan trang
+                int pageNumber = (page ?? 1);
+                int pageSize = 8;
+                if(lstKQTK.Count==0)
+                {
+                    ViewBag.ThongBao = "Không tìm thấy sản phẩm nào cả";
+                    return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
+                }
+                ViewBag.ThongBao = "Đã tìm thấy" + lstKQTK.Count + " kêt quả!";
+                return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                Session["TuKhoa"] = sTuKhoa;
+                List<SANPHAM> lstKQTK = data.SANPHAMs.Where(n => n.TenSP.Contains(sTuKhoa)).ToList();
+                //Phân trang 
+                int pageNumber = (page ?? 1);
+                int pageSize = 8;
+                if (lstKQTK.Count == 0)
+                {
+                    ViewBag.ThongBao = "Không tìm thấy sản phẩm nào cả";
+                    return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
+                }
+                ViewBag.ThongBao = "Đã tìm thấy" + lstKQTK.Count + " kêt quả!";
+                return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
+            }
+        }
+        [HttpGet]
+        public ActionResult KetQuaTimKiem(int? page,string sTuKhoa)
+        {
+            if(sTuKhoa!=null)
+            {
+                Session["TuKhoa"] = sTuKhoa;
+                List<SANPHAM> lstKQTK = data.SANPHAMs.Where(n => n.TenSP.Contains(sTuKhoa)).ToList();
+                //Phân trang 
+                int pageNumber = (page ?? 1);
+                int pageSize = 8;
+                if (lstKQTK.Count == 0)
+                {
+                    ViewBag.ThongBao = "Không tìm thấy sản phẩm nào cả";
+                    return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
+                }
+                ViewBag.ThongBao = "Đã tìm thấy" + lstKQTK.Count + " kêt quả!";
+                return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
+            }
+            else
+            {
+                List<SANPHAM> lstKQTK = data.SANPHAMs.Where(n => n.TenSP.Contains((string)Session["TuKhoa"])).ToList();
+                //phan trang
+                int pageNumber = (page ?? 1);
+                int pageSize = 8;
+                if (lstKQTK.Count == 0)
+                {
+                    ViewBag.ThongBao = "Không tìm thấy sản phẩm nào cả";
+                    return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
+                }
+                ViewBag.ThongBao = "Đã tìm thấy" + lstKQTK.Count + " kêt quả!";
+                return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
+            }
+        }
+        public ActionResult SapXepSanPham(string kieuSapXep, int?page)
+        {
+            int pageNumber = (page ?? 1);
+            int pageSize = 8;
+            if(kieuSapXep==null)
+            {
+                kieuSapXep = Session["KieuSapXep"].ToString();
+                if(kieuSapXep=="giamdan")
+                {
+                    Session["KieuSapXep"] = "giamdan";
+                    ViewBag.SapXepSanPham = "Sản phẩm theo giá giảm dàn";
+                    var sanphamgiamdan = data.SANPHAMs.OrderByDescending(s => s.GiaBan);
+                    return View(sanphamgiamdan.ToPagedList(pageNumber, pageSize));
+                }
+                else
+                {
+                    Session["KieuSapXep"] = "tangdan";
+                    ViewBag.SapXepSanPham = "Sản phẩm theo giá tăng dần";
+                    var sanphamtangdan = data.SANPHAMs.OrderBy(s => s.GiaBan);
+                    return View(sanphamtangdan.ToPagedList(pageNumber, pageSize));
+                }
+            }
+            else
+            {
+                if (kieuSapXep == "giamdan")
+                {
+                    Session["KieuSapXep"] = "giamdan";
+                    ViewBag.SapXepSanPham = "Sản phẩm theo giá giảm dàn";
+                    var sanphamgiamdan = data.SANPHAMs.OrderByDescending(s => s.GiaBan);
+                    return View(sanphamgiamdan.ToPagedList(pageNumber, pageSize));
+                }
+                else
+                {
+                    Session["KieuSapXep"] = "tangdan";
+                    ViewBag.SapXepSanPham = "Sản phẩm theo giá tăng dần";
+                    var sanphamtangdan = data.SANPHAMs.OrderBy(s => s.GiaBan);
+                    return View(sanphamtangdan.ToPagedList(pageNumber, pageSize));
+                }
+            }
+        }
     }
 }
