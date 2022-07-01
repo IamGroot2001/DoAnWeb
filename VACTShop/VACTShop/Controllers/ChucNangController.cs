@@ -7,10 +7,11 @@ using VACTShop.Models;
 using PagedList;
 using System.IO;
 using System.Net;
+using VACTShop.Controllers;
 
 namespace VACTShop.Controllers
 {
-    public class ChucNangController : Controller
+    public class ChucNangController : BaseController
     {
         dbWebQuanAoNamDataContext context = new dbWebQuanAoNamDataContext();
         //------------------------------ Sản Phẩm ---------------------------------------vinh
@@ -116,8 +117,7 @@ namespace VACTShop.Controllers
         [HttpPost,ActionName("XoaSanPham")]
         public ActionResult XNXoaSanPham(int id)
         {
-            try
-            {
+           
                 if (Session["TKAdmin"] == null)
                 {
                     return RedirectToAction("Index", "Home");
@@ -131,18 +131,23 @@ namespace VACTShop.Controllers
                         Response.StatusCode = 404;
                         return null;
                     }
-                    context.SANPHAMs.DeleteOnSubmit(sp);
-                    context.SubmitChanges();
-                    return RedirectToAction("DSsanpham");
-                }
-            }
-            catch
-            {
-                ViewBag.error = "Đã có sản phẩm liên kết với đơn hàng khác";
-                return RedirectToAction("XoaSanPham");
-            }
+                    try
+                    {
+                        context.SANPHAMs.DeleteOnSubmit(sp);
+                        context.SubmitChanges();
+                        SetAlert("Xoá sản phẩm thành công", "success");
 
+                    return RedirectToAction("DSsanpham");
+                    }
+                    catch
+                    {
+                       SetAlert("Không xoá được loại sản phẩm, sản phẩm đã có đơn hàng khác", "error");
+                         return RedirectToAction("XoaSanPham");
+                    }
+                    return RedirectToAction("DSsanpham");
+                 }
         }
+           
         //================================================Sua san pham=======================================================//
         [HttpGet]
         public ActionResult Suasanpham(int id)
@@ -181,7 +186,7 @@ namespace VACTShop.Controllers
             }
             else
             {
-                img = collection["Anh"];
+                img = collection["AnhBia"];
             }
             SANPHAM sp = context.SANPHAMs.SingleOrDefault(n => n.MaSP == id);
             sp.AnhBia = img;
@@ -706,9 +711,20 @@ namespace VACTShop.Controllers
                     Response.StatusCode = 404;
                     return null;
                 }
-                context.DONDATHANGs.DeleteOnSubmit(ncc);
-                context.SubmitChanges();
-                return RedirectToAction("DonDatHang");
+                try
+                {
+                    context.DONDATHANGs.DeleteOnSubmit(ncc);
+                    context.SubmitChanges();
+                    SetAlert("Xoá đơn hàng thành công", "success");
+                    return RedirectToAction("DonDatHang");
+                }
+                catch
+                {
+                    SetAlert("Không Xoá được đơn đặt hàng, đơn hàng đã có chi tiết sản phẩm", "error");
+                    return RedirectToAction("DonDatHang");
+
+                }
+
             }
         }
         //=============================================Sửa Đơn Đặt Hàng====================================//

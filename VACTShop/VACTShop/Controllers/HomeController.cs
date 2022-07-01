@@ -158,7 +158,7 @@ namespace VACTShop.Controllers
                     ViewBag.ThongBao = "Không tìm thấy sản phẩm nào cả";
                     return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
                 }
-                ViewBag.ThongBao = "Đã tìm thấy" + lstKQTK.Count + " kêt quả!";
+                ViewBag.ThongBao = "Đã tìm thấy " + lstKQTK.Count + " kêt quả!";
                 return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
             }
             else
@@ -173,7 +173,7 @@ namespace VACTShop.Controllers
                     ViewBag.ThongBao = "Không tìm thấy sản phẩm nào cả";
                     return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
                 }
-                ViewBag.ThongBao = "Đã tìm thấy" + lstKQTK.Count + " kêt quả!";
+                ViewBag.ThongBao = "Đã tìm thấy " + lstKQTK.Count + " kêt quả!";
                 return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
             }
         }
@@ -192,7 +192,7 @@ namespace VACTShop.Controllers
                     ViewBag.ThongBao = "Không tìm thấy sản phẩm nào cả";
                     return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
                 }
-                ViewBag.ThongBao = "Đã tìm thấy" + lstKQTK.Count + " kêt quả!";
+                ViewBag.ThongBao = "Đã tìm thấy " + lstKQTK.Count +" kêt quả!";
                 return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
             }
             else
@@ -206,7 +206,7 @@ namespace VACTShop.Controllers
                     ViewBag.ThongBao = "Không tìm thấy sản phẩm nào cả";
                     return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
                 }
-                ViewBag.ThongBao = "Đã tìm thấy" + lstKQTK.Count + " kêt quả!";
+                ViewBag.ThongBao = "Đã tìm thấy " + lstKQTK.Count + " kêt quả!";
                 return View(lstKQTK.OrderBy(n => n.TenSP).ToPagedList(pageNumber, pageSize));
             }
         }

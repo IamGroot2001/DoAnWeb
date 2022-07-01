@@ -253,6 +253,47 @@ namespace VACTShop.Controllers
             }
             return this.ChangePassword();
         }
-      
+        [HttpGet]
+        public ActionResult ThongTinKhachHang()
+        {
+            KHACHHANG user = (KHACHHANG)Session["TaiKhoan"];
+            if (user == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult ThongTinKhachHang(FormCollection collection)
+        {
+            KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+            var user = data.KHACHHANGs.SingleOrDefault(p => p.MaKH == kh.MaKH);
+            var hoten = collection["HOTEN"];
+            var email = collection["EMAIL"];
+            var diachi = collection["DIACHI"];
+            var dienthoai = collection["DIENTHOAI"];
+            var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["NGAYSINH"]);
+            if(hoten == null || email == null || diachi == null || dienthoai == null ||ngaysinh==null)
+            {
+                ViewBag.Error = "Thông tin không được để trống";
+                return this.ThongTinKhachHang();
+            }
+            else
+            {
+                user.HoTenKH = hoten;
+                user.EmailKH = email;
+                user.DiaChiKH = diachi;
+                user.DienThoaiKH = dienthoai;
+                kh.NgaySinhKH = DateTime.Parse(ngaysinh);
+                Session["TaiKhoan"] = kh;
+                data.SubmitChanges();
+                ViewData["Info"] = "Cập nhật thành công !";
+                return RedirectToAction("Index", "Home");
+            }
+            return this.ThongTinKhachHang();
+        }
+
+
     }
 }

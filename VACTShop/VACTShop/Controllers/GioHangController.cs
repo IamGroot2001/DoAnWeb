@@ -161,7 +161,7 @@ namespace VACTShop.Controllers
             VANCHUYEN vc = new VANCHUYEN();
             ViewBag.VC = new SelectList(GetVANCHUYENVMs(), "MaVC", "TenVanChuyen");
             DONDATHANG ddh = new DONDATHANG();
-            KHACHHANG kh = (KHACHHANG)Session["Taikhoan"];
+            KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
             List<GioHang> gh = LayGioHang();
             ddh.MaKH = kh.MaKH;
             ddh.NgayDat = DateTime.Now;
