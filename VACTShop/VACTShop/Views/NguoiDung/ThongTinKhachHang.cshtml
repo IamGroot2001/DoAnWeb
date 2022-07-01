@@ -1,0 +1,58 @@
+﻿@model VACTShop.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "ThongTinKhachHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="bgAccountInformation py-4">
+    <div class="container mx-auto shadow py-4 px-4">
+        <div class="body-content">
+            <h2 class="text-left">Thông tin Khách Hàng</h2>
+
+            @using (Html.BeginForm())
+            {
+                <br />
+                <div style="color:green">
+                    <h6>@ViewData["Info"]</h6>
+                </div>
+                <div style="color:red">
+                    <h6>@ViewBag.Error</h6>
+                </div>
+                @Html.ValidationSummary(true)
+                <div class="row mt-5">
+                    <div class="col-md-6 pl-lg-5">
+                        <div class="group-infor">
+                            <h6>Tên người dùng</h6>
+                            <input id="nameCustomer" type="text" class="" name="HOTEN" value="@Model.HoTenKH" required />
+                        </div>
+                        <div class="group-infor">
+                            <h6>Ngày sinh của bạn là @Model.NgaySinhKH</h6>
+                            <input type="date" class="" name="NGAYSINH" value="@Model.NgaySinhKH" required />
+                        </div>
+                        <div class="group-infor">
+                            <h6>Mail</h6>
+                            <input id="mailCustomer" type="email" class="" name="EMAIL" value="@Model.EmailKH" required />
+                        </div>
+                        <div class="group-infor">
+                            <h6>Số điện thoại</h6>
+                            <input id="phonenumberCustomer" type="text" class="" pattern="[0-9]{10}" name="DIENTHOAI" value="@Model.DienThoaiKH" required />
+                        </div>
+                        <div class="group-infor">
+                            <h6>Địa chỉ</h6>
+                            <input id="addressCustomer" type="text" class="" name="DIACHI" value="@Model.DiaChiKH" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-lg-5">
+                        <div class="group-button">
+                            <input class="shadow-sm" type="submit" value="Lưu" />
+                            <a class=" shadow-sm" href="@Url.Action("Index","Home")">Trang Chủ</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

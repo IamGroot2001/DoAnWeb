@@ -39,7 +39,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="@Url.Action("Index","Admin")">
+                <a class="nav-link" href="@Url.Action("ThongKe","ThongKe")">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -113,10 +113,18 @@
 
             <!-- Main Content -->
             <div id="content">
-                @RenderBody()
-                <div>
-                    @RenderSection("MenuTrangAdmin", false)
-                </div>
+                <main>
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div id="AlerBox" class="alert @TempData["AlertType"]">
+                            @TempData["AlertMessage"]
+                        </div>
+                    }
+                    @RenderBody()
+                    <div>
+                        @RenderSection("MenuTrangAdmin", false)
+                    </div>
+                </main>
             </div>
 
         </div>
@@ -149,6 +157,7 @@
     <!-- Page level custom scripts -->
     <script src="~/Asset/js/chart-area-demo.js"></script>
     <script src="~/Asset/js/chart-pie-demo.js"></script>
+    <script src="~/Asset/js/base.js"></script>
 
 </body>
 

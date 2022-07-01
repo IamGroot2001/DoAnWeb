@@ -65,34 +65,34 @@
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">VACT</span>Shopper</h1>
                 </a>
             </div>
-           
-                @using (Html.BeginForm("KetQuaTimKiem", "Home", FormMethod.Post))
-                {
-             <div class="col-lg-6 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="search"name="txtTimKiem" class="form-control" placeholder="Tìm Kiếm..." required autocomplete="off">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
+
+            @using (Html.BeginForm("KetQuaTimKiem", "Home", FormMethod.Post))
+            {
+                <div class="col-lg-6 col-6">
+                    <form action="">
+                        <div class="input-group">
+                            <input type="search" name="txtTimKiem" class="form-control" placeholder="Tìm Kiếm..." required autocomplete="off">
+                            <div class="input-group-append">
+                                <span class="input-group-text text-primary">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-                    }
-          
-           
+                    </form>
+                </div>
+            }
+
+
             <div class="col-lg-3 col-6 text-right">
                 @*<a href="" class="btn border">
-                        <i class="fas fa-heart text-primary"></i>
-                        <span class="badge">0</span>
-                    </a>*@
-                @Html.Action("SoLuongGioHang","GioHang")
+                <i class="fas fa-heart text-primary"></i>
+                <span class="badge">0</span>
+            </a>*@
+                @Html.Action("SoLuongGioHang", "GioHang")
                 @*<a href="@Url.Action("GioHang","GioHang")" class="btn border">
-                    <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge"></span>
-                </a>*@
+                <i class="fas fa-shopping-cart text-primary"></i>
+                <span class="badge"></span>
+            </a>*@
             </div>
         </div>
     </div>
@@ -176,6 +176,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("ThongTinKhachHang", "NguoiDung")">Thông tin khách hang</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("DangXuat", "NguoiDung")">Đăng Xuất</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("History","History")">Lich Sử</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("ChangePassword", "NguoiDung")">Đổi mật khẩu</a></li>

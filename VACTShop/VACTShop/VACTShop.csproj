@@ -128,11 +128,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChucNangController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,6 +183,7 @@
     <Content Include="Asset\img\tuixach1.png" />
     <Content Include="Asset\img\vong1.png" />
     <Content Include="Asset\img\womens-day-loading.gif" />
+    <Content Include="Asset\js\base.js" />
     <Content Include="Asset\js\bootstrap.bundle.min.js" />
     <Content Include="Asset\js\chart-area-demo.js" />
     <Content Include="Asset\js\chart-pie-demo.js" />
@@ -392,6 +395,8 @@
     <Content Include="Views\History\HistoryDetails.cshtml" />
     <Content Include="Views\Home\KetQuaTimKiem.cshtml" />
     <Content Include="Views\Home\SapXepSanPham.cshtml" />
+    <Content Include="Views\NguoiDung\ThongTinKhachHang.cshtml" />
+    <Content Include="Views\ThongKe\ThongKe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
