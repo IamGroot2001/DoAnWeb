@@ -1622,9 +1622,14 @@ namespace VACTShop.Models
 		private EntityRef<LOAISANPHAM> _LOAISANPHAM;
 		
 		private EntityRef<NHACUNGCAP> _NHACUNGCAP;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
+		//=======================giá trị ngoài===============================//
+
+		public string tenNhaCungCap;
+		public string loaiSanPham;
+		public string searchingValue;
+
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnMaSPChanging(int value);

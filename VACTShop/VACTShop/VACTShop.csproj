@@ -169,8 +169,10 @@
     <Content Include="Asset\img\cart.jpg" />
     <Content Include="Asset\img\dep1.jfif" />
     <Content Include="Asset\img\dep1.png" />
+    <Content Include="Asset\img\fb.png" />
     <Content Include="Asset\img\giay1.jpg" />
     <Content Include="Asset\img\giay2.jpg" />
+    <Content Include="Asset\img\instagram.png" />
     <Content Include="Asset\img\korea_bg1.jpg" />
     <Content Include="Asset\img\korea_bg2.jpg" />
     <Content Include="Asset\img\logomomo.png" />
@@ -181,6 +183,7 @@
     <Content Include="Asset\img\quantayden1.jpg" />
     <Content Include="Asset\img\tainghe1.png" />
     <Content Include="Asset\img\tuixach1.png" />
+    <Content Include="Asset\img\twitter.png" />
     <Content Include="Asset\img\vong1.png" />
     <Content Include="Asset\img\womens-day-loading.gif" />
     <Content Include="Asset\js\base.js" />
@@ -397,6 +400,7 @@
     <Content Include="Views\Home\SapXepSanPham.cshtml" />
     <Content Include="Views\NguoiDung\ThongTinKhachHang.cshtml" />
     <Content Include="Views\ThongKe\ThongKe.cshtml" />
+    <Content Include="Views\ChucNang\TimKiemSanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

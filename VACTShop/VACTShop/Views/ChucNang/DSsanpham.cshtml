@@ -15,7 +15,15 @@
     {
         @input.Substring(0, lenght)<text>.....</text>}
 }
-
+<!--search-box-->
+<div class="search-box" style="">
+    @using (Html.BeginForm("TimKiemSanPham", "ChucNang"))
+    {
+        <form class="input">
+            <input class="sb-search-input" name="search" placeholder="Nhập tên sản phẩm cần tìm" type="search" id="input-31" />
+        </form>
+    }
+</div>
 <a href="@Url.Action("Themsanpham","ChucNang")" class="ADD-Btn">
     <p class="text">THÊM SẢN PHẨM</p>
 </a>
@@ -30,7 +38,7 @@
     <tr>
         <th>
             @Html.DisplayName("Sản Phẩm")
-        </th>     
+        </th>
         <th>
             @Html.DisplayName("Giá bán")
         </th>
@@ -60,7 +68,7 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TenSP)
-            </td>          
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GiaBan)
             </td>
@@ -90,9 +98,9 @@
         </tr>
     }
 </table>
-    <div class="page">
-        @Html.PagedListPager(Model, page => Url.Action("DSsanpham", new { page = page }))
-    </div>
+<div class="page">
+    @Html.PagedListPager(Model, page => Url.Action("DSsanpham", new { page = page }))
+</div>
 @section MenuTrangAdmin{
     <style>
         .pagination {
@@ -210,7 +218,7 @@
             margin-left: 20px;
             margin-right: 20px;
             font-weight: bold;
-            font-size:15px;
+            font-size: 15px;
         }
 
         .icon {
