@@ -154,10 +154,15 @@
   <ItemGroup>
     <Content Include="Asset\css\dangkydangnhap.css" />
     <Content Include="Asset\css\GioHang.css" />
+    <Content Include="Asset\css\Home.css" />
+    <Content Include="Asset\css\nicepage.css" />
     <Content Include="Asset\css\shop-homepage.css" />
     <Content Include="Asset\css\style.css" />
     <Content Include="Asset\css\style.min.css" />
     <Content Include="Asset\css\StyleSheet.css" />
+    <Content Include="Asset\css\img\1.jpg" />
+    <Content Include="Asset\css\img\2.jpg" />
+    <Content Include="Asset\css\img\3.jpg" />
     <Content Include="Asset\img\aokhoac1.jpg" />
     <Content Include="Asset\img\aokhoac2.jpg" />
     <Content Include="Asset\img\aokhoac3.jfif" />
@@ -170,6 +175,7 @@
     <Content Include="Asset\img\dep1.jfif" />
     <Content Include="Asset\img\dep1.png" />
     <Content Include="Asset\img\fb.png" />
+    <Content Include="Asset\css\img\fgd-min.jpg" />
     <Content Include="Asset\img\giay1.jpg" />
     <Content Include="Asset\img\giay2.jpg" />
     <Content Include="Asset\img\instagram.png" />
@@ -184,6 +190,7 @@
     <Content Include="Asset\img\tainghe1.png" />
     <Content Include="Asset\img\tuixach1.png" />
     <Content Include="Asset\img\twitter.png" />
+    <Content Include="Asset\img\VACT.png" />
     <Content Include="Asset\img\vong1.png" />
     <Content Include="Asset\img\womens-day-loading.gif" />
     <Content Include="Asset\js\base.js" />
@@ -191,9 +198,13 @@
     <Content Include="Asset\js\chart-area-demo.js" />
     <Content Include="Asset\js\chart-pie-demo.js" />
     <Content Include="Asset\js\Chart.js" />
+    <Content Include="Asset\js\jquery-1.11.1.min.js" />
     <Content Include="Asset\js\jquery.easing.min.js" />
+    <Content Include="Asset\js\jquery.js" />
     <Content Include="Asset\js\jquery.min.js" />
     <Content Include="Asset\js\main.js" />
+    <Content Include="Asset\js\modernizr.custom.js" />
+    <Content Include="Asset\js\nicepage.js" />
     <Content Include="Asset\js\sb-admin-2.min.js" />
     <Content Include="Asset\lib\easing\easing.js" />
     <Content Include="Asset\lib\easing\easing.min.js" />
@@ -215,8 +226,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesomeAdmin.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\sb-admin-2.min.css" />
+    <Content Include="Content\styleAdmin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -15,32 +15,41 @@
                     <th>Ngày giao</th>
                     <th>Tổng tiền</th>
                     <th>Địa chỉ</th>
+                    <th>Tình Trạng Đơn Hàng</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody class="text-left">
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td class="bill-id">
-                            @Html.DisplayFor(modelItem => item.MaDDH)
-                        </td>
-                        <td class="bill-date ">
-                            @Html.DisplayFor(modelItem => item.NgayDat)
-                        </td>
-                        <td class="bill-date ">
-                            @Html.DisplayFor(modelItem => item.NgayGiao)
-                        </td>
-                        <td class="bill-total">
-                            @Html.DisplayFor(modelItem => item.ThanhTien)<span> VNĐ</span>
-                        </td>
-                        <td class="bill-status">
-                            @Html.DisplayFor(modelItem => item.DiaChi)
-                        </td>
-                        <td class="bill-details">
-                            <a href="@Url.Action("HistoryDetails","History",new {id=item.MaDDH })">View Details</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="bill-id">
+                        @Html.DisplayFor(modelItem => item.MaDDH)
+                    </td>
+                    <td class="invert">
+                        @String.Format("{0:dd/MM/yyyy}", item.NgayDat)
+                    </td>
+                    <td class="invert">
+                        @String.Format("{0:dd/MM/yyyy}", item.NgayGiao)
+                    </td>
+                    <td class="bill-total">
+                        @Html.DisplayFor(modelItem => item.ThanhTien)<span> VNĐ</span>
+                    </td>
+                    <td class="bill-status">
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    @if ((bool)item.TinhTrangGiaoHang)
+                    {
+                        <td class="invert" style="color: green"><i class="fa fa-check-square-o" aria-hidden="true" style="margin-right: 5px"></i>Đã Giao hàng</td>
+                    }
+                    else
+                    {
+                        <td class="invert" style="color: #EF4444"><i class="fa fa-truck" aria-hidden="true" style="margin-right: 5px"></i>Đang Vận Chuyển</td>
+                    }
+                    <td class="bill-details">
+                        <a href="@Url.Action("HistoryDetails","History",new {id=item.MaDDH })">View Details</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

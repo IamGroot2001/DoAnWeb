@@ -146,20 +146,22 @@
                             {
                                 <a href="@Url.Action("Index","Home")" class="nav-item nav-link">Trang Chủ</a>
                                 <a href="@Url.Action("Shop","Home")" class="nav-item nav-link">Cửa Hàng</a>
+                                <a href="@Url.Action("About","Home")" class="nav-item nav-link">Về Chúng Tôi</a>
                             }
                             else
                             {
                                 <a href="@Url.Action("Index","Home")" class="nav-item nav-link">Trang Chủ</a>
                                 <a href="@Url.Action("Shop","Home")" class="nav-item nav-link">Cửa Hàng</a>
+                                <a href="@Url.Action("About","Home")" class="nav-item nav-link">Về Chúng Tôi</a>
                                 <a href="@Url.Action("Contact","Home")" class="nav-item nav-link">Hỗ Trợ</a>
                             }
                             @*<div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                        <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                    </div>
-                                </div>*@
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                <a href="checkout.html" class="dropdown-item">Checkout</a>
+            </div>
+        </div>*@
                             @*<a href="contact.html" class="nav-item nav-link">Contact</a>*@
                         </div>
                         <div class="navbar-nav ml-auto py-0">
@@ -170,18 +172,18 @@
                             }
                             else
                             {
-                        <div class="dropdown Login nav-item nav-link">
-                            <a id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                Hi @Session["User"]
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("ThongTinKhachHang", "NguoiDung")">Thông tin khách hang</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("DangXuat", "NguoiDung")">Đăng Xuất</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("History","History")">Lich Sử</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("ChangePassword", "NguoiDung")">Đổi mật khẩu</a></li>
-                            </ul>
-                        </div>
+                            <div class="dropdown Login nav-item nav-link">
+                                <a id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                    Hi @Session["User"]
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("ThongTinKhachHang", "NguoiDung")">Hồ sơ khách hang</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("DangXuat", "NguoiDung")">Đăng Xuất</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("History","History")">Lich Sử</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("ChangePassword", "NguoiDung")">Đổi mật khẩu</a></li>
+                                </ul>
+                            </div>
 
                             }
 

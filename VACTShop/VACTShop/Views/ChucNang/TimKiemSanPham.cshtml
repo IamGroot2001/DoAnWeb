@@ -15,13 +15,22 @@
     {
         @input.Substring(0, lenght)<text>.....</text>}
 }
-<!--search-box-->
-<div class="search-box">
+<div style="justify-content:center;align-items:center;">
     @using (Html.BeginForm("TimKiemSanPham", "ChucNang"))
     {
-        <form class="input">
-            <input class="sb-search-input" name="search" placeholder="Nhập tên sản phẩm cần tìm" type="search" id="input-31" />
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="search" id="input-31" class="form-control bg-light border-0 small" name="search" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
         </form>
+        @*<form class="input">
+                <input class="sb-search-input" name="search" placeholder="Nhập tên sản phẩm cần tìm" type="search" id="input-31" />
+            </form>*@
     }
 </div>
 <a href="@Url.Action("Themsanpham","ChucNang")" class="ADD-Btn">
@@ -71,7 +80,7 @@
                 @Html.DisplayFor(modelItem => item.TenSP)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GiaBan)
+                @String.Format("{0:##,#}", item.GiaBan) VNĐ
             </td>
             <td>
                 @Truncate(item.MoTa, 50)
@@ -92,8 +101,8 @@
                 @Html.Action("NCC", "ChucNang", new { id = item.MaNCC })
             </td>
             <td class="tool">
-                @Html.ActionLink("Edit", "Suasanpham", new { id = item.MaSP })
-                @Html.ActionLink("Details", "Details", new { id = item.MaSP })
+                @Html.ActionLink("Edit", "Suasanpham", new { id = item.MaSP }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaSP }) |
                 @Html.ActionLink("Delete", "XoaSanPham", new { id = item.MaSP })
             </td>
         </tr>
