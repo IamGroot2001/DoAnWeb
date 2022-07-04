@@ -27,23 +27,7 @@
             <div class="col-lg-8">
                 <div class="mb-4">
                     <h4 class="font-weight-semi-bold mb-4">Thông Tin Khách Hàng</h4>
-                    @*Cách 1:*@
-                    @*<table>
-                        @using (Html.BeginForm())
-                        {
-                            @Html.ValidationSummary(true)
-                            <tr style="height:40px">
-                                <td>Họ Tên Khách Hàng:</td>
-                                <td style="font-weight:bold">@kh.HoTenKH</td>
-                            </tr>
-                            <tr style="height:40px">
-                                <td>Ngày Sinh:</td>
-                                <td style="font-weight:bold">@kh.NgaySinhKH</td>
-                            </tr>
-                        }
-                    </table>*@
-
-                    @*Cách 2:*@
+                   
                     @using (Html.BeginForm())
                     {
                 <div class="row">
@@ -119,32 +103,12 @@
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Phương Thức Thanh Toán</h4>
                     </div>
-                    @*<div class="card-body">
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Direct Check</label>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
-                            </div>
-                        </div>
-                    </div>*@
                     <div class="card-footer border-secondary bg-transparent">
                         @using (Html.BeginForm())
                         { 
-                            <input type="submit" class="btn btn-block btn-primary my-3 py-3" value="Thanh Toán Khi Nhận Hàng" />
-                            <a class="btn btn-block btn-primary my-3 py-3" href="@Url.Action("Payment","GioHang")"><img src="~/Asset/img/logomomo.png" width="10%" />Thanh Toán Bằng Ví Momo</a>
-                            <a class="btn btn-block btn-primary my-3 py-3" href="@Url.Action("PaymentVNPAY","GioHang")"><img  src="~/Asset/img/logovnpay.png" width="15%"/>Thanh Toán Bằng VNpay</a>
+                            <input type="submit" class="btn btn-block btn-primary my-3 py-3 thanhtoan" value="Thanh Toán Khi Nhận Hàng"/>
+                            <a class="btn btn-block btn-primary my-3 py-3" href="@Url.Action("Payment","GioHang")"><img src="~/Asset/img/logomomo.png" width="10%"/>Thanh Toán Bằng Ví Momo</a>
+                            <a class="btn btn-block btn-primary my-3 py-3" href="@Url.Action("PaymentVNPAY","GioHang")"><img src="~/Asset/img/logovnpay.png" width="15%"/>Thanh Toán Bằng VNpay</a>
                         }
                         
                     </div>
@@ -152,5 +116,11 @@
             </div>
         </div>
     </div>
+<style>
+    .thanhtoan {
+        background-image: url(https://d29fhpw069ctt2.cloudfront.net/icon/image/73376/preview.svg);
+        background-repeat:no-repeat;
+    }
+</style>
     <!-- Checkout End -->
 

@@ -170,12 +170,13 @@ namespace VACTShop.Controllers
         [HttpPost, ActionName("Suasanpham")]
         public ActionResult XacNhanSuasanpham(FormCollection collection, int id, HttpPostedFileBase fileUpload)
         {
-            var img = "";
+            SANPHAM sp = context.SANPHAMs.SingleOrDefault(n => n.MaSP == id);//trỏ id hình ảnh
+            var img = "";//tạo đoan text trắng
             if (Session["TKAdmin"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            if (fileUpload != null)
+            if (fileUpload != null)//nếu dòng chọn hình ảnh đã úp ảnh mới thì sẽ edit
             {
                 img = Path.GetFileName(fileUpload.FileName);
                 var path = Path.Combine(Server.MapPath("~/Asset/img"), img);
@@ -184,12 +185,12 @@ namespace VACTShop.Controllers
                     fileUpload.SaveAs(path);
                 }
             }
-            else
+            else//nếu không thì lấy lại ảnh cũ trong sql
             {
-                img = collection["AnhBia"];
+                img= sp.AnhBia;//cho img đó lại bằng ảnh cũ trong sql
+                //img = collection["AnhBia"];
             }
-            SANPHAM sp = context.SANPHAMs.SingleOrDefault(n => n.MaSP == id);
-            sp.AnhBia = img;
+            sp.AnhBia = img;//để xuất ảnh mới ra ngoài màn hình
             if (sp == null)
             {
                 Response.StatusCode = 404;
@@ -764,6 +765,42 @@ namespace VACTShop.Controllers
                 UpdateModel(ncc);
                 context.SubmitChanges();
                 return RedirectToAction("DonDatHang");
+            }
+        }
+        public ActionResult TimKiemSanPham(int? page,string value, FormCollection collection)
+        {
+            if (Session["TKAdmin"] == null)
+            {
+                return RedirectToAction("Index", "Fashion");
+            }
+            else
+            {
+                var search = collection["search"];
+                string searchingValue = "";
+                List<SANPHAM> listSanPham = null;
+                if(!String.IsNullOrEmpty(search))
+                {
+                    listSanPham = context.SANPHAMs.Where(p => p.TenSP.Contains(search)).ToList();
+                    searchingValue = search;
+                }
+                else
+                {
+                    listSanPham = context.SANPHAMs.Where(p => p.TenSP.Contains(value)).ToList();
+                    searchingValue = search;
+                }
+                foreach(var item in listSanPham)
+                {
+                    var supplier = context.NHACUNGCAPs.Single(p => p.MaNCC == item.MaNCC);
+                    item.tenNhaCungCap = supplier.TenNCC;
+                    var productType = context.LOAISANPHAMs.Single(p => p.MaLSP == item.MaLSP);
+                    item.loaiSanPham = productType.TenLSP;
+                    item.searchingValue = searchingValue;
+                }
+                //===================phân trang======================
+                int pageSize = 8; // mỗi trang 8 sản phẩm
+                int pageNum = (page ?? 1); // nếu page = null => pageNum = 1
+
+                return View(listSanPham.ToPagedList(pageNum, pageSize));
             }
         }
 

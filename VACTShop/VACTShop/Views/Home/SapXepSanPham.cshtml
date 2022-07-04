@@ -29,7 +29,7 @@
                                 <a href="@Url.Action("XemChiTietSanPham", "Home", new { id = sanPham.MaSP })" class="btn btn-primary me-3 me-md-1 me-sm-2 me-lg-3">Chi tiết</a>
                                 @if (Session["TaiKhoan"] == null)
                                 {
-                                    <a href="@Url.Action("DangNhap", "NguoiDung")" class="btn btn-warning rounded-3">Mua hàng</a>
+                                    <a href="@Url.Action("DangNhap", "NguoiDung")" class="btn btn-warning rounded-3">Bạn Cần Đăng Nhập</a>
                                 }
                                 else
                                 {
@@ -48,6 +48,68 @@
 <div class="page">
     @Html.PagedListPager(Model, page => Url.Action("SapXepSanPham", new { page = page, @KieuSapXep = Session["KieuSapXep"] }))
 </div>
+<style>
+    .pagination {
+        position: relative;
+        background: #fff;
+        display: flex;
+        padding: 10px 20px;
+        border-radius: 50px;
+        box-shadow: 0 5px 15px rgba(0,0,0,.2);
+        text-align: center;
+        justify-content: center
+    }
+
+        .pagination > li {
+            margin: 0 5px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+            .pagination > li > a {
+                color: #777;
+                font-weight: 600;
+                border-radius: 50%;
+                display: block;
+            }
+
+            .pagination > li:hover a,
+            .pagination > li.active a {
+                background: #333;
+                color: #fff
+            }
+    .page {
+        text-align: center;
+        justify-content: center;
+        display: inline;
+    }
+    @@media(max-width: 430px) {
+        table {
+            font-size: 10px;
+        }
+
+        .pagination {
+            width: 95%;
+            padding: 5px 20px;
+            margin-left: 15px;
+        }
+    }
+
+    @@media(max-width: 320px) {
+        table {
+            font-size: 8px;
+        }
+
+        .pagination {
+            width: 95%;
+            padding: 5px 20px;
+            margin-left: 15px;
+            font-size: 10px;
+        }
+    }
+</style>
 
 
 

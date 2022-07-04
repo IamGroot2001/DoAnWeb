@@ -15,6 +15,25 @@
     {
         @input.Substring(0, lenght)<text>.....</text>}
 }
+<!--search-box-->
+<div style="justify-content:center;align-items:center;">
+    @using (Html.BeginForm("TimKiemSanPham", "ChucNang"))
+    {
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="search" id="input-31" class="form-control bg-light border-0 small" name="search" placeholder="Nhập sản phẩm cần tìm..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        @*<form class="input">
+            <input class="sb-search-input" name="search" placeholder="Nhập tên sản phẩm cần tìm" type="search" id="input-31" />
+        </form>*@
+    }
+</div>
 
 <a href="@Url.Action("Themsanpham","ChucNang")" class="ADD-Btn">
     <p class="text">THÊM SẢN PHẨM</p>
@@ -28,9 +47,9 @@
 
 <table class="table" border="1">
     <tr>
-        <th>
+        <th class="ragiua">
             @Html.DisplayName("Sản Phẩm")
-        </th>     
+        </th>
         <th>
             @Html.DisplayName("Giá bán")
         </th>
@@ -60,9 +79,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TenSP)
-            </td>          
+            </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GiaBan)
+                @String.Format("{0:##,#}", item.GiaBan) VNĐ
             </td>
             <td>
                 @Truncate(item.MoTa, 50)
@@ -83,16 +102,16 @@
                 @Html.Action("NCC", "ChucNang", new { id = item.MaNCC })
             </td>
             <td class="tool">
-                @Html.ActionLink("Edit", "Suasanpham", new { id = item.MaSP })
-                @Html.ActionLink("Details", "Details", new { id = item.MaSP })
+                @Html.ActionLink("Edit", "Suasanpham", new { id = item.MaSP }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaSP }) |
                 @Html.ActionLink("Delete", "XoaSanPham", new { id = item.MaSP })
             </td>
         </tr>
     }
 </table>
-    <div class="page">
-        @Html.PagedListPager(Model, page => Url.Action("DSsanpham", new { page = page }))
-    </div>
+<div class="page">
+    @Html.PagedListPager(Model, page => Url.Action("DSsanpham", new { page = page }))
+</div>
 @section MenuTrangAdmin{
     <style>
         .pagination {
@@ -112,6 +131,9 @@
                 height: 50px;
                 line-height: 50px;
                 text-align: center;
+            }
+            .ragiua{
+                display:flex;justify-content:center;align-content:center
             }
 
                 .pagination > li > a {
@@ -210,7 +232,7 @@
             margin-left: 20px;
             margin-right: 20px;
             font-weight: bold;
-            font-size:15px;
+            font-size: 15px;
         }
 
         .icon {
@@ -257,7 +279,7 @@
             float: left;
             border-radius: 10px;
             transition: 0.5s ease all;
-            width: 190px;
+            width: 210px;
             height: 80px;
             color: black;
         }

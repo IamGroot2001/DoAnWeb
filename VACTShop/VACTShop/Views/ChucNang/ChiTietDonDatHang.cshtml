@@ -29,9 +29,7 @@
         <th>
             @Html.DisplayName("Đơn Giá")
         </th>
-        <th>
-            @Html.DisplayName("Thành Tiền")
-        </th>
+       
         <th>
             @Html.DisplayName("Địa Chỉ")
         </th>
@@ -54,11 +52,9 @@
                 @Html.DisplayFor(modelItem => item.SoLuong)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DonGia)
+                @String.Format("{0:##,#}", item.DonGia) VNĐ
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DONDATHANG.ThanhTien)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.DONDATHANG.DiaChi)
             </td>

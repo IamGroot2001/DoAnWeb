@@ -47,14 +47,24 @@
             <td>
                 @String.Format("{0:dd/MM/yyyy}", item.NgayGiao)
             </td>
-            <td style="color: black">
-                @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
-            </td>
-            <td style="color: black">
-                @Html.DisplayFor(modelItem => item.DaThanhToan)
-            </td>
+            @if ((bool)item.TinhTrangGiaoHang)
+            {
+                <td class="invert" style="color: green"><i aria-hidden="true" style="margin-right: 5px"></i>✔Đã Giao Hàng</td>
+            }
+            else
+            {
+                <td class="invert" style="color: #EF4444"><i aria-hidden="true" style="margin-right: 5px"></i>🚚 Đang Vận Chuyển</td>
+            }
+           @if ((bool)item.DaThanhToan)
+            {
+                <td class="invert" style="color: green"><i aria-hidden="true" style="margin-right: 5px"></i>💲 Đã Thanh Toán</td>
+            }
+            else
+            {
+                <td class="invert" style="color: #EF4444"><i aria-hidden="true" style="margin-right: 5px"></i>❗Chưa Thanh Toán</td>
+            }
             <td>
-                @Html.DisplayFor(modelItem=>item.ThanhTien)
+                @String.Format("{0:##,#}", item.ThanhTien) VNĐ
             </td>
             <td class="tool">
                 <a href="@Url.Action("ChiTietDonDatHang","ChucNang", new { id = item.MaDDH })">Details</a> |
