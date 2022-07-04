@@ -155,6 +155,7 @@
     <Content Include="Asset\css\dangkydangnhap.css" />
     <Content Include="Asset\css\GioHang.css" />
     <Content Include="Asset\css\Home.css" />
+    <Content Include="Asset\css\img\4.jpg" />
     <Content Include="Asset\css\nicepage.css" />
     <Content Include="Asset\css\shop-homepage.css" />
     <Content Include="Asset\css\style.css" />
@@ -178,6 +179,7 @@
     <Content Include="Asset\css\img\fgd-min.jpg" />
     <Content Include="Asset\img\giay1.jpg" />
     <Content Include="Asset\img\giay2.jpg" />
+    <Content Include="Asset\img\home.png" />
     <Content Include="Asset\img\instagram.png" />
     <Content Include="Asset\img\korea_bg1.jpg" />
     <Content Include="Asset\img\korea_bg2.jpg" />
@@ -187,7 +189,6 @@
     <Content Include="Asset\img\quankaki1.jpg" />
     <Content Include="Asset\img\quanshort1.jpg" />
     <Content Include="Asset\img\quantayden1.jpg" />
-    <Content Include="Asset\img\tainghe1.png" />
     <Content Include="Asset\img\tuixach1.png" />
     <Content Include="Asset\img\twitter.png" />
     <Content Include="Asset\img\VACT.png" />
