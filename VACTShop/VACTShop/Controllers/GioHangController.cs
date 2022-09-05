@@ -139,19 +139,19 @@ namespace VACTShop.Controllers
         [HttpGet]
         public ActionResult DatHang()
         {
-
-            if (Session["Taikhoan"] == null || Session["Taikhoan"].ToString() == "")
+            
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")//nếu mà tài khoản trống hoặc không có thì sẽ bắt đăng nhập
             {
                 return RedirectToAction("DangNhap", "NguoiDung");
             }
-            if (Session["GioHang"] == null)
+            if (Session["GioHang"] == null)// nếu giỏ hàng mà trống thì sẽ trở về man hình home
             {
                 return RedirectToAction("Index", "Home");
             }
-            List<GioHang> gioHangs = LayGioHang();
-            ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongTien = TongTien();
-            ViewBag.VC = new SelectList(data.VANCHUYENs.ToList().OrderBy(n => n.MaVC), "MaVC", "TenVanChuyen");
+            List<GioHang> gioHangs = LayGioHang();// tạo list giỏ hàng
+            ViewBag.TongSoLuong = TongSoLuong();//tạo viewbag hiện tổng số lượng giỏ hàngg
+            ViewBag.TongTien = TongTien();//tạo viewbag  hiện tổng số tiền
+            ViewBag.VC = new SelectList(data.VANCHUYENs.ToList().OrderBy(n => n.MaVC), "MaVC", "TenVanChuyen");//tạo viewbag hiện ra các nhà vận chuyển
             return View(gioHangs);
         }
         [HttpPost]
@@ -163,14 +163,14 @@ namespace VACTShop.Controllers
             DONDATHANG ddh = new DONDATHANG();
             KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
             List<GioHang> gh = LayGioHang();
-            ddh.MaKH = kh.MaKH;
-            ddh.NgayDat = DateTime.Now;
-            var ngaygiao = DateTime.Now;
-            ddh.NgayGiao = ngaygiao;
-            ddh.TinhTrangGiaoHang = false;
-            ddh.DaThanhToan = false;
+            ddh.MaKH = kh.MaKH;// đơn đặt hàng sẽ bằng mã khách hàng
+            ddh.NgayDat = DateTime.Now;//ngày đặt hàng là now
+            var ngaygiao = DateTime.Now;//ngày giao cũng là now ???
+            ddh.NgayGiao = ngaygiao;//ngày giao là ngày giao
+            ddh.TinhTrangGiaoHang = false;//tình trạng giao hàng là chưa giao
+            ddh.DaThanhToan = false;//tình trang thanh toán là chưa thanh toán
             ddh.ThanhTien = Decimal.Parse(TongTien().ToString());
-            string DiaChi = collection["DiaChi"];
+            string DiaChi = collection["DiaChi"];// lấy địa chỉ nhập vào
             string nvc = collection["TenVanChuyen"];
             ddh.DiaChi = DiaChi;
 

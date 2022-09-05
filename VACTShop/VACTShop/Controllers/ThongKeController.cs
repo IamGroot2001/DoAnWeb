@@ -45,7 +45,6 @@ namespace VACTShop.Controllers
         {
             bool a = true;
             var dem = (from s in db.DONDATHANGs where s.DaThanhToan == a select s).Count();
-            //var count = db.Invoices.OrderByDescending(s => s.StatusInvoice = a).Count();
             return dem;
         }
         private int fTrangThaiDonHang()

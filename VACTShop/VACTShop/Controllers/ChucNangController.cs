@@ -302,7 +302,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TKAdmin"] == null)
             {
-                return RedirectToAction("Index", "Fashion");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -406,7 +406,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TKAdmin"] == null)
             {
-                return RedirectToAction("Index", "Fashion");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -428,7 +428,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TKAdmin"] == null)
             {
-                return RedirectToAction("Index", "Fashion");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -447,7 +447,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TKAdmin"] == null)
             {
-                return RedirectToAction("Index", "Fashion");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -752,7 +752,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TKAdmin"] == null)
             {
-                return RedirectToAction("Index", "Fashion");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -771,7 +771,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TKAdmin"] == null)
             {
-                return RedirectToAction("Index", "Fashion");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

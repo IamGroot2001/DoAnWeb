@@ -29,14 +29,9 @@
                             </p>
                             <div class="d-flex">
                                 <a href="@Url.Action("XemChiTietSanPham", "Home", new { id = sanPham.MaSP })" class="btn btn-primary me-3 me-md-1 me-sm-2 me-lg-3">Chi tiết</a>
-                                @if (Session["TaiKhoan"] == null)
-                                {
-                                    <a href="@Url.Action("DangNhap", "NguoiDung")" class="btn btn-warning rounded-3">Mua hàng</a>
-                                }
-                                else
-                                {
+                               
                                     <a href="@Url.Action("ThemGioHang", "GioHang", new { masp = sanPham.MaSP, strUrl = Request.Url.ToString()})" class="btn btn-warning rounded-3">Thêm vào giỏ</a>
-                                }
+                                
                             </div>
                         </div>
                     </div>

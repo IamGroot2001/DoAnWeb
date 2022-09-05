@@ -33,14 +33,12 @@ namespace VACTShop.Controllers
         {
             bool a = true;
             var dem = (from s in context.DONDATHANGs where s.TinhTrangGiaoHang == a select s).Count();
-            //var count = db.Invoices.OrderByDescending(s => s.StatusInvoice = a).Count();
             return dem;
         }
         private int fTrangThaiGiaoHang()
         {
             bool a = false;
             var dem = (from s in context.DONDATHANGs where s.TinhTrangGiaoHang == a select s).Count();
-            //var count = db.Invoices.OrderByDescending(s => s.StatusInvoice = a).Count();
             return dem;
         }
 
@@ -48,14 +46,12 @@ namespace VACTShop.Controllers
         {
             bool a = true;
             var dem = (from s in context.DONDATHANGs where s.DaThanhToan == a select s).Count();
-            //var count = db.Invoices.OrderByDescending(s => s.StatusInvoice = a).Count();
             return dem;
         }
         private int fTrangThaiDonHang()
         {
             bool a = false;
             var dem = (from s in context.DONDATHANGs where s.DaThanhToan == a select s).Count();
-            //var count = db.Invoices.OrderByDescending(s => s.StatusInvoice = a).Count();
             return dem;
         }
 
