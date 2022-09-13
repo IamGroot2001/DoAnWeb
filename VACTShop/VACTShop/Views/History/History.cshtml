@@ -33,10 +33,10 @@
                         @String.Format("{0:dd/MM/yyyy}", item.NgayGiao)
                     </td>
                     <td class="bill-total">
-                        @Html.DisplayFor(modelItem => item.ThanhTien)<span> VNĐ</span>
+                        @String.Format("{0:##,#}", item.ThanhTien) VNĐ
                     </td>
                     <td class="bill-status">
-                        @Html.DisplayFor(modelItem => item.DiaChi)
+                        @Html.DisplayFor(modelItem => item.KHACHHANG.DiaChiKH)
                     </td>
                     @if ((bool)item.TinhTrangGiaoHang)
                     {

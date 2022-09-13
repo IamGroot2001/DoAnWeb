@@ -109,7 +109,7 @@
     }
 </table>
 <div class="page">
-    @Html.PagedListPager(Model, page => Url.Action("TimKiemSanPham", new { page = page }))
+    @Html.PagedListPager(Model, page => Url.Action("TimKiemSanPham", new { page = page, value=Model[0].searchingValue }))
 </div>
 @section MenuTrangAdmin{
     <style>

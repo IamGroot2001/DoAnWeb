@@ -21,7 +21,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TaiKhoan"] == null)
             {
-                return RedirectToAction("Login", "NguoiDung");
+                return RedirectToAction("DangNhap", "NguoiDung");
             }
             else
             {
@@ -34,7 +34,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TaiKhoan"] == null)
             {
-                return RedirectToAction("Login", "NguoiDung");
+                return RedirectToAction("DangNhap", "NguoiDung");
             }
             if (id == null)
             {
@@ -48,7 +48,7 @@ namespace VACTShop.Controllers
         {
             if (Session["TaiKhoan"] == null)
             {
-                return RedirectToAction("Login", "NguoiDung");
+                return RedirectToAction("DangNhap", "NguoiDung");
             }
             else
             {
